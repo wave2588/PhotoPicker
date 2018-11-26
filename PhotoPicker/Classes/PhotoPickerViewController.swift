@@ -119,10 +119,6 @@ private extension PhotoPickerViewController {
                     self.actionVC.view.y = newY
                     self.actionVC.view.height = newH
                     gesture.setTranslation(.zero, in: self.actionVC.topView)
-
-                    debugPrint(newY / 1000)
-                    debugPrint(newH, newY)
-                    self.shadowView.alpha = 0.5
                 } else if gesture.state == .ended || gesture.state == .failed || gesture.state == .cancelled {
                     let screenCenterY = UIScreen.main.bounds.height * 0.5
                     let newY = self.actionVC.view.y >= screenCenterY ? originalY : minY
@@ -131,6 +127,7 @@ private extension PhotoPickerViewController {
                     UIView.animate(withDuration: 0.25, animations: {
                         self.actionVC.view.height = newH
                         self.actionVC.view.y = newY
+                        self.shadowView.alpha = newY == minY ? 0.5 : 0
                     }, completion: { _ in
                     })
                 }
