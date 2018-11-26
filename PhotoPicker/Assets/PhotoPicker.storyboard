@@ -70,15 +70,23 @@
                                     <constraint firstAttribute="height" constant="375" id="lNx-8e-ghI"/>
                                 </constraints>
                             </view>
+                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w2U-LN-zZm">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="w2U-LN-zZm" secondAttribute="bottom" id="2kz-q4-56z"/>
                             <constraint firstItem="93U-XP-mDB" firstAttribute="leading" secondItem="YQ6-Vy-QJ0" secondAttribute="leading" id="3QE-7i-bEb"/>
+                            <constraint firstItem="w2U-LN-zZm" firstAttribute="top" secondItem="YQ6-Vy-QJ0" secondAttribute="top" id="AOO-ZQ-Xs8"/>
+                            <constraint firstAttribute="trailing" secondItem="w2U-LN-zZm" secondAttribute="trailing" id="Ani-B6-uRM"/>
                             <constraint firstAttribute="trailing" secondItem="93U-XP-mDB" secondAttribute="trailing" id="Dbo-qb-ngO"/>
                             <constraint firstItem="93U-XP-mDB" firstAttribute="top" secondItem="MGf-5l-j2g" secondAttribute="top" id="EuC-lK-Hz6"/>
                             <constraint firstItem="TwF-Sg-7Ae" firstAttribute="trailing" secondItem="MGf-5l-j2g" secondAttribute="trailing" id="ebG-pq-YWp"/>
                             <constraint firstItem="TwF-Sg-7Ae" firstAttribute="leading" secondItem="MGf-5l-j2g" secondAttribute="leading" id="hQl-jC-m0v"/>
                             <constraint firstItem="TwF-Sg-7Ae" firstAttribute="top" secondItem="93U-XP-mDB" secondAttribute="bottom" id="qUU-8U-YgG"/>
+                            <constraint firstItem="w2U-LN-zZm" firstAttribute="leading" secondItem="YQ6-Vy-QJ0" secondAttribute="leading" id="vE4-u2-2yd"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="MGf-5l-j2g"/>
                     </view>
@@ -87,6 +95,7 @@
                         <outlet property="editContainerView" destination="TwF-Sg-7Ae" id="okW-pi-b9b"/>
                         <outlet property="editContainerViewHeight" destination="lNx-8e-ghI" id="N2Q-Zj-OuK"/>
                         <outlet property="nextStepBtn" destination="BBN-yC-8NS" id="aUm-oy-gOw"/>
+                        <outlet property="shadowView" destination="w2U-LN-zZm" id="dpL-0l-LhL"/>
                         <outlet property="topView" destination="93U-XP-mDB" id="X3T-LL-wTP"/>
                     </connections>
                 </viewController>

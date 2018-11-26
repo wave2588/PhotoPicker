@@ -64,6 +64,7 @@ class PhotoPickerActionViewController: UIViewController {
         configureLibrary()
         configureAlbumItems()
         configureEditedAssetItem()
+        configureLayer()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -352,5 +353,13 @@ private extension PhotoPickerActionViewController {
             .disposed(by: rx.disposeBag)
         
         library.checkAuthorization()
+    }
+    
+    func configureLayer() {
+        let maskPath = UIBezierPath(roundedRect: view.bounds, byRoundingCorners: [.topRight, .topLeft], cornerRadii: CGSize(width: 8, height: 8))
+        let maskLayer = CAShapeLayer()
+        maskLayer.frame = view.bounds
+        maskLayer.path = maskPath.cgPath
+        view.layer.mask = maskLayer
     }
 }

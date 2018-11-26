@@ -38,6 +38,8 @@ public class PhotoPickerViewController: UIViewController {
     @IBOutlet weak var editContainerView: UIView!
     @IBOutlet weak var editContainerViewHeight: NSLayoutConstraint!
     
+    @IBOutlet weak var shadowView: UIView!
+    
     /// **
 //    private let editView = EditView.fromNib() as! EditView
 //    private let actionVC = PhotoPickerActionViewController.fromStoryboard() as! PhotoPickerActionViewController
@@ -116,9 +118,11 @@ private extension PhotoPickerViewController {
                     let newH = self.view.height - newY
                     self.actionVC.view.y = newY
                     self.actionVC.view.height = newH
-
                     gesture.setTranslation(.zero, in: self.actionVC.topView)
 
+                    debugPrint(newY / 1000)
+                    debugPrint(newH, newY)
+                    self.shadowView.alpha = 0.5
                 } else if gesture.state == .ended || gesture.state == .failed || gesture.state == .cancelled {
                     let screenCenterY = UIScreen.main.bounds.height * 0.5
                     let newY = self.actionVC.view.y >= screenCenterY ? originalY : minY
