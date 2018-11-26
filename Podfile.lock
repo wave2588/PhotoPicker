@@ -1,0 +1,100 @@
+PODS:
+  - Aspects (1.4.1)
+  - Differentiator (3.1.0)
+  - "NSObject+Rx (4.4.1)":
+    - RxSwift (~> 4.3)
+  - RxAnimated (0.5.0):
+    - RxAnimated/Core (= 0.5.0)
+    - RxCocoa (~> 4.3)
+    - RxSwift (~> 4.3)
+  - RxAnimated/Core (0.5.0):
+    - RxCocoa (~> 4.3)
+    - RxSwift (~> 4.3)
+  - RxAtomic (4.4.0)
+  - RxCocoa (4.4.0):
+    - RxSwift (~> 4.0)
+  - RxDataSources (3.1.0):
+    - Differentiator (~> 3.0)
+    - RxCocoa (~> 4.0)
+    - RxSwift (~> 4.0)
+  - RxGesture (2.1.0):
+    - RxCocoa (~> 4.4.0)
+    - RxSwift (~> 4.4.0)
+  - RxOptional (3.6.2):
+    - RxCocoa (~> 4.0)
+    - RxSwift (~> 4.0)
+  - RxSwift (4.4.0):
+    - RxAtomic (~> 4.4)
+  - RxViewController (0.4.0):
+    - RxCocoa (>= 4.0.0)
+    - RxSwift (>= 4.0.0)
+  - SwifterSwift (4.6.0):
+    - SwifterSwift/AppKit (= 4.6.0)
+    - SwifterSwift/CoreGraphics (= 4.6.0)
+    - SwifterSwift/CoreLocation (= 4.6.0)
+    - SwifterSwift/Foundation (= 4.6.0)
+    - SwifterSwift/MapKit (= 4.6.0)
+    - SwifterSwift/SpriteKit (= 4.6.0)
+    - SwifterSwift/SwiftStdlib (= 4.6.0)
+    - SwifterSwift/UIKit (= 4.6.0)
+  - SwifterSwift/AppKit (4.6.0)
+  - SwifterSwift/CoreGraphics (4.6.0)
+  - SwifterSwift/CoreLocation (4.6.0)
+  - SwifterSwift/Foundation (4.6.0)
+  - SwifterSwift/MapKit (4.6.0)
+  - SwifterSwift/SpriteKit (4.6.0)
+  - SwifterSwift/SwiftStdlib (4.6.0)
+  - SwifterSwift/UIKit (4.6.0)
+  - UMCAnalytics (5.5.2):
+    - UMCCommon
+  - UMCCommon (1.5.3)
+
+DEPENDENCIES:
+  - Aspects
+  - "NSObject+Rx"
+  - RxAnimated
+  - RxCocoa
+  - RxDataSources
+  - RxGesture
+  - RxOptional
+  - RxSwift
+  - RxViewController
+  - SwifterSwift
+  - UMCAnalytics
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Aspects
+    - Differentiator
+    - "NSObject+Rx"
+    - RxAnimated
+    - RxAtomic
+    - RxCocoa
+    - RxDataSources
+    - RxGesture
+    - RxOptional
+    - RxSwift
+    - RxViewController
+    - SwifterSwift
+    - UMCAnalytics
+    - UMCCommon
+
+SPEC CHECKSUMS:
+  Aspects: 7595ba96a6727a58ebcbfc954497fc5d2fdde546
+  Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
+  "NSObject+Rx": 9884a92f19b610795c431e10b4e601913b59c9e9
+  RxAnimated: 57a731e59557219480fb3dd86d965d977d863fc6
+  RxAtomic: eacf60db868c96bfd63320e28619fe29c179656f
+  RxCocoa: df63ebf7b9a70d6b4eeea407ed5dd4efc8979749
+  RxDataSources: a843bad90c29817f5923ec8163f4af2de084ceb3
+  RxGesture: 7f6dfb45dbde06e618c24442d38493e3144f2c95
+  RxOptional: 80426a0ddbd092573e4c482d8cc13302078c4d5e
+  RxSwift: 5976ecd04fc2fefd648827c23de5e11157faa973
+  RxViewController: 359bbc2fda373a78605b2735afb0f9f4f3f6c3e4
+  SwifterSwift: 812ffec6f301922f5430e75be3f2939ea3a80024
+  UMCAnalytics: 6654fd3c8201ff6da5c86a3ae29cd5c8436d3b7b
+  UMCCommon: 016af43c0f769feb1ae1861d65aaf2b23b89c9c7
+
+PODFILE CHECKSUM: bb079371b762eed6331960b2e8c779f29d39d3b6
+
+COCOAPODS: 1.6.0.beta.2
