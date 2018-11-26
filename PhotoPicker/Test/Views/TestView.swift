@@ -24,6 +24,8 @@ class TestView: UIView {
         let itemW = width
         layout.itemSize = CGSize(width: itemW, height: itemW)
         layout.scrollDirection = .horizontal
+        layout.minimumLineSpacing = 0
+        layout.minimumInteritemSpacing = 0
         
         collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: width, height: width), collectionViewLayout: layout)
         collectionView!.register(nibWithCellClass: CollectionViewCell.self)

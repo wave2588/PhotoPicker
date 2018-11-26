@@ -14,10 +14,6 @@ import Photos
 public protocol PhotoPickerViewControllerOutputs {
 
     var clickVideo: PublishSubject<AVAssetExportSession> { get }
-    
-    var clickNextStep: PublishSubject<(Scale, [UIImage])> { get }
-    
-    var clickClose: PublishSubject<[UIImage]> { get }
 }
 
 public class PhotoPickerViewController: UIViewController {
@@ -28,8 +24,6 @@ public class PhotoPickerViewController: UIViewController {
     
     public var outputs: PhotoPickerViewControllerOutputs { return self }
     public var clickVideo = PublishSubject<AVAssetExportSession>()
-    public var clickNextStep = PublishSubject<(Scale, [UIImage])>()
-    public var clickClose = PublishSubject<[UIImage]>()
 
     @IBOutlet public weak var closeBtn: UIButton!
     @IBOutlet public weak var nextStepBtn: UIButton!
@@ -70,18 +64,27 @@ public class PhotoPickerViewController: UIViewController {
     }
     
     @IBAction func closeAction(_ sender: UIButton) {
-        clickClose.onNext([])
     }
     
     @IBAction func nextStepAction(_ sender: UIButton) {
-        
-        let items = selectedAssetItems.value
-        let images = ScreenshotTool.getImages(assetItems: items)
-        clickNextStep.onNext(images)
     }
 }
 
 extension PhotoPickerViewController: PhotoPickerViewControllerOutputs {}
+
+public extension PhotoPickerViewController {
+    
+    public func getSelectedImages() -> (Scale, [UIImage]) {
+        let assetItems = self.selectedAssetItems.value
+        return ScreenshotTool.getImages(assetItems: assetItems)
+    }
+    
+//    func getSelectedImages(completionHandler:@escaping (_ item: (Scale, [UIImage])) -> ()) {
+//        let assetItems = self.selectedAssetItems.value
+//        let item = ScreenshotTool.getImages(assetItems: assetItems)
+//        completionHandler(item)
+//    }
+}
 
 private extension PhotoPickerViewController {
     
@@ -142,6 +145,7 @@ private extension PhotoPickerViewController {
                     self.actionVC.view.y = minY
                     self.actionVC.view.height = self.view.height - minY
                     self.actionVC.albumListContainerView.alpha = self.actionVC.albumListContainerView.alpha == 1 ? 0 : 1
+                    self.shadowView.alpha = 0.5
                 })
             }
             .disposed(by: rx.disposeBag)

@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class TwoViewController: UIViewController {
 
@@ -15,6 +17,10 @@ class TwoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        PhotoPickerConfigManager.shared.fail = { str in
+            debugPrint("fail:  \(str)")
+        }
+        
         view.backgroundColor = .white
         
         view.addSubview(vc.view)
@@ -24,19 +30,25 @@ class TwoViewController: UIViewController {
         vc.didMove(toParent: self)
         vc.closeBtn.setTitle("关闭", for: .normal)
         
-        vc.outputs.clickClose
-            .subscribe(onNext: { [unowned self] images in
+        vc.outputs.clickVideo
+            .subscribe(onNext: { session in
+                
+            })
+            .disposed(by: rx.disposeBag)
+        
+        vc.closeBtn.rx.tap
+            .bind { [unowned self] in
+                debugPrint("closeBtn")
                 self.dismiss(animated: true, completion: nil)
-            })
+            }
             .disposed(by: rx.disposeBag)
         
-        vc.outputs.clickNextStep
-            .subscribe(onNext: { [unowned self] item in
-//                let testView = TestView(frame: CGRect(x: 0, y: 0, width: self.view.width, height: self.view.width))
-//                testView.assetItems.accept(images)
-//                self.view.addSubview(testView)
-            })
+        vc.nextStepBtn.rx.tap
+            .bind { [unowned self] in
+                debugPrint("start loading, \(NSDate())")
+                let _ = self.vc.getSelectedImages()
+                debugPrint("end loading, \(NSDate())")
+            }
             .disposed(by: rx.disposeBag)
-        
     }
 }
