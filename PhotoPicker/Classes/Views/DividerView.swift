@@ -29,29 +29,30 @@ class DividerView: UIView {
         addSubview(verticalOne)
         addSubview(verticalTwo)
         
-        horizontalOne.backgroundColor = .red
-        horizontalTwo.backgroundColor = .red
-        verticalOne.backgroundColor = .red
-        verticalTwo.backgroundColor = .red
+        horizontalOne.backgroundColor = UIColor.white.withAlphaComponent(0.3)
+        horizontalTwo.backgroundColor = horizontalOne.backgroundColor
+        verticalOne.backgroundColor = horizontalOne.backgroundColor
+        verticalTwo.backgroundColor = horizontalOne.backgroundColor
         
-        horizontalOne.frame = CGRect(x: 0, y: (height * 0.5 - 1) * 0.5, width: width, height: 1)
-        horizontalTwo.frame = CGRect(x: 0, y: (height * 0.5 - 1) * 0.5 + height * 0.5, width: width, height: 1)
-        
-        verticalOne.frame = CGRect(x: (width * 0.5 - 1) * 0.5, y: 0, width: 1, height: height)
-        verticalTwo.frame = CGRect(x: (width * 0.5 - 1) * 0.5 + width * 0.5, y: 0, width: 1, height: height)
+        update(width: width, height: height)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        update(width: width, height: height)
+    }
+    
     func update(width: CGFloat, height: CGFloat) {
         
-        horizontalOne.frame = CGRect(x: 0, y: (height * 0.5 - 1) * 0.5, width: width, height: 1)
-        horizontalTwo.frame = CGRect(x: 0, y: (height * 0.5 - 1) * 0.5 + height * 0.5, width: width, height: 1)
+        horizontalOne.frame = CGRect(x: 0, y: height * 1 / 3, width: width, height: 1)
+        horizontalTwo.frame = CGRect(x: 0, y: height * 2 / 3, width: width, height: 1)
         
-        verticalOne.frame = CGRect(x: (width * 0.5 - 1) * 0.5, y: 0, width: 1, height: height)
-        verticalTwo.frame = CGRect(x: (width * 0.5 - 1) * 0.5 + width * 0.5, y: 0, width: 1, height: height)
+        verticalOne.frame = CGRect(x: width * 1 / 3, y: 0, width: 1, height: height)
+        verticalTwo.frame = CGRect(x: width * 2 / 3, y: 0, width: 1, height: height)
     }
     
     

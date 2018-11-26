@@ -63,7 +63,6 @@ class EditView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-//        dividerView.frame = self.bounds
     }
     
     @IBAction func clickSwitchScaleAction(_ sender: UIButton) {
@@ -113,6 +112,8 @@ class EditView: UIView {
         }
         
         updateEditedAssetItem()
+        
+        dividerView.frame = scrollView.frame
     }
     
     /// 留白 也是用 4:3 的比例
@@ -177,11 +178,13 @@ extension EditView: UIScrollViewDelegate {
     
     func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
         
-        self.dividerView.alpha = 0
-        
+        dividerView.alpha = 0
         updateEditedAssetItem()
     }
-    
+
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+    }
+
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if decelerate == false {
             updateEditedAssetItem()
@@ -513,12 +516,13 @@ private extension EditView {
         scrollView.maximumZoomScale = 3
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.showsVerticalScrollIndicator = false
+        scrollView.backgroundColor = .white
     }
     
     func configureDividerView() {
         dividerView = DividerView(frame: imageView.bounds)
         dividerView.alpha = 0
-        //        addSubview(dividerView)
+        addSubview(dividerView)
     }
 }
 
