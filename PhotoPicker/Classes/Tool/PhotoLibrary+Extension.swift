@@ -8,6 +8,23 @@
 
 import Foundation
 
+//"Recently Added"
+//"Selfies"
+//"Screenshots"
+//"Recently Deleted"
+//"Portrait"
+//"Panoramas"
+//"Time-lapse"
+//"Slo-mo"
+//"Bursts"
+//"Camera Roll"
+//"Favorites"
+//"Videos"
+//"Animated"
+//"Hidden"
+//"Long Exposure"
+//"Live Photos"
+
 extension PhotoLibrary {
     
     //由于系统返回的相册集名称为英文，我们需要转换为中文

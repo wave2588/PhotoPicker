@@ -51,22 +51,23 @@ private extension PhotoLibrary {
                                                            ascending: false)]
 //        resultsOptions.predicate = NSPredicate(format: "mediaType = %d",
 //                                               PHAssetMediaType.image.rawValue)
-        
+
         /// 系统相册需要取出来的部分
-        let titles = ["Favorites", "Recently Added", "All Photos", "Videos"]
+//        let titles = ["Favorites", "Recently Added", "All Photos", "Videos"]
         var albumItems = [AlbumItem]()
         for i in 0 ..< smartAlbums.count {
             let collection = smartAlbums[i]
             if let title = collection.localizedTitle {
-                if titles.contains(title) {
-                    let fetchResult = PHAsset.fetchAssets(in: collection, options: resultsOptions)
-                    if fetchResult.count == 0 {
-                        continue
-                    }
-                    let assetItems = getAllAssetItems(fetchResult)
-                    let item = AlbumItem(id: NSUUID().uuidString, title: titleOfAlbumForChinse(title: title), fetchResult: fetchResult, assetItems: assetItems)
-                    albumItems.append(item)
+                debugPrint(title)
+//                if titles.contains(title) {
+                let fetchResult = PHAsset.fetchAssets(in: collection, options: resultsOptions)
+                if fetchResult.count == 0 {
+                    continue
                 }
+                let assetItems = getAllAssetItems(fetchResult)
+                let item = AlbumItem(id: NSUUID().uuidString, title: titleOfAlbumForChinse(title: title), fetchResult: fetchResult, assetItems: assetItems)
+                albumItems.append(item)
+//                }
             }
         }
         
