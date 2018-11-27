@@ -44,6 +44,14 @@
 		4065BE2B21AB928600C9DD2F /* CollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4065BE2921AB928600C9DD2F /* CollectionViewCell.xib */; };
 		4065BE2E21AB93C300C9DD2F /* Storyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4065BE2D21AB93C300C9DD2F /* Storyboard.swift */; };
 		4065BE3321AB962000C9DD2F /* TwoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4065BE3221AB962000C9DD2F /* TwoViewController.swift */; };
+		40DF138821ACE86F009EDCF9 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DF138721ACE86F009EDCF9 /* UIImage+Extension.swift */; };
+		40DF138E21ACEAB8009EDCF9 /* AlbumTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DF138D21ACEAB8009EDCF9 /* AlbumTitleView.swift */; };
+		40DF139F21ACFA5B009EDCF9 /* ic_arrow_up.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 40DF139921ACFA5A009EDCF9 /* ic_arrow_up.jpg */; };
+		40DF13A021ACFA5B009EDCF9 /* ic_arrow_down.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 40DF139A21ACFA5A009EDCF9 /* ic_arrow_down.jpg */; };
+		40DF13A121ACFA5B009EDCF9 /* ic_arrow_down@3x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 40DF139B21ACFA5A009EDCF9 /* ic_arrow_down@3x.jpg */; };
+		40DF13A221ACFA5B009EDCF9 /* ic_arrow_up@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 40DF139C21ACFA5A009EDCF9 /* ic_arrow_up@2x.jpg */; };
+		40DF13A321ACFA5B009EDCF9 /* ic_arrow_down@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 40DF139D21ACFA5B009EDCF9 /* ic_arrow_down@2x.jpg */; };
+		40DF13A421ACFA5B009EDCF9 /* ic_arrow_up@3x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 40DF139E21ACFA5B009EDCF9 /* ic_arrow_up@3x.jpg */; };
 		D87652820AFDD8075644468F /* Pods_PhotoPicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96D862E723A707794ACB01F9 /* Pods_PhotoPicker.framework */; };
 /* End PBXBuildFile section */
 
@@ -87,6 +95,14 @@
 		4065BE2921AB928600C9DD2F /* CollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectionViewCell.xib; sourceTree = "<group>"; };
 		4065BE2D21AB93C300C9DD2F /* Storyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboard.swift; sourceTree = "<group>"; };
 		4065BE3221AB962000C9DD2F /* TwoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoViewController.swift; sourceTree = "<group>"; };
+		40DF138721ACE86F009EDCF9 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
+		40DF138D21ACEAB8009EDCF9 /* AlbumTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumTitleView.swift; sourceTree = "<group>"; };
+		40DF139921ACFA5A009EDCF9 /* ic_arrow_up.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ic_arrow_up.jpg; sourceTree = "<group>"; };
+		40DF139A21ACFA5A009EDCF9 /* ic_arrow_down.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ic_arrow_down.jpg; sourceTree = "<group>"; };
+		40DF139B21ACFA5A009EDCF9 /* ic_arrow_down@3x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "ic_arrow_down@3x.jpg"; sourceTree = "<group>"; };
+		40DF139C21ACFA5A009EDCF9 /* ic_arrow_up@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "ic_arrow_up@2x.jpg"; sourceTree = "<group>"; };
+		40DF139D21ACFA5B009EDCF9 /* ic_arrow_down@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "ic_arrow_down@2x.jpg"; sourceTree = "<group>"; };
+		40DF139E21ACFA5B009EDCF9 /* ic_arrow_up@3x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "ic_arrow_up@3x.jpg"; sourceTree = "<group>"; };
 		4DAE2DB6C7858BF91D89D7D1 /* Pods-PhotoPicker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoPicker.release.xcconfig"; path = "Target Support Files/Pods-PhotoPicker/Pods-PhotoPicker.release.xcconfig"; sourceTree = "<group>"; };
 		96D862E723A707794ACB01F9 /* Pods_PhotoPicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PhotoPicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA5E209C8B04CA2D9A1B381E /* Pods-PhotoPicker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoPicker.debug.xcconfig"; path = "Target Support Files/Pods-PhotoPicker/Pods-PhotoPicker.debug.xcconfig"; sourceTree = "<group>"; };
@@ -161,6 +177,7 @@
 				4065BDE821AB916900C9DD2F /* UIViewController+Extension.swift */,
 				4065BDE921AB916900C9DD2F /* UICollectionView+Extension.swift */,
 				4065BDEA21AB916900C9DD2F /* UITableView+Extension.swift */,
+				40DF138721ACE86F009EDCF9 /* UIImage+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -191,6 +208,7 @@
 				4065BDF921AB916900C9DD2F /* EditView+Extension.swift */,
 				4065BDFA21AB916900C9DD2F /* AlbumListCell.swift */,
 				4065BDFB21AB916900C9DD2F /* AssetListCell.swift */,
+				40DF138D21ACEAB8009EDCF9 /* AlbumTitleView.swift */,
 				4065BDFC21AB916900C9DD2F /* EditView.swift */,
 			);
 			path = Views;
@@ -210,6 +228,7 @@
 		4065BE0221AB916A00C9DD2F /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				40DF139821ACFA50009EDCF9 /* Icon */,
 				4065BE0321AB916A00C9DD2F /* AlbumListCell.xib */,
 				4065BE0421AB916A00C9DD2F /* AssetListCell.xib */,
 				4065BE0621AB916A00C9DD2F /* PhotoPicker.storyboard */,
@@ -253,6 +272,19 @@
 				4065BE2921AB928600C9DD2F /* CollectionViewCell.xib */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		40DF139821ACFA50009EDCF9 /* Icon */ = {
+			isa = PBXGroup;
+			children = (
+				40DF139A21ACFA5A009EDCF9 /* ic_arrow_down.jpg */,
+				40DF139D21ACFA5B009EDCF9 /* ic_arrow_down@2x.jpg */,
+				40DF139B21ACFA5A009EDCF9 /* ic_arrow_down@3x.jpg */,
+				40DF139921ACFA5A009EDCF9 /* ic_arrow_up.jpg */,
+				40DF139C21ACFA5A009EDCF9 /* ic_arrow_up@2x.jpg */,
+				40DF139E21ACFA5B009EDCF9 /* ic_arrow_up@3x.jpg */,
+			);
+			path = Icon;
 			sourceTree = "<group>";
 		};
 		88CEEAE95C1AA4532D1B4D13 /* Frameworks */ = {
@@ -332,12 +364,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40DF139F21ACFA5B009EDCF9 /* ic_arrow_up.jpg in Resources */,
 				4065BE2321AB916A00C9DD2F /* EditView.xib in Resources */,
+				40DF13A321ACFA5B009EDCF9 /* ic_arrow_down@2x.jpg in Resources */,
 				4065BE1F21AB916A00C9DD2F /* AlbumListCell.xib in Resources */,
 				4065BDDE21AB912E00C9DD2F /* LaunchScreen.storyboard in Resources */,
 				4065BDDB21AB912E00C9DD2F /* Assets.xcassets in Resources */,
+				40DF13A121ACFA5B009EDCF9 /* ic_arrow_down@3x.jpg in Resources */,
+				40DF13A021ACFA5B009EDCF9 /* ic_arrow_down.jpg in Resources */,
+				40DF13A421ACFA5B009EDCF9 /* ic_arrow_up@3x.jpg in Resources */,
 				4065BDD921AB912E00C9DD2F /* Main.storyboard in Resources */,
 				4065BE2021AB916A00C9DD2F /* AssetListCell.xib in Resources */,
+				40DF13A221ACFA5B009EDCF9 /* ic_arrow_up@2x.jpg in Resources */,
 				4065BE2221AB916A00C9DD2F /* PhotoPicker.storyboard in Resources */,
 				4065BE2B21AB928600C9DD2F /* CollectionViewCell.xib in Resources */,
 			);
@@ -446,8 +484,10 @@
 				4065BE0B21AB916A00C9DD2F /* UITableView+Extension.swift in Sources */,
 				4065BE2E21AB93C300C9DD2F /* Storyboard.swift in Sources */,
 				4065BE2521AB91FA00C9DD2F /* UIView+Ee.swift in Sources */,
+				40DF138821ACE86F009EDCF9 /* UIImage+Extension.swift in Sources */,
 				4065BE2721AB925800C9DD2F /* TestView.swift in Sources */,
 				4065BE1821AB916A00C9DD2F /* AlbumListCell.swift in Sources */,
+				40DF138E21ACEAB8009EDCF9 /* AlbumTitleView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

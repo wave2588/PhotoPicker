@@ -126,6 +126,9 @@ private extension PhotoPickerViewController {
                     let screenCenterY = UIScreen.main.bounds.height * 0.5
                     let newY = self.actionVC.view.y >= screenCenterY ? originalY : minY
                     let newH = self.view.height - newY
+                    
+                    let imgName = newY == minY ? "ic_arrow_down.jpg" : "ic_arrow_up.jpg"
+                    self.actionVC.albumTitleView.imgView.image = UIImage.loadLocalImage(name: imgName)
 
                     UIView.animate(withDuration: 0.25, animations: {
                         self.actionVC.view.height = newH
@@ -141,6 +144,7 @@ private extension PhotoPickerViewController {
         let tapGesture = UITapGestureRecognizer()
         tapGesture.rx.event
             .bind { [unowned self] _ in
+                self.actionVC.albumTitleView.imgView.image = UIImage.loadLocalImage(name: "ic_arrow_down.jpg")
                 UIView.animate(withDuration: 0.25, animations: {
                     self.actionVC.view.y = minY
                     self.actionVC.view.height = self.view.height - minY
@@ -149,7 +153,20 @@ private extension PhotoPickerViewController {
                 })
             }
             .disposed(by: rx.disposeBag)
-        actionVC.albumTitleLbl.addGestureRecognizer(tapGesture)
+        actionVC.albumTitleView.addGestureRecognizer(tapGesture)
+        let tapGesture2 = UITapGestureRecognizer()
+        tapGesture2.rx.event
+            .bind { [unowned self] _ in
+                self.actionVC.albumTitleView.imgView.image = UIImage.loadLocalImage(name: "ic_arrow_down.jpg")
+                UIView.animate(withDuration: 0.25, animations: {
+                    self.actionVC.view.y = minY
+                    self.actionVC.view.height = self.view.height - minY
+                    self.actionVC.albumListContainerView.alpha = self.actionVC.albumListContainerView.alpha == 1 ? 0 : 1
+                    self.shadowView.alpha = 0.5
+                })
+            }
+            .disposed(by: rx.disposeBag)
+        actionVC.topLineView.addGestureRecognizer(tapGesture2)
 
         actionVC.outputs.clickVideo
             .bind(to: clickVideo)

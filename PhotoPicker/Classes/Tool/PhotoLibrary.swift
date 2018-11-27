@@ -58,8 +58,6 @@ private extension PhotoLibrary {
         for i in 0 ..< smartAlbums.count {
             let collection = smartAlbums[i]
             if let title = collection.localizedTitle {
-                debugPrint(title)
-//                if titles.contains(title) {
                 let fetchResult = PHAsset.fetchAssets(in: collection, options: resultsOptions)
                 if fetchResult.count == 0 {
                     continue
@@ -67,7 +65,6 @@ private extension PhotoLibrary {
                 let assetItems = getAllAssetItems(fetchResult)
                 let item = AlbumItem(id: NSUUID().uuidString, title: titleOfAlbumForChinse(title: title), fetchResult: fetchResult, assetItems: assetItems)
                 albumItems.append(item)
-//                }
             }
         }
         

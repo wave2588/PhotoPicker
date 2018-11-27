@@ -2,6 +2,14 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSCameraUsageDescription</key>
+	<string>授权后即可录制视频</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>授权后即可上传本地视频</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>授权后即可将视频保存至本地</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>授权后即可录制声音</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>

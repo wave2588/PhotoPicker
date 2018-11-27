@@ -127,24 +127,22 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="全部照片" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SQq-nf-sTe">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hVc-oh-MaE" customClass="AlbumTitleView" customModule="PhotoPicker" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="35" width="375" height="20"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="20" id="Bhy-jD-AIa"/>
+                                            <constraint firstAttribute="height" constant="20" id="vD3-13-8Rt"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
-                                        <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="d4u-Mi-buh" firstAttribute="centerX" secondItem="LcV-v9-bvH" secondAttribute="centerX" id="2Yv-J2-dlI"/>
                                     <constraint firstItem="d4u-Mi-buh" firstAttribute="top" secondItem="LcV-v9-bvH" secondAttribute="top" constant="10" id="5La-jP-3J8"/>
                                     <constraint firstAttribute="height" constant="67" id="B2y-M9-Wa1"/>
-                                    <constraint firstItem="SQq-nf-sTe" firstAttribute="top" secondItem="d4u-Mi-buh" secondAttribute="bottom" constant="20" id="GuY-iA-fW5"/>
-                                    <constraint firstItem="SQq-nf-sTe" firstAttribute="leading" secondItem="LcV-v9-bvH" secondAttribute="leading" id="RJw-lt-ULJ"/>
-                                    <constraint firstAttribute="trailing" secondItem="SQq-nf-sTe" secondAttribute="trailing" id="rgA-XZ-p6X"/>
+                                    <constraint firstItem="hVc-oh-MaE" firstAttribute="leading" secondItem="LcV-v9-bvH" secondAttribute="leading" id="DMm-MK-ey8"/>
+                                    <constraint firstItem="hVc-oh-MaE" firstAttribute="top" secondItem="d4u-Mi-buh" secondAttribute="bottom" constant="20" id="Onc-0a-ZxT"/>
+                                    <constraint firstAttribute="trailing" secondItem="hVc-oh-MaE" secondAttribute="trailing" id="pya-lC-glf"/>
                                 </constraints>
                             </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NA2-c3-Hvq" userLabel="AssetListView">
@@ -188,14 +186,15 @@
                     </view>
                     <connections>
                         <outlet property="albumListContainerView" destination="vwE-Of-TN2" id="J7t-HW-1ro"/>
-                        <outlet property="albumTitleLbl" destination="SQq-nf-sTe" id="HMQ-P6-Rwu"/>
+                        <outlet property="albumTitleView" destination="hVc-oh-MaE" id="SJC-CV-7qV"/>
                         <outlet property="assetListContainerView" destination="NA2-c3-Hvq" id="JGE-w3-TOK"/>
+                        <outlet property="topLineView" destination="d4u-Mi-buh" id="G0V-po-rpS"/>
                         <outlet property="topView" destination="LcV-v9-bvH" id="Ot9-x3-5M8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D86-zN-H2J" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="312.80000000000001" y="-147.07646176911544"/>
+            <point key="canvasLocation" x="157.59999999999999" y="-147.07646176911544"/>
         </scene>
         <!--Photo Picker Asset List View Controller-->
         <scene sceneID="upB-pu-LAC">

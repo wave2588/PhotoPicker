@@ -33,7 +33,8 @@ class PhotoPickerActionViewController: UIViewController {
     var clickVideo = PublishSubject<AVAssetExportSession>()
     
     @IBOutlet weak var topView: UIView!
-    @IBOutlet weak var albumTitleLbl: UILabel!
+    @IBOutlet weak var topLineView: UIView!
+    @IBOutlet weak var albumTitleView: AlbumTitleView!
     
     @IBOutlet weak var assetListContainerView: UIView!
     @IBOutlet weak var albumListContainerView: UIView!
@@ -57,7 +58,7 @@ class PhotoPickerActionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         configureContainerView()
         configureAlbumVC()
         configureAssetVC()
@@ -85,7 +86,7 @@ private extension PhotoPickerActionViewController {
     /// 选中第一个图片, 并且把第一张图片传到最外层控制器展示图片
     func defaultSelectedAssetItem(albumItem: AlbumItem) {
         
-        albumTitleLbl.text = albumItem.title
+        albumTitleView.inputs.text.onNext(albumItem.title)
         
         /// 判断是否有预览选中的, 如果有, 则不进行设置, 没有则进行设置
         let previewSelectedAssetItem = albumItem.assetItems.filter { item -> Bool in
@@ -356,6 +357,7 @@ private extension PhotoPickerActionViewController {
     }
     
     func configureLayer() {
+        
         let maskPath = UIBezierPath(roundedRect: view.bounds, byRoundingCorners: [.topRight, .topLeft], cornerRadii: CGSize(width: 8, height: 8))
         let maskLayer = CAShapeLayer()
         maskLayer.frame = view.bounds
