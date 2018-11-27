@@ -1,5 +1,5 @@
 PODS:
-  - Aspects (1.4.1)
+  - BonMot (5.3)
   - Differentiator (3.1.0)
   - "NSObject+Rx (4.4.1)":
     - RxSwift (~> 4.3)
@@ -45,12 +45,9 @@ PODS:
   - SwifterSwift/SpriteKit (4.6.0)
   - SwifterSwift/SwiftStdlib (4.6.0)
   - SwifterSwift/UIKit (4.6.0)
-  - UMCAnalytics (5.5.2):
-    - UMCCommon
-  - UMCCommon (1.5.3)
 
 DEPENDENCIES:
-  - Aspects
+  - BonMot
   - "NSObject+Rx"
   - RxAnimated
   - RxCocoa
@@ -60,11 +57,10 @@ DEPENDENCIES:
   - RxSwift
   - RxViewController
   - SwifterSwift
-  - UMCAnalytics
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
-    - Aspects
+    - BonMot
     - Differentiator
     - "NSObject+Rx"
     - RxAnimated
@@ -76,11 +72,9 @@ SPEC REPOS:
     - RxSwift
     - RxViewController
     - SwifterSwift
-    - UMCAnalytics
-    - UMCCommon
 
 SPEC CHECKSUMS:
-  Aspects: 7595ba96a6727a58ebcbfc954497fc5d2fdde546
+  BonMot: 0104d1b4eda54f4a4b7393d6559539ef25498fbd
   Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
   "NSObject+Rx": 9884a92f19b610795c431e10b4e601913b59c9e9
   RxAnimated: 57a731e59557219480fb3dd86d965d977d863fc6
@@ -92,9 +86,7 @@ SPEC CHECKSUMS:
   RxSwift: 5976ecd04fc2fefd648827c23de5e11157faa973
   RxViewController: 359bbc2fda373a78605b2735afb0f9f4f3f6c3e4
   SwifterSwift: 812ffec6f301922f5430e75be3f2939ea3a80024
-  UMCAnalytics: 6654fd3c8201ff6da5c86a3ae29cd5c8436d3b7b
-  UMCCommon: 016af43c0f769feb1ae1861d65aaf2b23b89c9c7
 
-PODFILE CHECKSUM: bb079371b762eed6331960b2e8c779f29d39d3b6
+PODFILE CHECKSUM: b510abbd2c31dac534441fafb1f86d5a65d6f009
 
 COCOAPODS: 1.6.0.beta.2

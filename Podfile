@@ -6,9 +6,6 @@ inhibit_all_warnings!
 
 target 'PhotoPicker' do
 
-  pod 'Aspects'
-  pod 'UMCAnalytics'
-
   pod 'NSObject+Rx'
   pod 'RxAnimated'
   pod 'RxCocoa'
@@ -18,6 +15,7 @@ target 'PhotoPicker' do
   pod 'RxSwift'
   pod 'RxViewController'
   pod 'SwifterSwift'
+  pod 'BonMot'
 
 end
 

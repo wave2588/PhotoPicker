@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import RxDataSources
+import BonMot
 
 protocol PhotoPickerAlbumListViewControllerOutputs {
 
@@ -54,8 +55,11 @@ private extension PhotoPickerAlbumListViewController {
         tableView.register(nibWithCellClass: AlbumListCell.self)
         
         albumItems
-            .bind(to: tableView.rx.items(cellType: AlbumListCell.self)) { _, item, cell in
-                cell.titleLbl.text = "\(item.title) \(item.assetItems.count)"
+            .bind(to: tableView.rx.items(cellType: AlbumListCell.self)) { [unowned self] _, item, cell in
+                let str = "\(item.title) \(item.assetItems.count)"
+                let highlightStr = "\(item.title) <em>\(item.assetItems.count)</em>"
+                cell.titleLbl.text = str
+                cell.titleLbl.attributedText = self.getHighlightAttributedStr(highlightName: highlightStr)
                 cell.selectedCountLbl.isHidden = item.selectedAssetItems.count == 0 ? true : false
                 cell.selectedCountLbl.text = "\(item.selectedAssetItems.count)"
                 if let firstAssetItem = item.assetItems.first {
@@ -73,5 +77,47 @@ private extension PhotoPickerAlbumListViewController {
                 self.selectedAlbumIndex.onNext(indexPath.row)
             })
             .disposed(by: rx.disposeBag)
+    }
+}
+
+private extension PhotoPickerAlbumListViewController {
+    
+    func getHighlightAttributedStr(highlightName: String?) -> NSAttributedString {
+        
+        var body = NSAttributedString()
+        
+        guard let highlightName = highlightName else { return body }
+        
+        let style = StringStyle(.color(.black),
+                                .font(UIFont(name: "PingFangSC-Medium", size: 14) ?? .systemFont(ofSize: 14)),
+                                .xmlStyler(BodyStyler()))
+        body = highlightName.styled(with: style)
+        
+        return body
+    }
+}
+
+extension PhotoPickerAlbumListViewController {
+    
+    struct BodyStyler: XMLStyler {
+        
+        func prefix(forElement name: String, attributes: [String : String]) -> Composable? { return nil }
+        
+        func suffix(forElement name: String) -> Composable? { return nil }
+        
+        func style(forElement name: String, attributes: [String: String], currentStyle: StringStyle) -> StringStyle? {
+
+            let style = StringStyle(
+                .color(UIColor(red: 0, green: 0, blue: 0)?.withAlphaComponent(0.4) ?? .white),
+                .font(UIFont(name: "PingFangSC-Medium", size: 13) ?? .systemFont(ofSize: 13))
+            )
+            let styleMap: [String: StringStyle] = [
+                "em": style
+            ]
+            
+            let highlightedStyle = styleMap[name] ?? StringStyle()
+            
+            return highlightedStyle
+        }
     }
 }

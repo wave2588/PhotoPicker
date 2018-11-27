@@ -153,7 +153,7 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "${BUILT_PRODUCTS_DIR}/Aspects/Aspects.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/BonMot/BonMot.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/NSObject+Rx/NSObject_Rx.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/RxAnimated/RxAnimated.framework"
@@ -167,7 +167,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/SwifterSwift/SwifterSwift.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "${BUILT_PRODUCTS_DIR}/Aspects/Aspects.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/BonMot/BonMot.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/NSObject+Rx/NSObject_Rx.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/RxAnimated/RxAnimated.framework"

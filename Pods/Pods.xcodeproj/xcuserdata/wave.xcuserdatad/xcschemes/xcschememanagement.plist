@@ -4,7 +4,7 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Aspects.xcscheme</key>
+		<key>BonMot.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -94,20 +94,6 @@
 			<false/>
 			<key>orderHint</key>
 			<integer>12</integer>
-		</dict>
-		<key>UMCAnalytics.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-			<key>orderHint</key>
-			<integer>13</integer>
-		</dict>
-		<key>UMCCommon.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-			<key>orderHint</key>
-			<integer>14</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
