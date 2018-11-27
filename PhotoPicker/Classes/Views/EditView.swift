@@ -451,6 +451,7 @@ private extension EditView {
             scrollView.left = space
             scrollView.width = width - space * 2
         }
+        dividerView.frame = scrollView.frame
     }
 }
 
@@ -522,7 +523,7 @@ private extension EditView {
     func configureDividerView() {
         dividerView = DividerView(frame: imageView.bounds)
         dividerView.alpha = 0
-        addSubview(dividerView)
+//        addSubview(dividerView)
     }
 }
 

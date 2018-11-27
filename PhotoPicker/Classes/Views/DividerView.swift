@@ -29,7 +29,8 @@ class DividerView: UIView {
         addSubview(verticalOne)
         addSubview(verticalTwo)
         
-        horizontalOne.backgroundColor = UIColor.white.withAlphaComponent(0.3)
+//        horizontalOne.backgroundColor = UIColor.white.withAlphaComponent(0.3)
+        horizontalOne.backgroundColor = .red
         horizontalTwo.backgroundColor = horizontalOne.backgroundColor
         verticalOne.backgroundColor = horizontalOne.backgroundColor
         verticalTwo.backgroundColor = horizontalOne.backgroundColor
