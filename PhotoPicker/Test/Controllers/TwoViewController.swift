@@ -30,25 +30,19 @@ class TwoViewController: UIViewController {
         vc.didMove(toParent: self)
         vc.closeBtn.setImage(UIImage(named: "test2"), for: .normal)
         
+        vc.outputs.clickClose.subscribe(onNext: { [unowned self] _ in
+            self.dismiss(animated: true, completion: nil)
+        }).disposed(by: rx.disposeBag)
+        
+        vc.outputs.clickNextStep.subscribe(onNext: { item in
+            
+            debugPrint(item)
+        }).disposed(by: rx.disposeBag)
+        
         vc.outputs.clickVideo
             .subscribe(onNext: { session in
                 
             })
-            .disposed(by: rx.disposeBag)
-        
-        vc.closeBtn.rx.tap
-            .bind { [unowned self] in
-                debugPrint("closeBtn")
-                self.dismiss(animated: true, completion: nil)
-            }
-            .disposed(by: rx.disposeBag)
-        
-        vc.nextStepBtn.rx.tap
-            .bind { [unowned self] in
-                debugPrint("start loading, \(NSDate())")
-                let _ = self.vc.getSelectedImages()
-                debugPrint("end loading, \(NSDate())")
-            }
             .disposed(by: rx.disposeBag)
     }
 }
