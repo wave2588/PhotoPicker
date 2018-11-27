@@ -47,7 +47,7 @@ private extension PhotoPickerAlbumListViewController {
     func configureTableView() {
         
         tableView.separatorStyle = .none
-        tableView.rowHeight = 120
+        tableView.rowHeight = 102
 
         /// **
 //        tableView.registerCell(nibWithCellClass: AlbumListCell.self)
