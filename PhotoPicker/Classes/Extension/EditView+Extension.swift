@@ -34,20 +34,19 @@ extension EditView {
         let imageW = image.size.width
         let imageH = image.size.height
         
+        debugPrint(image.size)
         let containerRatio = containerSize.width / containerSize.height
         let aspectRatio = imageW / imageH
         
         if containerRatio > aspectRatio {
             
             let w = imageW / (imageH / containerSize.height)
-            debugPrint(w)
             
         } else {
             
         }
         
 //        debugPrint(containerRatio, aspectRatio, scrollView.frame)
-        debugPrint(scrollView.frame)
         
         return CGSize(width: 0, height: 0)
     }
@@ -151,7 +150,7 @@ extension EditView {
         
         let imageW = image.size.width
         let imageH = image.size.height
-        
+
         var newImageW: CGFloat = width
         var newImageH: CGFloat = height
         
@@ -170,4 +169,27 @@ extension EditView {
     }
 }
 
-
+/// 计算容器 ScrollView 的 frame
+extension EditView {
+    
+    func getScrollViewFrame(editInfo: EditInfo) -> CGRect {
+        
+        var x: CGFloat = 0
+        var y: CGFloat = 0
+        var w: CGFloat = width
+        var h: CGFloat = height
+        if editInfo.scale == .oneToOne {
+        } else if editInfo.scale == .fourToThreeHorizontal {
+            let newScrollViewH = scrollView.height * scale
+            let space = (scrollView.height - newScrollViewH) * 0.5
+            y = space
+            h = height - space * 2
+        } else if editInfo.scale == .fourToThreeVertical {
+            let newScrollViewW = scrollView.width * scale
+            let space = (scrollView.width - newScrollViewW) * 0.5
+            x = space
+            w = width - space * 2
+        }
+        return CGRect(x: x, y: y, width: w, height: h)
+    }
+}

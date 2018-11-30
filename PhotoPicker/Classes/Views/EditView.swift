@@ -36,10 +36,10 @@ class EditView: UIView {
     
     @IBOutlet weak var scrollView: UIScrollView!
     
-    private let imageView = UIImageView()
+    let imageView = UIImageView()
     
     /// 分割线 view
-    private var dividerView: DividerView!
+    var dividerView: DividerView!
 
     /// 切换比例
     @IBOutlet weak var switchScaleBtn: UIButton!
@@ -158,78 +158,6 @@ class EditView: UIView {
 extension EditView: EditViewInputs {}
 extension EditView: EditViewOutputs {}
 
-extension EditView: UIScrollViewDelegate {
-    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
-        return imageView
-    }
-    
-    func scrollViewWillBeginZooming(_ scrollView: UIScrollView, with view: UIView?) {
-        dividerView.alpha = 1
-    }
-    
-    func scrollViewDidZoom(_ scrollView: UIScrollView) {
-        
-        /*
-         修改 dividerView 的 frame
-         判断宽或高 有一个是否超出屏幕, 如果超出则按照屏幕的最大宽或者高
-         如果没有超出, 则按照iamgeView的宽高
-         */
-        if imageView.width <= width || imageView.height <= height {
-        } else {
-        }
-    }
-    
-    func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
-        
-        dividerView.alpha = 0
-        updateEditedAssetItem()
-    }
-
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-    }
-
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        if decelerate == false {
-            updateEditedAssetItem()
-        }
-    }
-    
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        updateEditedAssetItem()
-    }
-}
-
-private extension EditView {
-    
-    func updateEditedAssetItem() {
-        
-        var mode: Mode = .fill
-        if imageView.left != 0 || imageView.top != 0 {
-            mode = .remain
-        }
-
-        var scale: Scale = .oneToOne
-        if scrollView.width == scrollView.height {
-            scale = .oneToOne
-        } else if scrollView.width > scrollView.height {
-            scale = .fourToThreeHorizontal
-        } else if scrollView.width < scrollView.height {
-            scale = .fourToThreeVertical
-        }
-        
-        let editInfo = EditInfo(
-            zoomScale: scrollView.zoomScale,
-            contentOffset: scrollView.contentOffset,
-            scale: scale,
-            mode: mode
-        )
-        guard let item = self.assetItem else { return }
-        var tItem = item
-        tItem.editInfo = editInfo
-        editedAssetItem.onNext(tItem)
-    }
-}
-
 /// 预览模式
 private extension EditView {
     
@@ -273,7 +201,7 @@ private extension EditView {
                 return
         }
         
-        updateScrollView(editInfo: firstEditInfo)
+        scrollView.frame = getScrollViewFrame(editInfo: firstEditInfo)
         updateImageViewNotEditInfo(firstEditInfo: firstEditInfo, image: image)
     }
     
@@ -285,7 +213,7 @@ private extension EditView {
                 return
         }
         
-        updateScrollView(editInfo: firstEditInfo)
+        scrollView.frame = getScrollViewFrame(editInfo: firstEditInfo)
         updateImageViewHaveEditInfo(editInfo: editInfo, firstEditInfo: firstEditInfo, image: image)
     }
     
@@ -315,8 +243,8 @@ private extension EditView {
         if imageW != imageH {
             switchScaleBtn.isHidden = false
         }
-        
-        updateScrollView(editInfo: editInfo)
+
+        scrollView.frame = getScrollViewFrame(editInfo: editInfo)
         updateImageViewToFirst(editInfo: editInfo, image: image)
     }
 }
@@ -418,26 +346,6 @@ private extension EditView {
         self.scrollView.contentSize = imageView.size
         self.scrollView.contentOffset = editInfo.contentOffset
     }
-    
-    func updateScrollView(editInfo: EditInfo) {
-        if editInfo.scale == .oneToOne {
-            scrollView.top = 0
-            scrollView.left = 0
-            scrollView.width = width
-            scrollView.height = height
-        } else if editInfo.scale == .fourToThreeHorizontal {
-            let newScrollViewH = scrollView.height * scale
-            let space = (scrollView.height - newScrollViewH) * 0.5
-            scrollView.top = space
-            scrollView.height = height - space * 2
-        } else if editInfo.scale == .fourToThreeVertical {
-            let newScrollViewW = scrollView.width * scale
-            let space = (scrollView.width - newScrollViewW) * 0.5
-            scrollView.left = space
-            scrollView.width = width - space * 2
-        }
-        dividerView.frame = scrollView.frame
-    }
 }
 
 private extension EditView {
@@ -512,3 +420,33 @@ private extension EditView {
     }
 }
 
+extension EditView {
+    
+    func updateEditedAssetItem() {
+        
+        var mode: Mode = .fill
+        if imageView.left != 0 || imageView.top != 0 {
+            mode = .remain
+        }
+        
+        var scale: Scale = .oneToOne
+        if scrollView.width == scrollView.height {
+            scale = .oneToOne
+        } else if scrollView.width > scrollView.height {
+            scale = .fourToThreeHorizontal
+        } else if scrollView.width < scrollView.height {
+            scale = .fourToThreeVertical
+        }
+        
+        let editInfo = EditInfo(
+            zoomScale: scrollView.zoomScale,
+            contentOffset: scrollView.contentOffset,
+            scale: scale,
+            mode: mode
+        )
+        guard let item = self.assetItem else { return }
+        var tItem = item
+        tItem.editInfo = editInfo
+        editedAssetItem.onNext(tItem)
+    }
+}

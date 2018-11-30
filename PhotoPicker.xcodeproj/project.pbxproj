@@ -45,6 +45,7 @@
 		4065BE2E21AB93C300C9DD2F /* Storyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4065BE2D21AB93C300C9DD2F /* Storyboard.swift */; };
 		4065BE3321AB962000C9DD2F /* TwoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4065BE3221AB962000C9DD2F /* TwoViewController.swift */; };
 		408C23BF21B1343F00BF762A /* PhotoPickerViewController+Gesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408C23BE21B1343F00BF762A /* PhotoPickerViewController+Gesture.swift */; };
+		408C23C121B13BA600BF762A /* EditView+ScrollViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408C23C021B13BA600BF762A /* EditView+ScrollViewDelegate.swift */; };
 		40DF138821ACE86F009EDCF9 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DF138721ACE86F009EDCF9 /* UIImage+Extension.swift */; };
 		40DF138E21ACEAB8009EDCF9 /* AlbumTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DF138D21ACEAB8009EDCF9 /* AlbumTitleView.swift */; };
 		40DF139F21ACFA5B009EDCF9 /* ic_arrow_up.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 40DF139921ACFA5A009EDCF9 /* ic_arrow_up.jpg */; };
@@ -97,6 +98,7 @@
 		4065BE2D21AB93C300C9DD2F /* Storyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboard.swift; sourceTree = "<group>"; };
 		4065BE3221AB962000C9DD2F /* TwoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoViewController.swift; sourceTree = "<group>"; };
 		408C23BE21B1343F00BF762A /* PhotoPickerViewController+Gesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhotoPickerViewController+Gesture.swift"; sourceTree = "<group>"; };
+		408C23C021B13BA600BF762A /* EditView+ScrollViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EditView+ScrollViewDelegate.swift"; sourceTree = "<group>"; };
 		40DF138721ACE86F009EDCF9 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		40DF138D21ACEAB8009EDCF9 /* AlbumTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumTitleView.swift; sourceTree = "<group>"; };
 		40DF139921ACFA5A009EDCF9 /* ic_arrow_up.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ic_arrow_up.jpg; sourceTree = "<group>"; };
@@ -175,12 +177,14 @@
 		4065BDE621AB916900C9DD2F /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				4065BDF921AB916900C9DD2F /* EditView+Extension.swift */,
+				408C23C021B13BA600BF762A /* EditView+ScrollViewDelegate.swift */,
+				408C23BE21B1343F00BF762A /* PhotoPickerViewController+Gesture.swift */,
 				4065BDE921AB916900C9DD2F /* UICollectionView+Extension.swift */,
 				40DF138721ACE86F009EDCF9 /* UIImage+Extension.swift */,
 				4065BDEA21AB916900C9DD2F /* UITableView+Extension.swift */,
 				4065BDE721AB916900C9DD2F /* UIView+Extension.swift */,
 				4065BDE821AB916900C9DD2F /* UIViewController+Extension.swift */,
-				408C23BE21B1343F00BF762A /* PhotoPickerViewController+Gesture.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -211,7 +215,6 @@
 				4065BDFB21AB916900C9DD2F /* AssetListCell.swift */,
 				4065BDF721AB916900C9DD2F /* DividerView.swift */,
 				4065BDFC21AB916900C9DD2F /* EditView.swift */,
-				4065BDF921AB916900C9DD2F /* EditView+Extension.swift */,
 				4065BDF821AB916900C9DD2F /* ScreenshotView.swift */,
 			);
 			path = Views;
@@ -468,6 +471,7 @@
 				4065BE1521AB916A00C9DD2F /* DividerView.swift in Sources */,
 				4065BE0921AB916A00C9DD2F /* UIViewController+Extension.swift in Sources */,
 				4065BE1D21AB916A00C9DD2F /* PhotoLibrary+Extension.swift in Sources */,
+				408C23C121B13BA600BF762A /* EditView+ScrollViewDelegate.swift in Sources */,
 				4065BE1A21AB916A00C9DD2F /* EditView.swift in Sources */,
 				4065BE1921AB916A00C9DD2F /* AssetListCell.swift in Sources */,
 				4065BE0A21AB916A00C9DD2F /* UICollectionView+Extension.swift in Sources */,
