@@ -63,8 +63,9 @@ public class PhotoPickerViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
 
-        configureSelectedAssetItems()
+        closeBtn.setImage(UIImage.loadLocalImage(name: "ic_close.jpg"), for: .normal)
         
+        configureSelectedAssetItems()
         configureEditView()
         configureActionVC()
         configureActionVCGesture()

@@ -28,7 +28,6 @@ class TwoViewController: UIViewController {
         vc.view.frame = CGRect(x: 0, y: 0, width: view.width, height: view.height - 78)
         vc.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         vc.didMove(toParent: self)
-        vc.closeBtn.setImage(UIImage(named: "test2"), for: .normal)
         
         vc.outputs.clickClose.subscribe(onNext: { [unowned self] _ in
             self.dismiss(animated: true, completion: nil)
