@@ -32,25 +32,6 @@ extension EditView {
     //        那么图片的高度 应该是 400/2=200
     //    }
     
-    /// 切换任意比例...
-    func getImageSize(containerW: CGFloat, containerH: CGFloat, image: UIImage) -> CGSize {
-        
-        let imageW = image.size.width
-        let imageH = image.size.height
-        
-        var newW: CGFloat = containerW
-        var newH: CGFloat = containerH
-        
-        if imageW / imageH < containerW / containerH {
-            newW = containerW
-            newH = imageH / (imageW / containerW)
-        } else {
-            newW = imageW / (imageH / containerH)
-            newH = containerH
-        }
-        return CGSize(width: newW, height: newH)
-    }
-    
     //    /// 切换任意比例...
     //    func getImageSize(containerSize: CGSize, image: UIImage) -> CGSize {
     //
@@ -82,8 +63,8 @@ extension EditView {
     //        var newW: CGFloat = 0
     //        var newH: CGFloat = 0
     //
-    //        let kWidth = UIScreen.main.bounds.width
-    //        let kHeight = kWidth
+//            let kWidth = UIScreen.main.bounds.width
+//            let kHeight = kWidth
     //        if imageW / imageH < 1 {
     //            newW = kWidth
     //            newH = imageH / (imageW / kWidth)
@@ -94,6 +75,26 @@ extension EditView {
     //
     //        return CGSize(width: newW, height: newH)
     //    }
+    
+    
+    /// 切换任意比例...
+    func getImageSize(containerW: CGFloat, containerH: CGFloat, image: UIImage) -> CGSize {
+        
+        let imageW = image.size.width
+        let imageH = image.size.height
+        
+        var newW: CGFloat = containerW
+        var newH: CGFloat = containerH
+        
+        if imageW / imageH < containerW / containerH {
+            newW = containerW
+            newH = imageH / (imageW / containerW)
+        } else {
+            newW = imageW / (imageH / containerH)
+            newH = containerH
+        }
+        return CGSize(width: newW, height: newH)
+    }
 }
 
 extension EditView {
@@ -104,44 +105,23 @@ extension EditView {
         let imageW = image.size.width
         let imageH = image.size.height
         
-        if imageW < width || imageH < height {
-            return CGRect(x: 0, y: 0, width: width, height: height)
+        if imageW > imageH {
+            let containerH = height * scale
+            let containerW = width
+            let size = getImageSize(containerW: containerW, containerH: containerH, image: image)
+            return CGRect(x: 0, y: (height - size.height) * 0.5, width: size.width, height: size.height)
         } else {
-            if imageW > imageH {
-                let imageViewH = height * scale
-                let ratio = imageViewH / imageH
-                let imageViewW = imageW * ratio
-                return CGRect(x: 0, y: (height - imageViewH) * 0.5, width: imageViewW, height: imageViewH)
-            } else if imageW < imageH {
-                let imageViewW = width * scale
-                let ratio = imageViewW / imageW
-                let imageViewH = imageH * ratio
-                return CGRect(x: (width - imageViewW) * 0.5, y: 0, width: imageViewW, height: imageViewH)
-            }
+            let containerW = width * scale
+            let containerH = height
+            let size = getImageSize(containerW: containerW, containerH: containerH, image: image)
+            return CGRect(x: (width - size.width) * 0.5, y: 0, width: size.width, height: size.height)
         }
-        return CGRect(x: 0, y: 0, width: width, height: height)
     }
     
     /// 充满
-    func getFillSize(image: UIImage) -> CGSize {
-        
-        let imageW = image.size.width
-        let imageH = image.size.height
-        
-        /// 图片宽度和高度都想小于容器的情况, 暂时没考虑..
-        if imageW < width || imageH < height {
-            return CGSize(width: width, height: height)
-        } else if imageW > imageH {
-            let ratio = height / imageH
-            let imageViewW = imageW * ratio
-            let imageViewH = imageH * ratio
-            return CGSize(width: imageViewW, height: imageViewH)
-        } else {
-            let ratio = width / imageW
-            let imageViewW = imageW * ratio
-            let imageViewH = imageH * ratio
-            return CGSize(width: imageViewW, height: imageViewH)
-        }
+    func getFillRect(image: UIImage) -> CGRect {
+        let size = getImageSize(containerW: scrollView.width, containerH: scrollView.height, image: image)
+        return CGRect(x: 0, y: 0, width: size.width, height: size.height)
     }
 }
 
