@@ -44,6 +44,7 @@
 		4065BE2B21AB928600C9DD2F /* CollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4065BE2921AB928600C9DD2F /* CollectionViewCell.xib */; };
 		4065BE2E21AB93C300C9DD2F /* Storyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4065BE2D21AB93C300C9DD2F /* Storyboard.swift */; };
 		4065BE3321AB962000C9DD2F /* TwoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4065BE3221AB962000C9DD2F /* TwoViewController.swift */; };
+		408C23BF21B1343F00BF762A /* PhotoPickerViewController+Gesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408C23BE21B1343F00BF762A /* PhotoPickerViewController+Gesture.swift */; };
 		40DF138821ACE86F009EDCF9 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DF138721ACE86F009EDCF9 /* UIImage+Extension.swift */; };
 		40DF138E21ACEAB8009EDCF9 /* AlbumTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DF138D21ACEAB8009EDCF9 /* AlbumTitleView.swift */; };
 		40DF139F21ACFA5B009EDCF9 /* ic_arrow_up.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 40DF139921ACFA5A009EDCF9 /* ic_arrow_up.jpg */; };
@@ -95,6 +96,7 @@
 		4065BE2921AB928600C9DD2F /* CollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectionViewCell.xib; sourceTree = "<group>"; };
 		4065BE2D21AB93C300C9DD2F /* Storyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboard.swift; sourceTree = "<group>"; };
 		4065BE3221AB962000C9DD2F /* TwoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoViewController.swift; sourceTree = "<group>"; };
+		408C23BE21B1343F00BF762A /* PhotoPickerViewController+Gesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhotoPickerViewController+Gesture.swift"; sourceTree = "<group>"; };
 		40DF138721ACE86F009EDCF9 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		40DF138D21ACEAB8009EDCF9 /* AlbumTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumTitleView.swift; sourceTree = "<group>"; };
 		40DF139921ACFA5A009EDCF9 /* ic_arrow_up.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ic_arrow_up.jpg; sourceTree = "<group>"; };
@@ -157,15 +159,15 @@
 		4065BDE521AB916900C9DD2F /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				4065BDE621AB916900C9DD2F /* Extension */,
+				4065BDEE21AB916900C9DD2F /* Manager */,
+				4065BDF121AB916900C9DD2F /* Model */,
 				4065BDEB21AB916900C9DD2F /* PhotoPickerViewController.swift */,
 				4065BDF021AB916900C9DD2F /* PhotoPickerActionViewController.swift */,
 				4065BDF521AB916900C9DD2F /* PhotoPickerAlbumListViewController.swift */,
 				4065BDED21AB916900C9DD2F /* PhotoPickerAssetListViewController.swift */,
-				4065BDE621AB916900C9DD2F /* Extension */,
-				4065BDEE21AB916900C9DD2F /* Manager */,
-				4065BDF121AB916900C9DD2F /* Model */,
-				4065BDF621AB916900C9DD2F /* Views */,
 				4065BDFD21AB916900C9DD2F /* Tool */,
+				4065BDF621AB916900C9DD2F /* Views */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -173,11 +175,12 @@
 		4065BDE621AB916900C9DD2F /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				4065BDE921AB916900C9DD2F /* UICollectionView+Extension.swift */,
+				40DF138721ACE86F009EDCF9 /* UIImage+Extension.swift */,
+				4065BDEA21AB916900C9DD2F /* UITableView+Extension.swift */,
 				4065BDE721AB916900C9DD2F /* UIView+Extension.swift */,
 				4065BDE821AB916900C9DD2F /* UIViewController+Extension.swift */,
-				4065BDE921AB916900C9DD2F /* UICollectionView+Extension.swift */,
-				4065BDEA21AB916900C9DD2F /* UITableView+Extension.swift */,
-				40DF138721ACE86F009EDCF9 /* UIImage+Extension.swift */,
+				408C23BE21B1343F00BF762A /* PhotoPickerViewController+Gesture.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -203,13 +206,13 @@
 		4065BDF621AB916900C9DD2F /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				4065BDF721AB916900C9DD2F /* DividerView.swift */,
-				4065BDF821AB916900C9DD2F /* ScreenshotView.swift */,
-				4065BDF921AB916900C9DD2F /* EditView+Extension.swift */,
 				4065BDFA21AB916900C9DD2F /* AlbumListCell.swift */,
-				4065BDFB21AB916900C9DD2F /* AssetListCell.swift */,
 				40DF138D21ACEAB8009EDCF9 /* AlbumTitleView.swift */,
+				4065BDFB21AB916900C9DD2F /* AssetListCell.swift */,
+				4065BDF721AB916900C9DD2F /* DividerView.swift */,
 				4065BDFC21AB916900C9DD2F /* EditView.swift */,
+				4065BDF921AB916900C9DD2F /* EditView+Extension.swift */,
+				4065BDF821AB916900C9DD2F /* ScreenshotView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -217,10 +220,10 @@
 		4065BDFD21AB916900C9DD2F /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				4065BE0121AB916900C9DD2F /* PhotoLibrary.swift */,
+				4065BE0021AB916900C9DD2F /* PhotoLibrary+Extension.swift */,
 				4065BDFE21AB916900C9DD2F /* Runtime.swift */,
 				4065BDFF21AB916900C9DD2F /* ScreenshotTool.swift */,
-				4065BE0021AB916900C9DD2F /* PhotoLibrary+Extension.swift */,
-				4065BE0121AB916900C9DD2F /* PhotoLibrary.swift */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -228,11 +231,11 @@
 		4065BE0221AB916A00C9DD2F /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				40DF139821ACFA50009EDCF9 /* Icon */,
 				4065BE0321AB916A00C9DD2F /* AlbumListCell.xib */,
 				4065BE0421AB916A00C9DD2F /* AssetListCell.xib */,
-				4065BE0621AB916A00C9DD2F /* PhotoPicker.storyboard */,
 				4065BE0721AB916A00C9DD2F /* EditView.xib */,
+				40DF139821ACFA50009EDCF9 /* Icon */,
+				4065BE0621AB916A00C9DD2F /* PhotoPicker.storyboard */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -480,6 +483,7 @@
 				4065BE1B21AB916A00C9DD2F /* Runtime.swift in Sources */,
 				4065BE2A21AB928600C9DD2F /* CollectionViewCell.swift in Sources */,
 				4065BE1121AB916A00C9DD2F /* AlbumItem.swift in Sources */,
+				408C23BF21B1343F00BF762A /* PhotoPickerViewController+Gesture.swift in Sources */,
 				4065BE0E21AB916A00C9DD2F /* PhotoPickerAssetListViewController.swift in Sources */,
 				4065BE0B21AB916A00C9DD2F /* UITableView+Extension.swift in Sources */,
 				4065BE2E21AB93C300C9DD2F /* Storyboard.swift in Sources */,

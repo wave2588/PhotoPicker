@@ -13,4 +13,11 @@ enum Runtime {
     static let statusBarHeight: CGFloat = {
         return UIApplication.shared.statusBarFrame.height
     }()
+    
+    static let isiPhoneX: Bool = {
+        if statusBarHeight == 20 {
+            return false
+        }
+        return true
+    }()
 }

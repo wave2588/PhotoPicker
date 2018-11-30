@@ -37,7 +37,6 @@ class EditView: UIView {
     @IBOutlet weak var scrollView: UIScrollView!
     
     private let imageView = UIImageView()
-    private var imageViewSize = CGSize(width: 0, height: 0)
     
     /// 分割线 view
     private var dividerView: DividerView!
@@ -50,7 +49,7 @@ class EditView: UIView {
     @IBOutlet weak var switchFillBtn: UIButton!
     
     let scale: CGFloat = 3 / 4
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -84,10 +83,13 @@ class EditView: UIView {
                 scrollView.width = width - space * 2
             }
             
-            imageView.size = CGSize(
-                width: imageView.width * scale,
-                height: imageView.height * scale
-            )
+//            imageView.size = CGSize(
+//                width: imageView.width * scale,
+//                height: imageView.height * scale
+//            )
+            
+            imageView.size = getSwitchScaleImageSize(containerSize: scrollView.size, image: imageView.image ?? UIImage())
+            
             scrollView.contentSize = imageView.size
             scrollView.contentOffset = CGPoint(
                 x: scrollView.contentOffset.x * scale,
@@ -100,10 +102,11 @@ class EditView: UIView {
             scrollView.width = width
             scrollView.height = height
 
-            imageView.size = CGSize(
-                width: imageView.width / scale,
-                height: imageView.height / scale
-            )
+//            imageView.size = CGSize(
+//                width: imageView.width / scale,
+//                height: imageView.height / scale
+//            )
+            imageView.size = getSwitchScaleImageSize(containerSize: scrollView.size, image: imageView.image ?? UIImage())
             scrollView.contentSize = imageView.size
             scrollView.contentOffset = CGPoint(
                 x: scrollView.contentOffset.x / scale,
@@ -236,34 +239,16 @@ private extension EditView {
                 return
         }
         
-        let imageW = image.size.width
-        let imageH = image.size.height
-
-        var newImageW: CGFloat = width
-        var newImageH: CGFloat = height
-
-        if imageW != imageH {
+        if image.size.width != image.size.height {
             switchScaleBtn.isHidden = false
         }
-        
-        if imageW == imageH {
-            /// 1:1
-        } else if imageW > imageH {
-            let ratio = height / imageH
-            newImageH = imageH * ratio
-            newImageW = imageW * ratio
-        } else if imageW < imageH {
-            let ratio = width / imageW
-            newImageH = imageH * ratio
-            newImageW = imageW * ratio
-        }
-        
-        imageView.size = CGSize(width: newImageW, height: newImageH)
+
+        imageView.size = getPreviewImageSize(image: image)
         scrollView.zoomScale = 1
         scrollView.contentSize = imageView.size
         scrollView.contentOffset = CGPoint(
-            x: (newImageW - width) * 0.5,
-            y: (newImageH - height) * 0.5
+            x: (imageView.size.width - width) * 0.5,
+            y: (imageView.size.height - height) * 0.5
         )
     }
 }
@@ -306,7 +291,7 @@ private extension EditView {
     
 }
 
-/// 选中了已经被选中的第一个 item == firstItem   (完成)
+/// 选中了已经被选中的第一个 item == firstItem
 private extension EditView {
     
     func selectedFirst(item: AssetItem, firstItem: AssetItem) {

@@ -190,6 +190,7 @@
                         <outlet property="assetListContainerView" destination="NA2-c3-Hvq" id="JGE-w3-TOK"/>
                         <outlet property="topLineView" destination="d4u-Mi-buh" id="G0V-po-rpS"/>
                         <outlet property="topView" destination="LcV-v9-bvH" id="Ot9-x3-5M8"/>
+                        <outlet property="topViewHeightCos" destination="B2y-M9-Wa1" id="AJy-F8-3bN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D86-zN-H2J" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -33,6 +33,7 @@ class PhotoPickerActionViewController: UIViewController {
     var clickVideo = PublishSubject<AVAssetExportSession>()
     
     @IBOutlet weak var topView: UIView!
+    @IBOutlet weak var topViewHeightCos: NSLayoutConstraint!
     @IBOutlet weak var topLineView: UIView!
     @IBOutlet weak var albumTitleView: AlbumTitleView!
     
@@ -59,6 +60,7 @@ class PhotoPickerActionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configureTopView()
         configureContainerView()
         configureAlbumVC()
         configureAssetVC()
@@ -364,5 +366,12 @@ private extension PhotoPickerActionViewController {
         maskLayer.frame = view.bounds
         maskLayer.path = maskPath.cgPath
         view.layer.mask = maskLayer
+    }
+    
+    func configureTopView() {
+        if !Runtime.isiPhoneX {
+            topViewHeightCos.constant = 25
+            view.layoutIfNeeded()
+        }
     }
 }
