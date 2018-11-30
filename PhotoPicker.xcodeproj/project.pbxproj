@@ -161,13 +161,10 @@
 		4065BDE521AB916900C9DD2F /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				408C23C221B1492600BF762A /* Controller */,
 				4065BDE621AB916900C9DD2F /* Extension */,
 				4065BDEE21AB916900C9DD2F /* Manager */,
 				4065BDF121AB916900C9DD2F /* Model */,
-				4065BDEB21AB916900C9DD2F /* PhotoPickerViewController.swift */,
-				4065BDF021AB916900C9DD2F /* PhotoPickerActionViewController.swift */,
-				4065BDF521AB916900C9DD2F /* PhotoPickerAlbumListViewController.swift */,
-				4065BDED21AB916900C9DD2F /* PhotoPickerAssetListViewController.swift */,
 				4065BDFD21AB916900C9DD2F /* Tool */,
 				4065BDF621AB916900C9DD2F /* Views */,
 			);
@@ -278,6 +275,17 @@
 				4065BE2921AB928600C9DD2F /* CollectionViewCell.xib */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		408C23C221B1492600BF762A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4065BDEB21AB916900C9DD2F /* PhotoPickerViewController.swift */,
+				4065BDF021AB916900C9DD2F /* PhotoPickerActionViewController.swift */,
+				4065BDF521AB916900C9DD2F /* PhotoPickerAlbumListViewController.swift */,
+				4065BDED21AB916900C9DD2F /* PhotoPickerAssetListViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		40DF139821ACFA50009EDCF9 /* Icon */ = {

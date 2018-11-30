@@ -38,9 +38,11 @@ extension EditView {
         let containerRatio = containerSize.width / containerSize.height
         let aspectRatio = imageW / imageH
         
+        var newW: CGFloat = 0
+        var newH: CGFloat = 0
         if containerRatio > aspectRatio {
             
-            let w = imageW / (imageH / containerSize.height)
+            newW = imageW / (imageH / containerSize.height)
             
         } else {
             
@@ -48,7 +50,7 @@ extension EditView {
         
 //        debugPrint(containerRatio, aspectRatio, scrollView.frame)
         
-        return CGSize(width: 0, height: 0)
+        return CGSize(width: newW, height: newH)
     }
 }
 
@@ -144,6 +146,7 @@ extension EditView {
     }
 }
 
+/// PreView Image Size
 extension EditView {
     
     func getPreviewImageSize(image: UIImage) -> CGSize {
@@ -169,7 +172,7 @@ extension EditView {
     }
 }
 
-/// 计算容器 ScrollView 的 frame
+/// ScrollView Frame
 extension EditView {
     
     func getScrollViewFrame(editInfo: EditInfo) -> CGRect {
