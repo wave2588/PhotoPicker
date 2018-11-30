@@ -141,11 +141,12 @@ private extension PhotoPickerViewController {
         tapGesture.rx.event
             .bind { [unowned self] _ in
                 self.actionVC.albumTitleView.imgView.image = UIImage.loadLocalImage(name: "ic_arrow_down.jpg")
-                UIView.animate(withDuration: 0.25, animations: {
+                UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 4, options: .curveEaseOut, animations: {
                     self.actionVC.view.y = minY
                     self.actionVC.view.height = self.view.height - minY
                     self.actionVC.albumListContainerView.alpha = self.actionVC.albumListContainerView.alpha == 1 ? 0 : 1
                     self.shadowView.alpha = 0.5
+                }, completion: { _ in
                 })
             }
             .disposed(by: rx.disposeBag)
@@ -154,11 +155,12 @@ private extension PhotoPickerViewController {
         tapGesture2.rx.event
             .bind { [unowned self] _ in
                 self.actionVC.albumTitleView.imgView.image = UIImage.loadLocalImage(name: "ic_arrow_down.jpg")
-                UIView.animate(withDuration: 0.25, animations: {
+                UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 4, options: .curveEaseOut, animations: {
                     self.actionVC.view.y = minY
                     self.actionVC.view.height = self.view.height - minY
                     self.actionVC.albumListContainerView.alpha = self.actionVC.albumListContainerView.alpha == 1 ? 0 : 1
                     self.shadowView.alpha = 0.5
+                }, completion: { _ in
                 })
             }
             .disposed(by: rx.disposeBag)
