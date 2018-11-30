@@ -104,7 +104,6 @@ private extension PhotoPickerViewController {
         add(asChildViewController: actionVC, frame: frame)
 
         let minY: CGFloat = Runtime.statusBarHeight + 100
-
         let panGesture = UIPanGestureRecognizer()
         panGesture.rx.event
             .bind { [unowned self] gesture in
@@ -122,10 +121,6 @@ private extension PhotoPickerViewController {
                     let screenCenterY = UIScreen.main.bounds.height * 0.5
                     let newY = self.actionVC.view.y >= screenCenterY ? originalY : minY
                     let newH = self.view.height - newY
-                    
-                    let imgName = newY == minY ? "ic_arrow_down.jpg" : "ic_arrow_up.jpg"
-                    self.actionVC.albumTitleView.imgView.image = UIImage.loadLocalImage(name: imgName)
-
                     UIView.animate(withDuration: 0.25, animations: {
                         self.actionVC.view.height = newH
                         self.actionVC.view.y = newY
@@ -140,11 +135,11 @@ private extension PhotoPickerViewController {
         let tapGesture = UITapGestureRecognizer()
         tapGesture.rx.event
             .bind { [unowned self] _ in
-                self.actionVC.albumTitleView.imgView.image = UIImage.loadLocalImage(name: "ic_arrow_down.jpg")
                 UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 4, options: .curveEaseOut, animations: {
                     self.actionVC.view.y = minY
                     self.actionVC.view.height = self.view.height - minY
                     self.actionVC.albumListContainerView.alpha = self.actionVC.albumListContainerView.alpha == 1 ? 0 : 1
+                    self.actionVC.albumTitleView.imgView.image = self.actionVC.albumListContainerView.alpha == 1 ? UIImage.loadLocalImage(name: "ic_arrow_down.jpg") : UIImage.loadLocalImage(name: "ic_arrow_up.jpg")
                     self.shadowView.alpha = 0.5
                 }, completion: { _ in
                 })
@@ -159,6 +154,7 @@ private extension PhotoPickerViewController {
                     self.actionVC.view.y = minY
                     self.actionVC.view.height = self.view.height - minY
                     self.actionVC.albumListContainerView.alpha = self.actionVC.albumListContainerView.alpha == 1 ? 0 : 1
+                    self.actionVC.albumTitleView.imgView.image = self.actionVC.albumListContainerView.alpha == 1 ? UIImage.loadLocalImage(name: "ic_arrow_down.jpg") : UIImage.loadLocalImage(name: "ic_arrow_up.jpg")
                     self.shadowView.alpha = 0.5
                 }, completion: { _ in
                 })
