@@ -18,8 +18,7 @@ extension PhotoPickerViewController {
         panGesture.rx.event
             .bind { [unowned self] gesture in
                 let translationPotion = gesture.translation(in: self.view)
-                if gesture.state == .began {
-                } else if gesture.state == .changed {
+                if gesture.state == .changed {
                     var newY = self.actionVC.view.y + translationPotion.y
                     newY = newY >= originalY ? originalY : newY
                     newY = newY <= minY ? minY : newY

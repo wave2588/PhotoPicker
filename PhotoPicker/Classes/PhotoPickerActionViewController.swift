@@ -57,6 +57,15 @@ class PhotoPickerActionViewController: UIViewController {
 
     private var isFirstDisplay = true
     
+    public static var fromStoryboard: PhotoPickerActionViewController {
+        let path = Bundle.main.path(forResource: "Frameworks/PhotoPicker", ofType: "framework")
+        let bundle = Bundle(path: path!)
+        let vcName = String(describing: self)
+        let sb = UIStoryboard(name: "PhotoPicker", bundle:bundle)
+        let vc = sb.instantiateViewController(withIdentifier: vcName)
+        return vc as! PhotoPickerActionViewController
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
