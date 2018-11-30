@@ -52,8 +52,11 @@ private extension PhotoLibrary {
 //        resultsOptions.predicate = NSPredicate(format: "mediaType = %d",
 //                                               PHAssetMediaType.image.rawValue)
 
+//        var totalPhoto = AlbumItem(id: NSUUID().uuidString, title: "全部相册", fetchResult: PHFetchResult(), assetItems: [])
+        
         /// 系统相册需要取出来的部分
-//        let titles = ["Favorites", "Recently Added", "All Photos", "Videos"]
+        /// 所有照片 视频Videos  最近添加Recently Added 个人收藏Favorites 自拍Selfies 人像Portrait
+//        let titles = ["Videos", "Recently Added", "Favorites", "Portrait"]
         var albumItems = [AlbumItem]()
         for i in 0 ..< smartAlbums.count {
             let collection = smartAlbums[i]
