@@ -70,7 +70,6 @@ class PhotoPickerActionViewController: UIViewController {
         super.viewDidLoad()
         
         configureTopView()
-        configureContainerView()
         configureAlbumVC()
         configureAssetVC()
         configureLibrary()
@@ -221,10 +220,6 @@ private extension PhotoPickerActionViewController {
 }
 
 private extension PhotoPickerActionViewController {
-    
-    func configureContainerView() {
-        albumListContainerView.alpha = 0
-    }
 
     func configureAlbumItems() {
         albumItems
