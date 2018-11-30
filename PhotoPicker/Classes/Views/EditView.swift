@@ -82,37 +82,21 @@ class EditView: UIView {
                 scrollView.left = space
                 scrollView.width = width - space * 2
             }
-            
-//            imageView.size = CGSize(
-//                width: imageView.width * scale,
-//                height: imageView.height * scale
-//            )
-            
-            imageView.size = getSwitchScaleImageSize(containerSize: scrollView.size, image: imageView.image ?? UIImage())
-            
-            scrollView.contentSize = imageView.size
-            scrollView.contentOffset = CGPoint(
-                x: scrollView.contentOffset.x * scale,
-                y: scrollView.contentOffset.y * scale
-            )
 
         } else {
             scrollView.top = 0
             scrollView.left = 0
             scrollView.width = width
             scrollView.height = height
-
-//            imageView.size = CGSize(
-//                width: imageView.width / scale,
-//                height: imageView.height / scale
-//            )
-            imageView.size = getSwitchScaleImageSize(containerSize: scrollView.size, image: imageView.image ?? UIImage())
-            scrollView.contentSize = imageView.size
-            scrollView.contentOffset = CGPoint(
-                x: scrollView.contentOffset.x / scale,
-                y: scrollView.contentOffset.y / scale
-            )
         }
+        
+        imageView.size = getImageSize(containerW: scrollView.width, containerH: scrollView.height, image: imageView.image ?? UIImage())
+        
+        scrollView.contentSize = imageView.size
+        scrollView.contentOffset = CGPoint(
+            x: (imageView.size.width - scrollView.width) * 0.5,
+            y: (imageView.size.height - scrollView.height) * 0.5
+        )
         
         updateEditedAssetItem()
         
