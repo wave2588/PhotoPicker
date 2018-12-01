@@ -223,18 +223,13 @@ private extension EditView {
     /// 在有选中第一张的情况下, 又选中了其他, 并且有缓存
     func updateImageViewHaveEditInfo(editInfo: EditInfo, firstEditInfo: EditInfo, image: UIImage) {
         
-        if firstEditInfo.scale == .oneToOne {
-            if image.size.width == image.size.height {
-                imageView.frame.origin = CGPoint(x: 0, y: 0)
-                imageView.size = getImageSize(containerW: scrollView.width, containerH: scrollView.height, image: image)
-            } else {
-                if editInfo.mode == .remain {
-                    switchFillBtn.isHidden = false
-                    imageView.frame = getRemainRect(image: image)
-                } else if editInfo.mode == .fill {
-                    switchRemainWhiteBtn.isHidden = false
-                    imageView.frame = getFillRect(image: image)
-                }
+        if firstEditInfo.scale == .oneToOne &&  image.size.width != image.size.height {
+            if editInfo.mode == .remain {
+                switchFillBtn.isHidden = false
+                imageView.frame = getRemainRect(image: image)
+            } else if editInfo.mode == .fill {
+                switchRemainWhiteBtn.isHidden = false
+                imageView.frame = getFillRect(image: image)
             }
         } else {
             imageView.frame.origin = CGPoint(x: 0, y: 0)
