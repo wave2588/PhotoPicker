@@ -108,10 +108,9 @@ class EditView: UIView {
         
         guard let image = imageView.image else { return }
 
-        imageView.frame = getRemainRect(image: image)
-        
-        scrollView.contentSize = imageView.size
         scrollView.zoomScale = 1
+        imageView.frame = getRemainRect(image: image)
+        scrollView.contentSize = imageView.size
         scrollView.contentOffset = CGPoint(x: 0, y: 0)
 
         switchRemainWhiteBtn.isHidden = true
@@ -126,10 +125,9 @@ class EditView: UIView {
                 return
         }
         
-        imageView.frame = getFillRect(image: image)
-        
-        scrollView.contentSize = imageView.size
         scrollView.zoomScale = 1
+        imageView.frame = getFillRect(image: image)
+        scrollView.contentSize = imageView.size
         scrollView.contentOffset = CGPoint(x: 0, y: 0)
 
         switchRemainWhiteBtn.isHidden = false
