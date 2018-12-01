@@ -34,7 +34,8 @@ extension ScreenshotView {
     
     func setEditInfoImage(firstEditInfo: EditInfo, item: AssetItem) -> AssetItem {
         
-        updateScrollView(editInfo: firstEditInfo)
+        contentView.frame = getScrollViewFrame(scale: firstEditInfo.scale)
+        scrollView.frame = contentView.bounds
         
         let image = item.fullResolutionImage ?? UIImage()
         
@@ -42,7 +43,7 @@ extension ScreenshotView {
         var editInfo = tItem.editInfo ?? EditInfo(zoomScale: 1, contentOffset: CGPoint(x: 0, y: 0), scale: firstEditInfo.scale, mode: .fill)
         
         imageView.image = image
-        imageView.size = updateImageView(image: image, editInfo: editInfo)
+        imageView.frame = updateImageViewFrame(image: image, editInfo: editInfo)
         scrollView.zoomScale = editInfo.zoomScale
         scrollView.contentSize = imageView.size
         scrollView.contentOffset = editInfo.contentOffset
@@ -84,100 +85,24 @@ extension ScreenshotView {
 
 private extension ScreenshotView {
     
-    func updateScrollView(editInfo: EditInfo) {
-        //        if editInfo.scale == .oneToOne {
-        //            scrollView.top = 0
-        //            scrollView.left = 0
-        //            scrollView.width = width
-        //            scrollView.height = height
-        //        } else if editInfo.scale == .fourToThreeHorizontal {
-        //            let newScrollViewH = scrollView.height * scale
-        //            let space = (scrollView.height - newScrollViewH) * 0.5
-        //            scrollView.top = space
-        //            scrollView.height = height - space * 2
-        //        } else if editInfo.scale == .fourToThreeVertical {
-        //            let newScrollViewW = scrollView.width * scale
-        //            let space = (scrollView.width - newScrollViewW) * 0.5
-        //            scrollView.left = space
-        //            scrollView.width = width - space * 2
-        //        }
-        
-        if editInfo.scale == .oneToOne {
-            contentView.top = 0
-            contentView.left = 0
-            contentView.width = width
-            contentView.height = height
-        } else if editInfo.scale == .fourToThreeHorizontal {
-            let newScrollViewH = contentView.height * scale
-            let space = (contentView.height - newScrollViewH) * 0.5
-            contentView.top = space
-            contentView.height = height - space * 2
-        } else if editInfo.scale == .fourToThreeVertical {
-            let newScrollViewW = contentView.width * scale
-            let space = (contentView.width - newScrollViewW) * 0.5
-            contentView.left = space
-            contentView.width = width - space * 2
-        }
-        scrollView.frame = contentView.bounds
-    }
-    
-    func updateImageView(image: UIImage, editInfo: EditInfo) -> CGSize {
+    func updateImageViewFrame(image: UIImage, editInfo: EditInfo) -> CGRect {
         
         let imageW = image.size.width
         let imageH = image.size.height
         
-        var newImageW: CGFloat = scrollView.width
-        var newImageH: CGFloat = scrollView.height
-        
-        func getFourToThreeSize() {
-            if imageW == imageH {
-            } else if imageW > imageH {
-                let scale = scrollView.height / imageH
-                newImageH = imageH * scale
-                newImageW = imageW * scale
-            } else if imageW < imageH {
-                let scale = scrollView.width / imageW
-                newImageH = imageH * scale
-                newImageW = imageW * scale
-            }
-        }
-        
-        if editInfo.scale == .oneToOne {
-            if imageW == imageH {
-            } else {
-                if imageW > imageH {
-                    if editInfo.mode == .remain {
-                        newImageH = height * scale
-                        let ratio = newImageH / imageH
-                        newImageW = imageW * ratio
-                        imageView.top = (height - newImageH) * 0.5
-                        imageView.left = 0
-                    } else {
-                        let ratio = height / imageH
-                        newImageW = imageW * ratio
-                        newImageH = imageH * ratio
-                    }
-                } else if imageW < imageH {
-                    if editInfo.mode == .remain {
-                        newImageW = width * scale
-                        let ratio = newImageW / imageW
-                        newImageH = imageH * ratio
-                        imageView.top = 0
-                        imageView.left = (width - newImageW) * 0.5
-                    } else {
-                        let ratio = width / imageW
-                        newImageW = imageW * ratio
-                        newImageH = imageH * ratio
-                    }
-                }
-            }
+        if editInfo.scale == .oneToOne && imageW != imageH {
             
-        } else if editInfo.scale == .fourToThreeHorizontal {
-            getFourToThreeSize()
-        } else if editInfo.scale == .fourToThreeVertical {
-            getFourToThreeSize()
+            if editInfo.mode == .remain {
+                return getRemainRect(image: image)
+            } else {
+                return getFillRect(image: image)
+            }
+        } else {
+            return CGRect(
+                origin: CGPoint(x: 0, y: 0),
+                size: getImageSize(containerW: scrollView.width, containerH: scrollView.height, image: image)
+            )
         }
-        return CGSize(width: newImageW, height: newImageH)
     }
 }
 

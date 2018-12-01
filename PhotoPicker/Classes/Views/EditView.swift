@@ -88,8 +88,8 @@ class EditView: UIView {
             scrollView.height = height
         }
         
+        scrollView.zoomScale = 1
         imageView.size = getImageSize(containerW: scrollView.width, containerH: scrollView.height, image: imageView.image ?? UIImage())
-        
         scrollView.contentSize = imageView.size
         scrollView.contentOffset = CGPoint(
             x: (imageView.size.width - scrollView.width) * 0.5,
@@ -101,7 +101,7 @@ class EditView: UIView {
         dividerView.frame = scrollView.frame
     }
     
-    /// 留白 也是用 4:3 的比例
+    /// 留白
     @IBAction func clickSwitchRemainWhiteAction(_ sender: UIButton) {
         
         guard let image = imageView.image else { return }
@@ -109,8 +109,11 @@ class EditView: UIView {
         scrollView.zoomScale = 1
         imageView.frame = getRemainRect(image: image)
         scrollView.contentSize = imageView.size
-        scrollView.contentOffset = CGPoint(x: 0, y: 0)
-
+        scrollView.contentOffset = CGPoint(
+            x: 0,
+            y: 0
+        )
+        
         switchRemainWhiteBtn.isHidden = true
         switchFillBtn.isHidden = false
         
@@ -126,7 +129,10 @@ class EditView: UIView {
         scrollView.zoomScale = 1
         imageView.frame = getFillRect(image: image)
         scrollView.contentSize = imageView.size
-        scrollView.contentOffset = CGPoint(x: 0, y: 0)
+        scrollView.contentOffset = CGPoint(
+            x: 0,
+            y: 0
+        )
 
         switchRemainWhiteBtn.isHidden = false
         switchFillBtn.isHidden = true
