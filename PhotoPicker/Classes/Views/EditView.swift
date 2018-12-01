@@ -237,12 +237,17 @@ private extension EditView {
     /// 在有选中第一张的情况下, 又选中了其他, 并且有缓存
     func updateImageViewHaveEditInfo(editInfo: EditInfo, firstEditInfo: EditInfo, image: UIImage) {
         
-        if editInfo.mode == .remain {
-            switchFillBtn.isHidden = false
-            imageView.frame = getRemainRect(image: image)
-        } else if editInfo.mode == .fill {
-            switchRemainWhiteBtn.isHidden = false
-            imageView.frame = getFillRect(image: image)
+        if firstEditInfo.scale == .oneToOne {
+            if editInfo.mode == .remain {
+                switchFillBtn.isHidden = false
+                imageView.frame = getRemainRect(image: image)
+            } else if editInfo.mode == .fill {
+                switchRemainWhiteBtn.isHidden = false
+                imageView.frame = getFillRect(image: image)
+            }
+        } else {
+            imageView.frame.origin = CGPoint(x: 0, y: 0)
+            imageView.size = getImageSize(containerW: scrollView.width, containerH: scrollView.height, image: image)
         }
         scrollView.zoomScale = editInfo.zoomScale
         scrollView.contentSize = imageView.size
@@ -259,12 +264,13 @@ private extension EditView {
             switchRemainWhiteBtn.isHidden = false
         }
         
+        imageView.frame.origin = CGPoint(x: 0, y: 0)
         imageView.size = getImageSize(containerW: scrollView.width, containerH: scrollView.height, image: image)
         scrollView.zoomScale = 1
         scrollView.contentSize = imageView.size
         scrollView.contentOffset = CGPoint(
-            x: (size.width - scrollView.width) * 0.5,
-            y: (size.height - scrollView.height) * 0.5
+            x: (imageView.size.width - scrollView.width) * 0.5,
+            y: (imageView.size.height - scrollView.height) * 0.5
         )
     }
     
