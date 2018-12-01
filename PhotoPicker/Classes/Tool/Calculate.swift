@@ -123,3 +123,28 @@ func getFillRect(image: UIImage) -> CGRect {
     let size = getImageSize(containerW: width, containerH: height, image: image)
     return CGRect(x: 0, y: 0, width: size.width, height: size.height)
 }
+
+/// 计算 ScrollView Frame
+func getScrollViewFrame(scale: Scale) -> CGRect {
+    
+    let width = UIScreen.main.bounds.width
+    let height = width
+    
+    var x: CGFloat = 0
+    var y: CGFloat = 0
+    var w: CGFloat = width
+    var h: CGFloat = height
+    if scale == .oneToOne {
+    } else if scale == .fourToThreeHorizontal {
+        let newScrollViewH = height * SCALE
+        let space = (height - newScrollViewH) * 0.5
+        y = space
+        h = height - space * 2
+    } else if scale == .fourToThreeVertical {
+        let newScrollViewW = width * SCALE
+        let space = (width - newScrollViewW) * 0.5
+        x = space
+        w = width - space * 2
+    }
+    return CGRect(x: x, y: y, width: w, height: h)
+}

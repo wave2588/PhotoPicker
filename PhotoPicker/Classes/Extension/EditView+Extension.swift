@@ -77,28 +77,3 @@ extension EditView {
         return CGSize(width: newImageW, height: newImageH)
     }
 }
-
-/// ScrollView Frame
-extension EditView {
-    
-    func getScrollViewFrame(scale: Scale) -> CGRect {
-        
-        var x: CGFloat = 0
-        var y: CGFloat = 0
-        var w: CGFloat = width
-        var h: CGFloat = height
-        if scale == .oneToOne {
-        } else if scale == .fourToThreeHorizontal {
-            let newScrollViewH = scrollView.height * SCALE
-            let space = (scrollView.height - newScrollViewH) * 0.5
-            y = space
-            h = height - space * 2
-        } else if scale == .fourToThreeVertical {
-            let newScrollViewW = scrollView.width * SCALE
-            let space = (scrollView.width - newScrollViewW) * 0.5
-            x = space
-            w = width - space * 2
-        }
-        return CGRect(x: x, y: y, width: w, height: h)
-    }
-}
