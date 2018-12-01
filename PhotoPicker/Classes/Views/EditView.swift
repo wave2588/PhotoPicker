@@ -151,7 +151,7 @@ private extension EditView {
             switchScaleBtn.isHidden = false
         }
 
-        imageView.size = getPreviewImageSize(image: image)
+        imageView.size = getImageSize(containerW: scrollView.width, containerH: scrollView.height, image: image)
         scrollView.zoomScale = 1
         scrollView.contentSize = imageView.size
         scrollView.contentOffset = CGPoint(
