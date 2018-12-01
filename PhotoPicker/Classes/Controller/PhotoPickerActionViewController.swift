@@ -183,9 +183,13 @@ private extension PhotoPickerActionViewController {
                     tempAssetItem.selectedIndex = tempAssetItem.selectedIndex - 1
                 }
                 
-                /// 如果取消的是第一个, 则把除了当前第一个的所有 editInfo 重置为空
-                if selectedIndex == 1 && tempAssetItem.selectedIndex != 1 {
-                    tempAssetItem.editInfo = nil
+                /// 如果取消的是第一个, 则重置所有 editInfo
+                if selectedIndex == 1 {
+                    if tempAssetItem.selectedIndex == 1 {
+                        tempAssetItem.editInfo = EditInfo(zoomScale: 1, contentOffset: CGPoint(x: 0, y: 0), scale: .oneToOne, mode: .fill)
+                    } else {
+                        tempAssetItem.editInfo = nil
+                    }
                 }
                 
                 return tempAssetItem

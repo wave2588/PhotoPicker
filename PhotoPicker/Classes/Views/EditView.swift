@@ -167,42 +167,24 @@ private extension EditView {
     }
 }
 
-/// 选中了第一张后, 选择其他图片, 会存在有缓存和没有缓存的情况
+/// 选中了第一张后, 选择其他图片, 会存在有缓存和没有缓存的情况  只有在 1:1 并且还是选中了长图的情况下, 才显示留白 or 充满
 private extension EditView {
-    
+
     func selectedOther(item: AssetItem, firstItem: AssetItem) {
         
-        if item.editInfo == nil {
-            selectedOtherNotEditInfo(item: item, firstItem: firstItem)
-        } else {
-            selectedOtherHaveEditInfo(item: item, firstItem: firstItem)
-        }
-    }
-    
-    /// 只有在 1:1 并且还是选中了长图的情况下, 才显示留白 or 充满
-    func selectedOtherNotEditInfo(item: AssetItem, firstItem: AssetItem) {
-        
         guard let firstEditInfo = firstItem.editInfo,
-              let image = item.fullResolutionImage else {
+            let image = item.fullResolutionImage else {
                 return
         }
         
         scrollView.frame = getScrollViewFrame(scale: firstEditInfo.scale)
-        updateImageViewNotEditInfo(firstEditInfo: firstEditInfo, image: image)
-    }
-    
-    func selectedOtherHaveEditInfo(item: AssetItem, firstItem: AssetItem) {
-        
-        guard let editInfo = item.editInfo,
-              let firstEditInfo = firstItem.editInfo,
-              let image = item.fullResolutionImage else {
-                return
+
+        if let editInfo = item.editInfo {
+            updateImageViewHaveEditInfo(editInfo: editInfo, firstEditInfo: firstEditInfo, image: image)
+        } else {
+            updateImageViewNotEditInfo(firstEditInfo: firstEditInfo, image: image)
         }
-        
-        scrollView.frame = getScrollViewFrame(scale: firstEditInfo.scale)
-        updateImageViewHaveEditInfo(editInfo: editInfo, firstEditInfo: firstEditInfo, image: image)
     }
-    
 }
 
 /// 选中了已经被选中的第一个 item == firstItem
@@ -242,12 +224,17 @@ private extension EditView {
     func updateImageViewHaveEditInfo(editInfo: EditInfo, firstEditInfo: EditInfo, image: UIImage) {
         
         if firstEditInfo.scale == .oneToOne {
-            if editInfo.mode == .remain {
-                switchFillBtn.isHidden = false
-                imageView.frame = getRemainRect(image: image)
-            } else if editInfo.mode == .fill {
-                switchRemainWhiteBtn.isHidden = false
-                imageView.frame = getFillRect(image: image)
+            if image.size.width == image.size.height {
+                imageView.frame.origin = CGPoint(x: 0, y: 0)
+                imageView.size = getImageSize(containerW: scrollView.width, containerH: scrollView.height, image: image)
+            } else {
+                if editInfo.mode == .remain {
+                    switchFillBtn.isHidden = false
+                    imageView.frame = getRemainRect(image: image)
+                } else if editInfo.mode == .fill {
+                    switchRemainWhiteBtn.isHidden = false
+                    imageView.frame = getFillRect(image: image)
+                }
             }
         } else {
             imageView.frame.origin = CGPoint(x: 0, y: 0)
