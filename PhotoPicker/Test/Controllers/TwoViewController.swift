@@ -33,9 +33,11 @@ class TwoViewController: UIViewController {
             self.dismiss(animated: true, completion: nil)
         }).disposed(by: rx.disposeBag)
         
-        vc.outputs.clickNextStep.subscribe(onNext: { item in
+        vc.outputs.clickNextStep.subscribe(onNext: { [unowned self] item in
             
-            debugPrint(item)
+            let vc = ThreeViewController()
+            vc.item = item
+            self.present(vc, animated: true, completion: nil)
         }).disposed(by: rx.disposeBag)
         
         vc.outputs.clickVideo

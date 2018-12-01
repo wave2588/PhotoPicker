@@ -48,8 +48,6 @@ class EditView: UIView {
     /// 充满
     @IBOutlet weak var switchFillBtn: UIButton!
     
-    let scale: CGFloat = 3 / 4
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -72,12 +70,12 @@ class EditView: UIView {
             let oldScrollViewW = scrollView.width
             
             if imageView.width > imageView.height {                         /// 横图
-                let newScrollViewH = oldScrollViewH * scale
+                let newScrollViewH = oldScrollViewH * SCALE
                 let space = (oldScrollViewH - newScrollViewH) * 0.5
                 scrollView.top = space
                 scrollView.height = height - space * 2
             } else {                                                        /// 竖图
-                let newScrollViewW = oldScrollViewW * scale
+                let newScrollViewW = oldScrollViewW * SCALE
                 let space = (oldScrollViewW - newScrollViewW) * 0.5
                 scrollView.left = space
                 scrollView.width = width - space * 2
@@ -183,7 +181,7 @@ private extension EditView {
                 return
         }
         
-        scrollView.frame = getScrollViewFrame(editInfo: firstEditInfo)
+        scrollView.frame = getScrollViewFrame(scale: firstEditInfo.scale)
         updateImageViewNotEditInfo(firstEditInfo: firstEditInfo, image: image)
     }
     
@@ -195,7 +193,7 @@ private extension EditView {
                 return
         }
         
-        scrollView.frame = getScrollViewFrame(editInfo: firstEditInfo)
+        scrollView.frame = getScrollViewFrame(scale: firstEditInfo.scale)
         updateImageViewHaveEditInfo(editInfo: editInfo, firstEditInfo: firstEditInfo, image: image)
     }
     
@@ -226,7 +224,7 @@ private extension EditView {
             switchScaleBtn.isHidden = false
         }
 
-        scrollView.frame = getScrollViewFrame(editInfo: editInfo)
+        scrollView.frame = getScrollViewFrame(scale: editInfo.scale)
         updateImageViewToFirst(editInfo: editInfo, image: image)
     }
 }

@@ -46,6 +46,10 @@
 		4065BE3321AB962000C9DD2F /* TwoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4065BE3221AB962000C9DD2F /* TwoViewController.swift */; };
 		408C23BF21B1343F00BF762A /* PhotoPickerViewController+Gesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408C23BE21B1343F00BF762A /* PhotoPickerViewController+Gesture.swift */; };
 		408C23C121B13BA600BF762A /* EditView+ScrollViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408C23C021B13BA600BF762A /* EditView+ScrollViewDelegate.swift */; };
+		408C23C421B22C3B00BF762A /* ThreeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408C23C321B22C3B00BF762A /* ThreeViewController.swift */; };
+		408C23C621B22C5E00BF762A /* TTView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408C23C521B22C5E00BF762A /* TTView.swift */; };
+		408C23C821B22C6900BF762A /* TTView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 408C23C721B22C6900BF762A /* TTView.xib */; };
+		408C23CA21B2373900BF762A /* Calculate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408C23C921B2373900BF762A /* Calculate.swift */; };
 		40DF138821ACE86F009EDCF9 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DF138721ACE86F009EDCF9 /* UIImage+Extension.swift */; };
 		40DF138E21ACEAB8009EDCF9 /* AlbumTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DF138D21ACEAB8009EDCF9 /* AlbumTitleView.swift */; };
 		40DF139F21ACFA5B009EDCF9 /* ic_arrow_up.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 40DF139921ACFA5A009EDCF9 /* ic_arrow_up.jpg */; };
@@ -99,6 +103,10 @@
 		4065BE3221AB962000C9DD2F /* TwoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoViewController.swift; sourceTree = "<group>"; };
 		408C23BE21B1343F00BF762A /* PhotoPickerViewController+Gesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhotoPickerViewController+Gesture.swift"; sourceTree = "<group>"; };
 		408C23C021B13BA600BF762A /* EditView+ScrollViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EditView+ScrollViewDelegate.swift"; sourceTree = "<group>"; };
+		408C23C321B22C3B00BF762A /* ThreeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeViewController.swift; sourceTree = "<group>"; };
+		408C23C521B22C5E00BF762A /* TTView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTView.swift; sourceTree = "<group>"; };
+		408C23C721B22C6900BF762A /* TTView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TTView.xib; sourceTree = "<group>"; };
+		408C23C921B2373900BF762A /* Calculate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calculate.swift; sourceTree = "<group>"; };
 		40DF138721ACE86F009EDCF9 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		40DF138D21ACEAB8009EDCF9 /* AlbumTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumTitleView.swift; sourceTree = "<group>"; };
 		40DF139921ACFA5A009EDCF9 /* ic_arrow_up.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ic_arrow_up.jpg; sourceTree = "<group>"; };
@@ -224,6 +232,7 @@
 				4065BE0021AB916900C9DD2F /* PhotoLibrary+Extension.swift */,
 				4065BDFE21AB916900C9DD2F /* Runtime.swift */,
 				4065BDFF21AB916900C9DD2F /* ScreenshotTool.swift */,
+				408C23C921B2373900BF762A /* Calculate.swift */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -263,6 +272,7 @@
 			isa = PBXGroup;
 			children = (
 				4065BE3221AB962000C9DD2F /* TwoViewController.swift */,
+				408C23C321B22C3B00BF762A /* ThreeViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -273,6 +283,8 @@
 				4065BE2621AB925800C9DD2F /* TestView.swift */,
 				4065BE2821AB928600C9DD2F /* CollectionViewCell.swift */,
 				4065BE2921AB928600C9DD2F /* CollectionViewCell.xib */,
+				408C23C521B22C5E00BF762A /* TTView.swift */,
+				408C23C721B22C6900BF762A /* TTView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -380,6 +392,7 @@
 			files = (
 				40DF139F21ACFA5B009EDCF9 /* ic_arrow_up.jpg in Resources */,
 				4065BE2321AB916A00C9DD2F /* EditView.xib in Resources */,
+				408C23C821B22C6900BF762A /* TTView.xib in Resources */,
 				40DF13A321ACFA5B009EDCF9 /* ic_arrow_down@2x.jpg in Resources */,
 				4065BE1F21AB916A00C9DD2F /* AlbumListCell.xib in Resources */,
 				4065BDDE21AB912E00C9DD2F /* LaunchScreen.storyboard in Resources */,
@@ -482,8 +495,11 @@
 				408C23C121B13BA600BF762A /* EditView+ScrollViewDelegate.swift in Sources */,
 				4065BE1A21AB916A00C9DD2F /* EditView.swift in Sources */,
 				4065BE1921AB916A00C9DD2F /* AssetListCell.swift in Sources */,
+				408C23C621B22C5E00BF762A /* TTView.swift in Sources */,
+				408C23CA21B2373900BF762A /* Calculate.swift in Sources */,
 				4065BE0A21AB916A00C9DD2F /* UICollectionView+Extension.swift in Sources */,
 				4065BE0821AB916A00C9DD2F /* UIView+Extension.swift in Sources */,
+				408C23C421B22C3B00BF762A /* ThreeViewController.swift in Sources */,
 				4065BE3321AB962000C9DD2F /* TwoViewController.swift in Sources */,
 				4065BE1621AB916A00C9DD2F /* ScreenshotView.swift in Sources */,
 				4065BE1421AB916A00C9DD2F /* PhotoPickerAlbumListViewController.swift in Sources */,

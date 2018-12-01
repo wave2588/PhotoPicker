@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="uXL-o3-9vf" customClass="TTView" customModule="PhotoPicker" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="455" height="439"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WOW-1A-Sos">
+                    <rect key="frame" x="0.0" y="0.0" width="455" height="439"/>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="WOW-1A-Sos" firstAttribute="top" secondItem="i7D-PV-Rt5" secondAttribute="top" id="2Rj-5I-Nih"/>
+                <constraint firstItem="i7D-PV-Rt5" firstAttribute="trailing" secondItem="WOW-1A-Sos" secondAttribute="trailing" id="45G-9Y-3bq"/>
+                <constraint firstItem="i7D-PV-Rt5" firstAttribute="bottom" secondItem="WOW-1A-Sos" secondAttribute="bottom" id="WA0-ks-XLP"/>
+                <constraint firstItem="WOW-1A-Sos" firstAttribute="leading" secondItem="i7D-PV-Rt5" secondAttribute="leading" id="hOa-UI-xtE"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="i7D-PV-Rt5"/>
+            <connections>
+                <outlet property="imageView" destination="WOW-1A-Sos" id="T8a-WC-Kep"/>
+            </connections>
+            <point key="canvasLocation" x="216.80000000000001" y="-85.907046476761622"/>
+        </view>
+    </objects>
+</document>
