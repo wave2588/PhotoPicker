@@ -13,7 +13,7 @@ import Photos
 
 public protocol PhotoPickerViewControllerOutputs {
 
-    var clickVideo: PublishSubject<AVAssetExportSession> { get }
+    var clickVideo: PublishSubject<PHAsset> { get }
     
     var clickNextStep: PublishSubject<(Scale, [UIImage])> { get }
     
@@ -27,7 +27,7 @@ public class PhotoPickerViewController: UIViewController {
     }
     
     public var outputs: PhotoPickerViewControllerOutputs { return self }
-    public var clickVideo = PublishSubject<AVAssetExportSession>()
+    public var clickVideo = PublishSubject<PHAsset>()
     public var clickNextStep = PublishSubject<(Scale, [UIImage])>()
     public var clickClose = PublishSubject<[UIImage]>()
 

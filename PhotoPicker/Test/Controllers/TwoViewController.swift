@@ -9,10 +9,15 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import PhotoPicker
+import AVFoundation
+import Photos
 
 class TwoViewController: UIViewController {
 
     let vc = UIStoryboard(name: "PhotoPicker", bundle: nil).instantiateViewController(withIdentifier: "PhotoPickerViewController") as! PhotoPickerViewController
+
+//    let vc = PhotoPickerViewController.fromStoryboard
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,10 +45,14 @@ class TwoViewController: UIViewController {
             self.present(vc, animated: true, completion: nil)
         }).disposed(by: rx.disposeBag)
         
-        vc.outputs.clickVideo
-            .subscribe(onNext: { session in
-                
+        vc.outputs.clickVideo.subscribe(onNext: { asset in
+            
+            
+            debugPrint("开始导出")
+            Export.video(asset: asset, completionHandler: { path in
+                debugPrint(path)
             })
-            .disposed(by: rx.disposeBag)
+            
+        }).disposed(by: rx.disposeBag)
     }
 }

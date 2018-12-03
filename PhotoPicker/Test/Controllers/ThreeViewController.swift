@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PhotoPicker
 
 class ThreeViewController: UIViewController {
 

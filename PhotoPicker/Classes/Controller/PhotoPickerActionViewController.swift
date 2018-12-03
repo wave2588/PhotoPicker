@@ -17,7 +17,7 @@ protocol PhotoPickerActionViewControllerInputs {
 
 protocol PhotoPickerActionViewControllerOutputs {
     
-    var clickVideo: PublishSubject<AVAssetExportSession> { get }
+    var clickVideo: PublishSubject<PHAsset> { get }
 }
 
 class PhotoPickerActionViewController: UIViewController {
@@ -30,7 +30,7 @@ class PhotoPickerActionViewController: UIViewController {
     let editedAssetItem = PublishSubject<AssetItem>()
     
     var outputs: PhotoPickerActionViewControllerOutputs { return self }
-    var clickVideo = PublishSubject<AVAssetExportSession>()
+    var clickVideo = PublishSubject<PHAsset>()
     
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var topViewHeightCos: NSLayoutConstraint!
@@ -275,13 +275,11 @@ private extension PhotoPickerActionViewController {
                 }
                 
                 if assetItem.type == .video {
-                    assetItem.getVideoFileUrl(completionHandler: { [unowned self] session in
-                        if let ses = session {
-                            self.clickVideo.onNext(ses)
-                        } else {
-                            PhotoPickerConfigManager.shared.fail?("iCloud未同步")
-                        }
-                    })
+                    if let asset = assetItem.getVideoPHAsset() {
+                        self.clickVideo.onNext(asset)
+                    } else {
+                        PhotoPickerConfigManager.shared.fail?("iCloud未同步")
+                    }
                     return
                 }
                 

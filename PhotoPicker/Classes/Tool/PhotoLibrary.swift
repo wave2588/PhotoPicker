@@ -176,16 +176,5 @@ extension PhotoLibrary {
         }
         return requestId
     }
-    
-    static func video(asset: PHAsset, completionHandler:@escaping (_ session: AVAssetExportSession?) -> ()) {
-        let options = PHVideoRequestOptions()
-        options.version = .current
-        options.deliveryMode = .automatic
-        options.isNetworkAccessAllowed = true
-
-        let manager = PHImageManager()
-        manager.requestExportSession(forVideo: asset, options: options, exportPreset: AVAssetExportPresetHighestQuality) { session, info in
-            completionHandler(session)
-        }
-    }
 }
+

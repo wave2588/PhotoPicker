@@ -31,16 +31,15 @@ public struct AssetItem {
     }
     
     /// 获取视频文件 session
-    func getVideoFileUrl(completionHandler:@escaping (_ session: AVAssetExportSession?) -> ()) {
+    func getVideoPHAsset() -> PHAsset? {
         if type == .video {
             let resource = PHAssetResource.assetResources(for: phAsset)
             let isok = resource.first?.value(forKey: "locallyAvailable") as? Bool
             if isok == true {
-                PhotoLibrary.video(asset: phAsset, completionHandler: completionHandler)
-                return
+                return phAsset
             }
         }
-        completionHandler(nil)
+        return nil
     }
 
     /// 照片只会是 0
