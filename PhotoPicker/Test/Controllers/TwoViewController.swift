@@ -15,9 +15,9 @@ import Photos
 
 class TwoViewController: UIViewController {
 
-    let vc = UIStoryboard(name: "PhotoPicker", bundle: nil).instantiateViewController(withIdentifier: "PhotoPickerViewController") as! PhotoPickerViewController
+//    let vc = UIStoryboard(name: "PhotoPicker", bundle: nil).instantiateViewController(withIdentifier: "PhotoPickerViewController") as! PhotoPickerViewController
 
-//    let vc = PhotoPickerViewController.fromStoryboard
+    let vc = PhotoPickerViewController.fromStoryboard
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +32,7 @@ class TwoViewController: UIViewController {
         
         vc.view.frame = CGRect(x: 0, y: 0, width: view.width, height: view.height - 78)
         vc.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        vc.didMove(toParent: self)
+        vc.didMove(toParentViewController: self)
         
         vc.outputs.clickClose.subscribe(onNext: { [unowned self] _ in
             self.dismiss(animated: true, completion: nil)
@@ -46,13 +46,31 @@ class TwoViewController: UIViewController {
         }).disposed(by: rx.disposeBag)
         
         vc.outputs.clickVideo.subscribe(onNext: { asset in
-            
-            
             debugPrint("开始导出")
-            Export.video(asset: asset, completionHandler: { path in
-                debugPrint(path)
+            Export.video(asset: asset, outPutPath: getOutputFilePath(), completionHandler: { success in
+                if success {
+                    debugPrint("导出成功")
+                } else {
+                    debugPrint("导出失败")
+                }
             })
             
         }).disposed(by: rx.disposeBag)
     }
+}
+
+func getOutputFilePath() -> String {
+    let documnetPath = NSTemporaryDirectory()
+    let formatter = DateFormatter()
+    formatter.dateFormat = "yyyyMMddHHmmss"
+    let fileName = formatter.string(from: Date())
+    let filePath = documnetPath.appendingPathComponent(fileName) + ".MP4"
+    if FileManager.default.fileExists(atPath: filePath) {
+        do{
+            try FileManager.default.removeItem(atPath: filePath)
+        } catch {
+            print("文件存在，删除失败")
+        }
+    }
+    return filePath
 }
