@@ -31,4 +31,18 @@ public struct Export {
             }
         }
     }
+    
+    public static func video(asset: PHAsset, completionHandler:@escaping (_ path: String?) -> ()) {
+        let options = PHVideoRequestOptions()
+        options.version = .current
+        options.deliveryMode = .automatic
+        options.isNetworkAccessAllowed = true
+        PHCachingImageManager.default().requestAVAsset(forVideo: asset, options: options) { (avAsset, _, _) in
+            guard let avUrlAsset = avAsset as? AVURLAsset else {
+                completionHandler(nil)
+                return
+            }
+            completionHandler(avUrlAsset.url.path)
+        }
+    }
 }

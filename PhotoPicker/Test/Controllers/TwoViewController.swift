@@ -47,14 +47,13 @@ class TwoViewController: UIViewController {
         
         vc.outputs.clickVideo.subscribe(onNext: { asset in
             debugPrint("开始导出")
-            Export.video(asset: asset, outPutPath: getOutputFilePath(), completionHandler: { success in
-                if success {
-                    debugPrint("导出成功")
+            Export.video(asset: asset, completionHandler: { path in
+                if let pathStr = path {
+                    debugPrint("导出成功------->:  \(pathStr)")
                 } else {
                     debugPrint("导出失败")
                 }
             })
-            
         }).disposed(by: rx.disposeBag)
     }
 }
