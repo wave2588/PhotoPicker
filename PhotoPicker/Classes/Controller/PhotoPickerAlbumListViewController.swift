@@ -49,10 +49,7 @@ private extension PhotoPickerAlbumListViewController {
         
         tableView.separatorStyle = .none
         tableView.rowHeight = 102
-
-        /// **
-//        tableView.registerCell(nibWithCellClass: AlbumListCell.self)
-        tableView.register(nibWithCellClass: AlbumListCell.self)
+        tableView.registerCell(nibWithCellClass: AlbumListCell.self)
         
         albumItems
             .bind(to: tableView.rx.items(cellType: AlbumListCell.self)) { [unowned self] _, item, cell in

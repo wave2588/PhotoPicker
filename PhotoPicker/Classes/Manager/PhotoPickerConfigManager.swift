@@ -14,5 +14,6 @@ public class PhotoPickerConfigManager {
     
     public var fail: ((String)->())?
     
-    
+    /// 调试时候使用, 不用开启...
+    public var isDebug = false
 }

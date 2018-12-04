@@ -40,25 +40,13 @@ public class PhotoPickerViewController: UIViewController {
     
     @IBOutlet weak var shadowView: UIView!
     
-    /// **
-//    let editView = EditView.fromNib() as! EditView
-//    let actionVC = PhotoPickerActionViewController.fromStoryboard() as! PhotoPickerActionViewController
-    let editView: EditView = .fromNibsssss()
-    let actionVC = Storyboard.photo.get(class: PhotoPickerActionViewController.self)
+    let actionVC: PhotoPickerActionViewController = .fromStoryboard()
+    let editView: EditView = .fromNib()
     
     /// 最终小圆圈勾选中的
     private let selectedAssetItems = BehaviorRelay<[AssetItem]>(value: [])
     /// 预览情况下, 点击的
     private let currentSelectedAssetItem = PublishSubject<AssetItem>()
-    
-    public static var fromStoryboard: PhotoPickerViewController {
-        let path = Bundle.main.path(forResource: "Frameworks/PhotoPicker", ofType: "framework")
-        let bundle = Bundle(path: path!)
-        let vcName = String(describing: self)
-        let sb = UIStoryboard(name: "PhotoPicker", bundle:bundle)
-        let vc = sb.instantiateViewController(withIdentifier: vcName)
-        return vc as! PhotoPickerViewController
-    }
     
     public override func viewDidLoad() {
         super.viewDidLoad()

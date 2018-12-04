@@ -16,13 +16,15 @@
 		401D637821B62766008D6897 /* ic_arrow_down@3x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 401D636F21B62766008D6897 /* ic_arrow_down@3x.jpg */; };
 		401D637921B62766008D6897 /* ic_arrow_down.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 401D637021B62766008D6897 /* ic_arrow_down.jpg */; };
 		401D637A21B62766008D6897 /* ic_close@3x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 401D637121B62766008D6897 /* ic_close@3x.jpg */; };
+		401D637E21B62FE3008D6897 /* UIViewController+SB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401D637D21B62FE3008D6897 /* UIViewController+SB.swift */; };
+		401D638021B63371008D6897 /* UIView+Frame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401D637F21B63371008D6897 /* UIView+Frame.swift */; };
 		4065BDD421AB912D00C9DD2F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4065BDD321AB912D00C9DD2F /* AppDelegate.swift */; };
 		4065BDD621AB912E00C9DD2F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4065BDD521AB912E00C9DD2F /* ViewController.swift */; };
 		4065BDD921AB912E00C9DD2F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4065BDD721AB912E00C9DD2F /* Main.storyboard */; };
 		4065BDDB21AB912E00C9DD2F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4065BDDA21AB912E00C9DD2F /* Assets.xcassets */; };
 		4065BDDE21AB912E00C9DD2F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4065BDDC21AB912E00C9DD2F /* LaunchScreen.storyboard */; };
-		4065BE0821AB916A00C9DD2F /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4065BDE721AB916900C9DD2F /* UIView+Extension.swift */; };
-		4065BE0921AB916A00C9DD2F /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4065BDE821AB916900C9DD2F /* UIViewController+Extension.swift */; };
+		4065BE0821AB916A00C9DD2F /* UIView+Nib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4065BDE721AB916900C9DD2F /* UIView+Nib.swift */; };
+		4065BE0921AB916A00C9DD2F /* UIViewController+AddVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4065BDE821AB916900C9DD2F /* UIViewController+AddVC.swift */; };
 		4065BE0A21AB916A00C9DD2F /* UICollectionView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4065BDE921AB916900C9DD2F /* UICollectionView+Extension.swift */; };
 		4065BE0B21AB916A00C9DD2F /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4065BDEA21AB916900C9DD2F /* UITableView+Extension.swift */; };
 		4065BE0C21AB916A00C9DD2F /* PhotoPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4065BDEB21AB916900C9DD2F /* PhotoPickerViewController.swift */; };
@@ -46,11 +48,9 @@
 		4065BE2021AB916A00C9DD2F /* AssetListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4065BE0421AB916A00C9DD2F /* AssetListCell.xib */; };
 		4065BE2221AB916A00C9DD2F /* PhotoPicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4065BE0621AB916A00C9DD2F /* PhotoPicker.storyboard */; };
 		4065BE2321AB916A00C9DD2F /* EditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4065BE0721AB916A00C9DD2F /* EditView.xib */; };
-		4065BE2521AB91FA00C9DD2F /* UIView+Ee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4065BE2421AB91FA00C9DD2F /* UIView+Ee.swift */; };
 		4065BE2721AB925800C9DD2F /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4065BE2621AB925800C9DD2F /* TestView.swift */; };
 		4065BE2A21AB928600C9DD2F /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4065BE2821AB928600C9DD2F /* CollectionViewCell.swift */; };
 		4065BE2B21AB928600C9DD2F /* CollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4065BE2921AB928600C9DD2F /* CollectionViewCell.xib */; };
-		4065BE2E21AB93C300C9DD2F /* Storyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4065BE2D21AB93C300C9DD2F /* Storyboard.swift */; };
 		4065BE3321AB962000C9DD2F /* TwoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4065BE3221AB962000C9DD2F /* TwoViewController.swift */; };
 		408C23BF21B1343F00BF762A /* PhotoPickerViewController+Gesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408C23BE21B1343F00BF762A /* PhotoPickerViewController+Gesture.swift */; };
 		408C23C121B13BA600BF762A /* EditView+ScrollViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408C23C021B13BA600BF762A /* EditView+ScrollViewDelegate.swift */; };
@@ -74,6 +74,8 @@
 		401D636F21B62766008D6897 /* ic_arrow_down@3x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "ic_arrow_down@3x.jpg"; sourceTree = "<group>"; };
 		401D637021B62766008D6897 /* ic_arrow_down.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ic_arrow_down.jpg; sourceTree = "<group>"; };
 		401D637121B62766008D6897 /* ic_close@3x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "ic_close@3x.jpg"; sourceTree = "<group>"; };
+		401D637D21B62FE3008D6897 /* UIViewController+SB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+SB.swift"; sourceTree = "<group>"; };
+		401D637F21B63371008D6897 /* UIView+Frame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Frame.swift"; sourceTree = "<group>"; };
 		4065BDD021AB912D00C9DD2F /* PhotoPicker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoPicker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4065BDD321AB912D00C9DD2F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4065BDD521AB912E00C9DD2F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -81,8 +83,8 @@
 		4065BDDA21AB912E00C9DD2F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4065BDDD21AB912E00C9DD2F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4065BDDF21AB912E00C9DD2F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4065BDE721AB916900C9DD2F /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
-		4065BDE821AB916900C9DD2F /* UIViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		4065BDE721AB916900C9DD2F /* UIView+Nib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Nib.swift"; sourceTree = "<group>"; };
+		4065BDE821AB916900C9DD2F /* UIViewController+AddVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+AddVC.swift"; sourceTree = "<group>"; };
 		4065BDE921AB916900C9DD2F /* UICollectionView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extension.swift"; sourceTree = "<group>"; };
 		4065BDEA21AB916900C9DD2F /* UITableView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
 		4065BDEB21AB916900C9DD2F /* PhotoPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoPickerViewController.swift; sourceTree = "<group>"; };
@@ -106,11 +108,9 @@
 		4065BE0421AB916A00C9DD2F /* AssetListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AssetListCell.xib; sourceTree = "<group>"; };
 		4065BE0621AB916A00C9DD2F /* PhotoPicker.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PhotoPicker.storyboard; sourceTree = "<group>"; };
 		4065BE0721AB916A00C9DD2F /* EditView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditView.xib; sourceTree = "<group>"; };
-		4065BE2421AB91FA00C9DD2F /* UIView+Ee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ee.swift"; sourceTree = "<group>"; };
 		4065BE2621AB925800C9DD2F /* TestView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		4065BE2821AB928600C9DD2F /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		4065BE2921AB928600C9DD2F /* CollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectionViewCell.xib; sourceTree = "<group>"; };
-		4065BE2D21AB93C300C9DD2F /* Storyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboard.swift; sourceTree = "<group>"; };
 		4065BE3221AB962000C9DD2F /* TwoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoViewController.swift; sourceTree = "<group>"; };
 		408C23BE21B1343F00BF762A /* PhotoPickerViewController+Gesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhotoPickerViewController+Gesture.swift"; sourceTree = "<group>"; };
 		408C23C021B13BA600BF762A /* EditView+ScrollViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EditView+ScrollViewDelegate.swift"; sourceTree = "<group>"; };
@@ -193,8 +193,10 @@
 				4065BDE921AB916900C9DD2F /* UICollectionView+Extension.swift */,
 				40DF138721ACE86F009EDCF9 /* UIImage+Extension.swift */,
 				4065BDEA21AB916900C9DD2F /* UITableView+Extension.swift */,
-				4065BDE721AB916900C9DD2F /* UIView+Extension.swift */,
-				4065BDE821AB916900C9DD2F /* UIViewController+Extension.swift */,
+				401D637F21B63371008D6897 /* UIView+Frame.swift */,
+				4065BDE721AB916900C9DD2F /* UIView+Nib.swift */,
+				4065BDE821AB916900C9DD2F /* UIViewController+AddVC.swift */,
+				401D637D21B62FE3008D6897 /* UIViewController+SB.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -233,12 +235,12 @@
 		4065BDFD21AB916900C9DD2F /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				408C23C921B2373900BF762A /* Calculate.swift */,
+				40F39EA121B5262D00891B82 /* Export.swift */,
 				4065BE0121AB916900C9DD2F /* PhotoLibrary.swift */,
 				4065BE0021AB916900C9DD2F /* PhotoLibrary+Extension.swift */,
 				4065BDFE21AB916900C9DD2F /* Runtime.swift */,
 				4065BDFF21AB916900C9DD2F /* ScreenshotTool.swift */,
-				408C23C921B2373900BF762A /* Calculate.swift */,
-				40F39EA121B5262D00891B82 /* Export.swift */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -268,18 +270,8 @@
 			children = (
 				4065BE3121AB961000C9DD2F /* Views */,
 				4065BE3021AB960B00C9DD2F /* Controllers */,
-				4065BE2F21AB95F600C9DD2F /* Extension */,
 			);
 			path = Test;
-			sourceTree = "<group>";
-		};
-		4065BE2F21AB95F600C9DD2F /* Extension */ = {
-			isa = PBXGroup;
-			children = (
-				4065BE2421AB91FA00C9DD2F /* UIView+Ee.swift */,
-				4065BE2D21AB93C300C9DD2F /* Storyboard.swift */,
-			);
-			path = Extension;
 			sourceTree = "<group>";
 		};
 		4065BE3021AB960B00C9DD2F /* Controllers */ = {
@@ -306,10 +298,10 @@
 		408C23C221B1492600BF762A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				4065BDEB21AB916900C9DD2F /* PhotoPickerViewController.swift */,
 				4065BDF021AB916900C9DD2F /* PhotoPickerActionViewController.swift */,
 				4065BDF521AB916900C9DD2F /* PhotoPickerAlbumListViewController.swift */,
 				4065BDED21AB916900C9DD2F /* PhotoPickerAssetListViewController.swift */,
+				4065BDEB21AB916900C9DD2F /* PhotoPickerViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -494,7 +486,7 @@
 				4065BE0F21AB916A00C9DD2F /* PhotoPickerConfigManager.swift in Sources */,
 				4065BE1E21AB916A00C9DD2F /* PhotoLibrary.swift in Sources */,
 				4065BE1521AB916A00C9DD2F /* DividerView.swift in Sources */,
-				4065BE0921AB916A00C9DD2F /* UIViewController+Extension.swift in Sources */,
+				4065BE0921AB916A00C9DD2F /* UIViewController+AddVC.swift in Sources */,
 				4065BE1D21AB916A00C9DD2F /* PhotoLibrary+Extension.swift in Sources */,
 				408C23C121B13BA600BF762A /* EditView+ScrollViewDelegate.swift in Sources */,
 				4065BE1A21AB916A00C9DD2F /* EditView.swift in Sources */,
@@ -502,7 +494,7 @@
 				408C23C621B22C5E00BF762A /* TTView.swift in Sources */,
 				408C23CA21B2373900BF762A /* Calculate.swift in Sources */,
 				4065BE0A21AB916A00C9DD2F /* UICollectionView+Extension.swift in Sources */,
-				4065BE0821AB916A00C9DD2F /* UIView+Extension.swift in Sources */,
+				4065BE0821AB916A00C9DD2F /* UIView+Nib.swift in Sources */,
 				408C23C421B22C3B00BF762A /* ThreeViewController.swift in Sources */,
 				4065BE3321AB962000C9DD2F /* TwoViewController.swift in Sources */,
 				40F39EA221B5262D00891B82 /* Export.swift in Sources */,
@@ -518,12 +510,12 @@
 				408C23BF21B1343F00BF762A /* PhotoPickerViewController+Gesture.swift in Sources */,
 				4065BE0E21AB916A00C9DD2F /* PhotoPickerAssetListViewController.swift in Sources */,
 				4065BE0B21AB916A00C9DD2F /* UITableView+Extension.swift in Sources */,
-				4065BE2E21AB93C300C9DD2F /* Storyboard.swift in Sources */,
-				4065BE2521AB91FA00C9DD2F /* UIView+Ee.swift in Sources */,
 				40DF138821ACE86F009EDCF9 /* UIImage+Extension.swift in Sources */,
 				4065BE2721AB925800C9DD2F /* TestView.swift in Sources */,
+				401D638021B63371008D6897 /* UIView+Frame.swift in Sources */,
 				4065BE1821AB916A00C9DD2F /* AlbumListCell.swift in Sources */,
 				40DF138E21ACEAB8009EDCF9 /* AlbumTitleView.swift in Sources */,
+				401D637E21B62FE3008D6897 /* UIViewController+SB.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

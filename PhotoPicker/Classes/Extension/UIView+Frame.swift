@@ -1,28 +1,12 @@
 //
-//  UIView+Extension.swift
+//  UIView+Frame.swift
 //  PhotoPicker
 //
-//  Created by wave on 2018/11/12.
+//  Created by wave on 2018/12/4.
 //  Copyright © 2018 wave. All rights reserved.
 //
 
 import UIKit
-import SwifterSwift
-
-extension UIView {
-    
-    static func fromNib() -> UIView? {
-
-        guard let path = Bundle.main.path(forResource: "Frameworks/PhotoPicker", ofType: "framework"),
-            let bundle = Bundle(path: path) else {
-                return nil
-        }
-        
-        let name = String(describing: self)
-        let view = UINib(nibName: name, bundle: bundle).instantiate(withOwner: nil, options: nil)[0] as? UIView
-        return view
-    }
-}
 
 extension UIView {
     

@@ -21,7 +21,14 @@ extension Reactive where Base: UICollectionView {
 }
 
 extension UICollectionView {
+    
     func registerCell<T: UICollectionViewCell>(nibWithCellClass name: T.Type) {
+        
+        if PhotoPickerConfigManager.shared.isDebug {
+            register(nibWithCellClass: name)
+            return
+        }
+        
         let identifier = String(describing: name)
         let path = Bundle.main.path(forResource: "Frameworks/PhotoPicker", ofType: "framework")
         let bundle = Bundle(path: path!)

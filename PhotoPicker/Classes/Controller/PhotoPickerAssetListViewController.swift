@@ -69,9 +69,7 @@ private extension PhotoPickerAssetListViewController {
         layout.minimumLineSpacing = 1;
         layout.minimumInteritemSpacing = 1;
         collectionView.setCollectionViewLayout(layout, animated: false)
-        /// **
-//        collectionView.registerCell(nibWithCellClass: AssetListCell.self)
-        collectionView.register(nibWithCellClass: AssetListCell.self)
+        collectionView.registerCell(nibWithCellClass: AssetListCell.self)
         
         let dataSource = RxCollectionViewSectionedReloadDataSource<SectionModel<String, AssetItem>>(
             configureCell: { [unowned self] ds, cv, ip, item in

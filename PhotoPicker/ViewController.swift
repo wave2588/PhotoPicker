@@ -12,6 +12,9 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        PhotoPickerConfigManager.shared.isDebug = true
+        
     }
 
     @IBAction func click(_ sender: Any) {

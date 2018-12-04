@@ -15,9 +15,7 @@ import Photos
 
 class TwoViewController: UIViewController {
 
-    let vc = UIStoryboard(name: "PhotoPicker", bundle: nil).instantiateViewController(withIdentifier: "PhotoPickerViewController") as! PhotoPickerViewController
-
-//    let vc = PhotoPickerViewController.fromStoryboard
+    let vc: PhotoPickerViewController = .fromStoryboard()
 
     override func viewDidLoad() {
         super.viewDidLoad()
