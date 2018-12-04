@@ -69,6 +69,7 @@ public class PhotoPickerViewController: UIViewController {
         configureEditView()
         configureActionVC()
         configureActionVCGesture()
+        configureShadowView()
     }
     
     @IBAction func closeAction(_ sender: UIButton) {

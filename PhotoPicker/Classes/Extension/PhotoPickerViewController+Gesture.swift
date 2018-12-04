@@ -88,4 +88,25 @@ extension PhotoPickerViewController {
         actionVC.topLineView.addGestureRecognizer(tapGesture2)
     }
     
+    func configureShadowView() {
+        
+        let originalY: CGFloat = editContainerView.bottom + Runtime.statusBarHeight
+        let tapGesture = UITapGestureRecognizer()
+        tapGesture.rx.event
+            .bind { [unowned self] _ in
+                UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 4, options: .curveEaseOut, animations: {
+                    if !Runtime.isiPhoneX {
+                        self.actionVC.topViewHeightCos.constant = 25
+                        self.actionVC.view.layoutIfNeeded()
+                    }
+                    self.actionVC.view.y = originalY
+                    self.actionVC.view.height = self.view.height - originalY
+                    self.shadowView.alpha = 0
+                }, completion: { _ in
+                })
+            }
+            .disposed(by: rx.disposeBag)
+        shadowView.addGestureRecognizer(tapGesture)
+    }
+    
 }

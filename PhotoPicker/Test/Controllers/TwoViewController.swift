@@ -15,9 +15,9 @@ import Photos
 
 class TwoViewController: UIViewController {
 
-//    let vc = UIStoryboard(name: "PhotoPicker", bundle: nil).instantiateViewController(withIdentifier: "PhotoPickerViewController") as! PhotoPickerViewController
+    let vc = UIStoryboard(name: "PhotoPicker", bundle: nil).instantiateViewController(withIdentifier: "PhotoPickerViewController") as! PhotoPickerViewController
 
-    let vc = PhotoPickerViewController.fromStoryboard
+//    let vc = PhotoPickerViewController.fromStoryboard
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +32,7 @@ class TwoViewController: UIViewController {
         
         vc.view.frame = CGRect(x: 0, y: 0, width: view.width, height: view.height - 78)
         vc.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        vc.didMove(toParentViewController: self)
+        vc.didMove(toParent: self)
         
         vc.outputs.clickClose.subscribe(onNext: { [unowned self] _ in
             self.dismiss(animated: true, completion: nil)
