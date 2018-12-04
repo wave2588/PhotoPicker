@@ -99,6 +99,7 @@ extension PhotoPickerViewController {
                         self.actionVC.topViewHeightCos.constant = 25
                         self.actionVC.view.layoutIfNeeded()
                     }
+
                     self.actionVC.view.y = originalY
                     self.actionVC.view.height = self.view.height - originalY
                     self.shadowView.alpha = 0
