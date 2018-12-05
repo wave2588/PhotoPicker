@@ -54,20 +54,4 @@ extension UIViewController {
         
         viewController.removeFromParent()
     }
-    
-}
-
-extension UIViewController {
-    
-    class func fromStoryboard() -> UIViewController? {
-        
-        guard let path = Bundle.main.path(forResource: "Frameworks/PhotoPicker", ofType: "framework"),
-              let bundle = Bundle(path: path) else {
-            return nil
-        }
-        let vcName = String(describing: self)
-        let sb = UIStoryboard(name: "PhotoPicker", bundle:bundle)
-        let vc = sb.instantiateViewController(withIdentifier: vcName)
-        return vc
-    }
 }
