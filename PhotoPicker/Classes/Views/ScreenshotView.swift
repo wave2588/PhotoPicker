@@ -34,8 +34,10 @@ extension ScreenshotView {
     
     func setEditInfoImage(firstEditInfo: EditInfo, item: AssetItem) -> AssetItem {
         
-        contentView.frame = getScrollViewFrame(scale: firstEditInfo.scale)
-        scrollView.frame = contentView.bounds
+//        contentView.frame = updateContentView(scale: firstEditInfo.scale)
+//        scrollView.frame = updateScrollViewFrame(scale: firstEditInfo.scale)
+        
+        updateFrame(scale: firstEditInfo.scale)
         
         let image = item.fullResolutionImage ?? UIImage()
         
@@ -48,33 +50,10 @@ extension ScreenshotView {
         scrollView.contentSize = imageView.size
         scrollView.contentOffset = editInfo.contentOffset
         
-        
         var img = captureImageFromView()
         if img?.size.width != UIScreen.main.bounds.width {
             img = img?.scaled(toWidth: UIScreen.main.bounds.width)
         }
-        
-        /* test code
-        /// 通过下边这几行代码, 可以判断出来 ScrollView确实是在一个正确的位置
-        let view = UIView(frame: UIScreen.main.bounds)
-        view.backgroundColor = .red
-        UIApplication.shared.keyWindow?.addSubview(view)
-        //        view.addSubview(scrollView)
-        scrollView.backgroundColor = .blue
-        
-        let gesture = UITapGestureRecognizer()
-        gesture.rx.event.bind { _ in
-            view.removeFromSuperview()
-            }.disposed(by: view.rx.disposeBag)
-        view.addGestureRecognizer(gesture)
-        
-        
-        /// 但是把截图出来的图, 放到一个imageView上边就不对了
-        let imgView = UIImageView(frame: CGRect(x: 0, y: 0, width: img?.size.width ?? 100, height: img?.size.height ?? 100))
-        imgView.image = img
-        imgView.backgroundColor = .yellow
-        view.addSubview(imgView)
-         */
         
         editInfo.image = img
         tItem.editInfo = editInfo
@@ -125,9 +104,45 @@ extension ScreenshotView: UIScrollViewDelegate {
     }
 }
 
+/// 不存在 fourToThreeHorizontal 的情况, 如果是则转成 oneToOne
+private extension ScreenshotView {
+    
+    func updateFrame(scale: Scale) {
+        
+        let width = UIScreen.main.bounds.width
+        let height = width
+        
+        if scale == .oneToOne {
+            
+            contentView.frame = CGRect(x: 0, y: 0, width: width, height: height)
+            scrollView.frame = contentView.bounds
+            
+        } else if scale == .fourToThreeHorizontal {
+            
+            contentView.frame = CGRect(x: 0, y: 0, width: width, height: height)
+            let newScrollViewH = height * SCALE
+            let space = (height - newScrollViewH) * 0.5
+            let y = space
+            let h = height - space * 2
+            scrollView.frame = CGRect(x: x, y: y, width: width, height: h)
+            
+        } else if scale == .fourToThreeVertical {
+            
+            let newScrollViewW = width * SCALE
+            let space = (width - newScrollViewW) * 0.5
+            let x = space
+            let w = width - space * 2
+            contentView.frame = CGRect(x: x, y: 0, width: w, height: height)
+            scrollView.frame = contentView.bounds
+        }
+    }
+}
+
 private extension ScreenshotView {
     
     func configureUI() {
+        
+        contentView.backgroundColor = UIColor.blue
         
         contentView.frame = bounds
         addSubview(contentView)

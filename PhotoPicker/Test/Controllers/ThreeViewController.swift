@@ -50,7 +50,7 @@ private extension ThreeViewController {
             break
         case .fourToThreeHorizontal:
             scrollViewY = 64
-            scrollViewH = kWidth * 3 / 4
+            scrollViewH = kWidth
             break
         case .fourToThreeVertical:
             scrollViewY = 0
