@@ -61,58 +61,56 @@ private extension PhotoLibrary {
             "Videos",
             "Recently Added",
             "Favorites",
+            "Selfies",
             "Portrait",
         ]
         
-        /// 取出所有的图库, 并且 key 和 value 对应好
-        var items = [String: [AssetItem]]()
-        for i in 0..<smartAlbums.count {
-            let collection = smartAlbums[i]
-            if let title = collection.localizedTitle {
-                let fetchResult = PHAsset.fetchAssets(in: collection, options: resultsOptions)
-                if fetchResult.count == 0 {
-                    continue
+        DispatchQueue.global().async {
+            
+            var items = [String: [AssetItem]]()
+            for i in 0..<smartAlbums.count {
+                let collection = smartAlbums[i]
+                if let title = collection.localizedTitle {
+                    let fetchResult = PHAsset.fetchAssets(in: collection, options: resultsOptions)
+                    if fetchResult.count == 0 {
+                        continue
+                    }
+                    if !titles.contains(title) {
+                        titles.append(title)
+                    }
+                    let assetItems = self.getAllAssetItems(fetchResult)
+                    items[title] = assetItems
                 }
-                if !titles.contains(title) {
-                    titles.append(title)
-                }
-                let assetItems = getAllAssetItems(fetchResult)
-                items[title] = assetItems
             }
-        }
+            
+            var albumItems = [AlbumItem]()
+            for index in 0..<titles.count {
+                let title = titles[index]
+                if let assetItems = items[title] {
+                    let item = AlbumItem(id: NSUUID().uuidString, title: self.titleOfAlbumForChinse(title: title), assetItems: assetItems)
+                    albumItems.append(item)
+                }
+            }
+            
+            /// 用户自己创建的相册
+            let userCollections = PHCollectionList.fetchTopLevelUserCollections(with: nil)
+            for i in 0 ..< userCollections.count {
+                if let collection = userCollections[i] as? PHAssetCollection,
+                    let title = collection.localizedTitle {
+                    let fetchResult = PHAsset.fetchAssets(in: collection, options: resultsOptions)
+                    if fetchResult.count == 0 {
+                        continue
+                    }
+                    let assetItems = self.getAllAssetItems(fetchResult)
+                    let item = AlbumItem(id: NSUUID().uuidString, title: self.titleOfAlbumForChinse(title: title), assetItems: assetItems)
+                    albumItems.append(item)
+                }
+            }
 
-        var albumItems = [AlbumItem]()
-        for index in 0..<titles.count {
-            let title = titles[index]
-            if let assetItems = items[title] {
-                let item = AlbumItem(id: NSUUID().uuidString, title: titleOfAlbumForChinse(title: title), assetItems: assetItems)
-                albumItems.append(item)
+            DispatchQueue.main.async {
+                self.albumList.onNext(albumItems)
             }
         }
-        
-        /// 用户自己创建的相册
-        let userCollections = PHCollectionList.fetchTopLevelUserCollections(with: nil)
-        for i in 0 ..< userCollections.count {
-            if let collection = userCollections[i] as? PHAssetCollection,
-                let title = collection.localizedTitle {
-                let fetchResult = PHAsset.fetchAssets(in: collection, options: resultsOptions)
-                if fetchResult.count == 0 {
-                    continue
-                }
-                let assetItems = getAllAssetItems(fetchResult)
-                let item = AlbumItem(id: NSUUID().uuidString, title: titleOfAlbumForChinse(title: title), assetItems: assetItems)
-                albumItems.append(item)
-            }
-        }
-        
-        /// 把所有照片替换到第一个
-        if let index = albumItems.firstIndex(where: { item -> Bool in
-            return item.title == "所有照片"
-        }) {
-            albumItems.swapAt(0, index)
-        }
-        
-        albumList.onNext(albumItems)
     }
     
     func getAllAssetItems(_ fetchResult: PHFetchResult<PHAsset>) -> [AssetItem] {
