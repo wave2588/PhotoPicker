@@ -37,9 +37,18 @@ class PhotoLibrary: NSObject {
 extension PhotoLibrary: PhotoLibraryInputs { }
 extension PhotoLibrary: PhotoLibraryOutputs { }
 
+extension PhotoLibrary: PHPhotoLibraryChangeObserver {
+    
+    func photoLibraryDidChange(_ changeInstance: PHChange) {
+        debugPrint("photo change...")
+    }
+}
+
 private extension PhotoLibrary {
     
     func getAllAlbumItems() {
+
+        PHPhotoLibrary.shared().register(self)
         
         // 列出所有系统的智能相册
         let smartOptions = PHFetchOptions()
@@ -118,7 +127,7 @@ private extension PhotoLibrary {
         var assetItems = [AssetItem]()
         for i in 0 ..< count {
             let phAsset = fetchResult[i]
-            assetItems.append(AssetItem(id: NSUUID().uuidString, phAsset: phAsset))
+            assetItems.append(AssetItem(id: phAsset.localIdentifier, phAsset: phAsset))
         }
         return assetItems
     }
@@ -127,6 +136,7 @@ private extension PhotoLibrary {
 extension PhotoLibrary {
     
     func checkAuthorization() {
+        
         switch PHPhotoLibrary.authorizationStatus() {
         case .notDetermined:         // 用户暂未权限认证
             PHPhotoLibrary.requestAuthorization { [weak self] status in
