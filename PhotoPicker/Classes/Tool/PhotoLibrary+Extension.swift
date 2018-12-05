@@ -7,45 +7,7 @@
 //
 
 import Foundation
-
-//if title == "Slo-mo" {
-//    return "慢动作"
-//} else if title == "Recently Added" {
-//    return "最近添加"
-//} else if title == "Favorites" {
-//    return "个人收藏"
-//} else if title == "Recently Deleted" {
-//    return "最近删除"
-//} else if title == "Videos" {
-//    return "视频"
-//} else if title == "All Photos" {
-//    return "所有照片"
-//} else if title == "Selfies" {
-//    return "自拍"
-//} else if title == "Screenshots" {
-//    return "屏幕快照"
-//} else if title == "Camera Roll" {
-//    return "相机胶卷"
-//} else if title == "Portrait" {
-//    return "人像"
-//}
-
-//"Recently Added"
-//"Selfies"
-//"Screenshots"
-//"Recently Deleted"
-//"Portrait"
-//"Panoramas"
-//"Time-lapse"
-//"Slo-mo"
-//"Bursts"
-//"Camera Roll"
-//"Favorites"
-//"Videos"
-//"Animated"
-//"Hidden"
-//"Long Exposure"
-//"Live Photos"
+import Photos
 
 extension PhotoLibrary {
     
@@ -73,7 +35,7 @@ extension PhotoLibrary {
 
 extension PhotoLibrary {
     
-    class func timeFormatted(timeInterval: TimeInterval) -> String {
+    static func timeFormatted(timeInterval: TimeInterval) -> String {
         let seconds: Int = lround(timeInterval)
         var hour: Int = 0
         var minute: Int = Int(seconds/60)
@@ -87,3 +49,46 @@ extension PhotoLibrary {
         }
     }
 }
+
+
+/// 以下是类方法, 直接调用
+extension PhotoLibrary {
+    
+    static func fullResolutionImageData(asset: PHAsset) -> UIImage? {
+        let options = PHImageRequestOptions()
+        options.isSynchronous = true
+        options.resizeMode = .none
+        options.isNetworkAccessAllowed = true
+        options.version = .current
+        var image: UIImage? = nil
+        //        let manager = PHImageManager.default()
+        PHCachingImageManager().requestImageData(for: asset, options: options) { (imageData, dataUIT, orientation, info) in
+            if let data = imageData {
+                image = UIImage(data: data)
+            }
+        }
+        return image
+    }
+    
+    static func imageAsset(asset: PHAsset, size: CGSize, options: PHImageRequestOptions?, completionBlock:@escaping (UIImage,Bool)-> Void) -> PHImageRequestID {
+        var options = options
+        if options == nil {
+            options = PHImageRequestOptions()
+            options?.isSynchronous = false
+            options?.resizeMode = .exact
+            options?.deliveryMode = .opportunistic
+            options?.isNetworkAccessAllowed = true
+        }
+        let scale = UIScreen.main.scale
+        let targetSize = CGSize(width: size.width*scale, height: size.height*scale)
+        
+        let requestId = PHCachingImageManager().requestImage(for: asset, targetSize: targetSize, contentMode: .aspectFill, options: options) { image, info in
+            let complete = (info?["PHImageResultIsDegradedKey"] as? Bool) == false
+            if let image = image {
+                completionBlock(image,complete)
+            }
+        }
+        return requestId
+    }
+}
+
