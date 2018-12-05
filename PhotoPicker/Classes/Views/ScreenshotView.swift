@@ -34,8 +34,6 @@ extension ScreenshotView {
     
     func setEditInfoImage(firstEditInfo: EditInfo, item: AssetItem) -> AssetItem {
         
-//        contentView.frame = updateContentView(scale: firstEditInfo.scale)
-//        scrollView.frame = updateScrollViewFrame(scale: firstEditInfo.scale)
         
         updateFrame(scale: firstEditInfo.scale)
         
@@ -59,29 +57,6 @@ extension ScreenshotView {
         tItem.editInfo = editInfo
         
         return tItem
-    }
-}
-
-private extension ScreenshotView {
-    
-    func updateImageViewFrame(image: UIImage, editInfo: EditInfo) -> CGRect {
-        
-        let imageW = image.size.width
-        let imageH = image.size.height
-        
-        if editInfo.scale == .oneToOne && imageW != imageH {
-            
-            if editInfo.mode == .remain {
-                return getRemainRect(image: image)
-            } else {
-                return getFillRect(image: image)
-            }
-        } else {
-            return CGRect(
-                origin: CGPoint(x: 0, y: 0),
-                size: getImageSize(containerW: scrollView.width, containerH: scrollView.height, image: image)
-            )
-        }
     }
 }
 
@@ -134,6 +109,26 @@ private extension ScreenshotView {
             let w = width - space * 2
             contentView.frame = CGRect(x: x, y: 0, width: w, height: height)
             scrollView.frame = contentView.bounds
+        }
+    }
+    
+    func updateImageViewFrame(image: UIImage, editInfo: EditInfo) -> CGRect {
+        
+        let imageW = image.size.width
+        let imageH = image.size.height
+        
+        if editInfo.scale == .oneToOne && imageW != imageH {
+            
+            if editInfo.mode == .remain {
+                return getRemainRect(image: image)
+            } else {
+                return getFillRect(image: image)
+            }
+        } else {
+            return CGRect(
+                origin: CGPoint(x: 0, y: 0),
+                size: getImageSize(containerW: scrollView.width, containerH: scrollView.height, image: image)
+            )
         }
     }
 }
