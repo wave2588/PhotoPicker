@@ -32,6 +32,19 @@ class PhotoLibrary: NSObject {
     var outputs: PhotoLibraryOutputs { return self }
     let albumPermissions = PublishSubject<Bool>()
     let albumList = PublishSubject<[AlbumItem]>()
+    
+    // 列出所有系统的智能相册
+    let smartAlbums = PHAssetCollection.fetchAssetCollections(with: .smartAlbum,
+                                                              subtype: .any,
+                                                              options: PHFetchOptions())
+    /// 用户自己创建的
+    let userCollections = PHCollectionList.fetchTopLevelUserCollections(with: nil)
+    
+    /// 排序规则
+    let fetchOptions = PHFetchOptions()
+
+    /// 最终结果
+    var albumItems = [AlbumItem]()
 }
 
 extension PhotoLibrary: PhotoLibraryInputs { }
@@ -40,6 +53,7 @@ extension PhotoLibrary: PhotoLibraryOutputs { }
 extension PhotoLibrary: PHPhotoLibraryChangeObserver {
     
     func photoLibraryDidChange(_ changeInstance: PHChange) {
+        
         debugPrint("photo change...")
     }
 }
@@ -50,19 +64,9 @@ private extension PhotoLibrary {
 
         PHPhotoLibrary.shared().register(self)
         
-        // 列出所有系统的智能相册
-        let smartOptions = PHFetchOptions()
-        let smartAlbums = PHAssetCollection.fetchAssetCollections(with: .smartAlbum,
-                                                                  subtype: .albumRegular,
-                                                                  options: smartOptions)
-        let resultsOptions = PHFetchOptions()
-        resultsOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate",
+        fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate",
                                                            ascending: false)]
-//        resultsOptions.predicate = NSPredicate(format: "mediaType = %d",
-//                                               PHAssetMediaType.image.rawValue)
 
-//        var totalPhoto = AlbumItem(id: NSUUID().uuidString, title: "全部相册", fetchResult: PHFetchResult(), assetItems: [])
-        
         /// 所有照片 相机胶卷 视频Videos  最近添加Recently Added 个人收藏Favorites 自拍Selfies 人像Portrait
         var titles = [
             "All Photos",
@@ -76,11 +80,11 @@ private extension PhotoLibrary {
         
         DispatchQueue.global().async {
             
-            var items = [String: [AssetItem]]()
-            for i in 0..<smartAlbums.count {
-                let collection = smartAlbums[i]
+            var items = [String: (String, [AssetItem])]()
+            for i in 0..<self.smartAlbums.count {
+                let collection = self.smartAlbums[i]
                 if let title = collection.localizedTitle {
-                    let fetchResult = PHAsset.fetchAssets(in: collection, options: resultsOptions)
+                    let fetchResult = PHAsset.fetchAssets(in: collection, options: self.fetchOptions)
                     if fetchResult.count == 0 {
                         continue
                     }
@@ -88,36 +92,58 @@ private extension PhotoLibrary {
                         titles.append(title)
                     }
                     let assetItems = self.getAllAssetItems(fetchResult)
-                    items[title] = assetItems
+                    items[title] = (collection.localIdentifier, assetItems)
                 }
             }
             
-            var albumItems = [AlbumItem]()
             for index in 0..<titles.count {
                 let title = titles[index]
-                if let assetItems = items[title] {
-                    let item = AlbumItem(id: NSUUID().uuidString, title: self.titleOfAlbumForChinse(title: title), assetItems: assetItems)
-                    albumItems.append(item)
+                if let item = items[title] {
+                    let item = AlbumItem(id: item.0, title: self.titleOfAlbumForChinse(title: title), assetItems: item.1)
+                    self.albumItems.append(item)
                 }
             }
             
             /// 用户自己创建的相册
-            let userCollections = PHCollectionList.fetchTopLevelUserCollections(with: nil)
-            for i in 0 ..< userCollections.count {
-                if let collection = userCollections[i] as? PHAssetCollection,
-                    let title = collection.localizedTitle {
-                    let fetchResult = PHAsset.fetchAssets(in: collection, options: resultsOptions)
+            for i in 0 ..< self.userCollections.count {
+                if let collection = self.userCollections[i] as? PHAssetCollection,
+                   let title = collection.localizedTitle {
+                    let fetchResult = PHAsset.fetchAssets(in: collection, options: self.fetchOptions)
                     if fetchResult.count == 0 {
                         continue
                     }
                     let assetItems = self.getAllAssetItems(fetchResult)
-                    let item = AlbumItem(id: NSUUID().uuidString, title: self.titleOfAlbumForChinse(title: title), assetItems: assetItems)
-                    albumItems.append(item)
+                    let item = AlbumItem(id: collection.localIdentifier, title: self.titleOfAlbumForChinse(title: title), assetItems: assetItems)
+                    self.albumItems.append(item)
+                } else {
+                    if let collection = self.userCollections[i] as? PHCollectionList {
+                        self.getFolderAssets(collectionList: collection)
+                    }
                 }
             }
 
             DispatchQueue.main.async {
-                self.albumList.onNext(albumItems)
+                self.albumList.onNext(self.albumItems)
+            }
+        }
+    }
+    
+    func getFolderAssets(collectionList: PHCollectionList) {
+        let folders = PHCollection.fetchCollections(in: collectionList, options: nil)
+        for i in 0..<folders.count {
+            if let collection = folders[i] as? PHAssetCollection,
+               let title = collection.localizedTitle {
+                let fetchResult = PHAsset.fetchAssets(in: collection, options: fetchOptions)
+                if fetchResult.count == 0 {
+                    continue
+                }
+                let assetItems = self.getAllAssetItems(fetchResult)
+                let item = AlbumItem(id: collection.localIdentifier, title: self.titleOfAlbumForChinse(title: title), assetItems: assetItems)
+                albumItems.append(item)
+            } else {
+                if let collection = folders[i] as? PHCollectionList {
+                    getFolderAssets(collectionList: collection)
+                }
             }
         }
     }
