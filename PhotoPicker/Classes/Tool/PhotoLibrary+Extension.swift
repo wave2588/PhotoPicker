@@ -8,6 +8,28 @@
 
 import Foundation
 
+//if title == "Slo-mo" {
+//    return "慢动作"
+//} else if title == "Recently Added" {
+//    return "最近添加"
+//} else if title == "Favorites" {
+//    return "个人收藏"
+//} else if title == "Recently Deleted" {
+//    return "最近删除"
+//} else if title == "Videos" {
+//    return "视频"
+//} else if title == "All Photos" {
+//    return "所有照片"
+//} else if title == "Selfies" {
+//    return "自拍"
+//} else if title == "Screenshots" {
+//    return "屏幕快照"
+//} else if title == "Camera Roll" {
+//    return "相机胶卷"
+//} else if title == "Portrait" {
+//    return "人像"
+//}
+
 //"Recently Added"
 //"Selfies"
 //"Screenshots"
@@ -27,26 +49,23 @@ import Foundation
 
 extension PhotoLibrary {
     
-    //由于系统返回的相册集名称为英文，我们需要转换为中文
     func titleOfAlbumForChinse(title:String) -> String {
-        if title == "Slo-mo" {
-            return "慢动作"
-        } else if title == "Recently Added" {
-            return "最近添加"
-        } else if title == "Favorites" {
-            return "个人收藏"
-        } else if title == "Recently Deleted" {
-            return "最近删除"
-        } else if title == "Videos" {
-            return "视频"
-        } else if title == "All Photos" {
-            return "所有照片"
-        } else if title == "Selfies" {
-            return "自拍"
-        } else if title == "Screenshots" {
-            return "屏幕快照"
-        } else if title == "Camera Roll" {
-            return "相机胶卷"
+        
+        let dict = [
+            "Slo-mo"            : "慢动作",
+            "Recently Added"    : "最近添加",
+            "Favorites"         : "个人收藏",
+            "Recently Deleted"  : "最近删除",
+            "Videos"            : "视频",
+            "All Photos"        : "所有照片",
+            "Selfies"           : "自拍",
+            "Screenshots"       : "屏幕快照",
+            "Camera Roll"       : "相机胶卷",
+            "Portrait"          : "人像"
+        ]
+        
+        if let cn = dict[title] {
+            return cn
         }
         return title
     }

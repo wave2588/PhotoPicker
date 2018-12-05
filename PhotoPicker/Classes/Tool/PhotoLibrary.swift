@@ -54,19 +54,38 @@ private extension PhotoLibrary {
 
 //        var totalPhoto = AlbumItem(id: NSUUID().uuidString, title: "全部相册", fetchResult: PHFetchResult(), assetItems: [])
         
-        /// 系统相册需要取出来的部分
-        /// 所有照片 视频Videos  最近添加Recently Added 个人收藏Favorites 自拍Selfies 人像Portrait
-//        let titles = ["Videos", "Recently Added", "Favorites", "Portrait"]
-        var albumItems = [AlbumItem]()
-        for i in 0 ..< smartAlbums.count {
+        /// 所有照片 相机胶卷 视频Videos  最近添加Recently Added 个人收藏Favorites 自拍Selfies 人像Portrait
+        var titles = [
+            "All Photos",
+            "Camera Roll",
+            "Videos",
+            "Recently Added",
+            "Favorites",
+            "Portrait",
+        ]
+        
+        /// 取出所有的图库, 并且 key 和 value 对应好
+        var items = [String: [AssetItem]]()
+        for i in 0..<smartAlbums.count {
             let collection = smartAlbums[i]
             if let title = collection.localizedTitle {
                 let fetchResult = PHAsset.fetchAssets(in: collection, options: resultsOptions)
                 if fetchResult.count == 0 {
                     continue
                 }
+                if !titles.contains(title) {
+                    titles.append(title)
+                }
                 let assetItems = getAllAssetItems(fetchResult)
-                let item = AlbumItem(id: NSUUID().uuidString, title: titleOfAlbumForChinse(title: title), fetchResult: fetchResult, assetItems: assetItems)
+                items[title] = assetItems
+            }
+        }
+
+        var albumItems = [AlbumItem]()
+        for index in 0..<titles.count {
+            let title = titles[index]
+            if let assetItems = items[title] {
+                let item = AlbumItem(id: NSUUID().uuidString, title: titleOfAlbumForChinse(title: title), assetItems: assetItems)
                 albumItems.append(item)
             }
         }
@@ -81,7 +100,7 @@ private extension PhotoLibrary {
                     continue
                 }
                 let assetItems = getAllAssetItems(fetchResult)
-                let item = AlbumItem(id: NSUUID().uuidString, title: titleOfAlbumForChinse(title: title), fetchResult: fetchResult, assetItems: assetItems)
+                let item = AlbumItem(id: NSUUID().uuidString, title: titleOfAlbumForChinse(title: title), assetItems: assetItems)
                 albumItems.append(item)
             }
         }

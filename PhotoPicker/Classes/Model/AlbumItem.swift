@@ -28,16 +28,12 @@ public struct AlbumItem {
 
     /// 相簿名称
     var title: String
-    
-    /// 相簿内的资源
-    var fetchResult: PHFetchResult<PHAsset>
 
     var assetItems: [AssetItem]
     
-    init(id: String, title: String, fetchResult: PHFetchResult<PHAsset>, assetItems: [AssetItem]) {
+    init(id: String, title: String, assetItems: [AssetItem]) {
         self.id = id
         self.title = title
-        self.fetchResult = fetchResult
         self.assetItems = assetItems
     }
 }
