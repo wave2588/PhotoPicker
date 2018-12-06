@@ -20,9 +20,14 @@ class TwoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        PhotoPickerConfigManager.shared.fail = { str in
-            debugPrint("fail:  \(str)")
+        PhotoPickerConfigManager.shared.message = { type, str in
+            if type == .success {
+                debugPrint("成功提示---->: \(str)")
+            } else {
+                debugPrint("失败提示---->: \(str)")
+            }
         }
+        
         
         view.backgroundColor = .white
         

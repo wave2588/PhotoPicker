@@ -8,11 +8,17 @@
 
 import Foundation
 
+public enum MessageType {
+    case normal
+    case success
+    case fail
+}
+
 public class PhotoPickerConfigManager {
     
     public static let shared = PhotoPickerConfigManager()
     
-    public var fail: ((String)->())?
+    public var message: ((MessageType, String)->())?
     
     /// 调试时候使用, 不用开启...
     public var isDebug = false

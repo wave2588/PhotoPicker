@@ -130,7 +130,7 @@ private extension PhotoPickerActionViewController {
         }.reduce(0, +)
         
         if sum >= 9 {
-            PhotoPickerConfigManager.shared.fail?("最多可选择9张图")
+            PhotoPickerConfigManager.shared.message?(.fail, "最多可选择9张图")
             return
         }
         
@@ -260,17 +260,19 @@ private extension PhotoPickerActionViewController {
                 var assetItems = albumItem.assetItems
                 let assetItem = assetItems[index]
                 
-                if assetItem.fullResolutionImage == nil {
-                    PhotoPickerConfigManager.shared.fail?("iCloud未同步")
-                    return
-                }
-                
                 if assetItem.type == .video {
                     if let asset = assetItem.getVideoPHAsset() {
                         self.clickVideo.onNext(asset)
                     } else {
-                        PhotoPickerConfigManager.shared.fail?("iCloud未同步")
+                        PhotoPickerConfigManager.shared.message?(.normal, "从iCloud下载中...")
+                        PhotoLibrary.downloadVideo(asset: assetItem.phAsset)
                     }
+                    return
+                }
+
+                if assetItem.fullResolutionImage == nil {
+                    PhotoPickerConfigManager.shared.message?(.normal, "从iCloud下载中...")
+                    PhotoLibrary.downloadImage(asset: assetItem.phAsset)
                     return
                 }
                 
@@ -294,7 +296,8 @@ private extension PhotoPickerActionViewController {
                 var assetItems = albumItem.assetItems
                 let assetItem = assetItems[index]
                 if assetItem.fullResolutionImage == nil {
-                    PhotoPickerConfigManager.shared.fail?("iCloud未同步")
+                    PhotoPickerConfigManager.shared.message?(.normal, "从iCloud下载中...")
+                    PhotoLibrary.downloadImage(asset: assetItem.phAsset)
                     return
                 }
                 if assetItem.selectedIndex == 0 {
