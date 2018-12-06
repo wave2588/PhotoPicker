@@ -60,6 +60,7 @@
 		408C23CA21B2373900BF762A /* Calculate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408C23C921B2373900BF762A /* Calculate.swift */; };
 		40DF138821ACE86F009EDCF9 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DF138721ACE86F009EDCF9 /* UIImage+Extension.swift */; };
 		40DF138E21ACEAB8009EDCF9 /* AlbumTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DF138D21ACEAB8009EDCF9 /* AlbumTitleView.swift */; };
+		40E0A2AB21B8BEEA00883F62 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E0A2AA21B8BEEA00883F62 /* UIView+Extension.swift */; };
 		40F39EA221B5262D00891B82 /* Export.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40F39EA121B5262D00891B82 /* Export.swift */; };
 		D87652820AFDD8075644468F /* Pods_PhotoPicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96D862E723A707794ACB01F9 /* Pods_PhotoPicker.framework */; };
 /* End PBXBuildFile section */
@@ -120,6 +121,7 @@
 		408C23C921B2373900BF762A /* Calculate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calculate.swift; sourceTree = "<group>"; };
 		40DF138721ACE86F009EDCF9 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		40DF138D21ACEAB8009EDCF9 /* AlbumTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumTitleView.swift; sourceTree = "<group>"; };
+		40E0A2AA21B8BEEA00883F62 /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		40F39EA121B5262D00891B82 /* Export.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Export.swift; sourceTree = "<group>"; };
 		4DAE2DB6C7858BF91D89D7D1 /* Pods-PhotoPicker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoPicker.release.xcconfig"; path = "Target Support Files/Pods-PhotoPicker/Pods-PhotoPicker.release.xcconfig"; sourceTree = "<group>"; };
 		96D862E723A707794ACB01F9 /* Pods_PhotoPicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PhotoPicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -268,6 +270,7 @@
 		4065BE2C21AB929700C9DD2F /* Test */ = {
 			isa = PBXGroup;
 			children = (
+				40E0A2A921B8BEEA00883F62 /* Extension */,
 				4065BE3121AB961000C9DD2F /* Views */,
 				4065BE3021AB960B00C9DD2F /* Controllers */,
 			);
@@ -304,6 +307,14 @@
 				4065BDEB21AB916900C9DD2F /* PhotoPickerViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		40E0A2A921B8BEEA00883F62 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				40E0A2AA21B8BEEA00883F62 /* UIView+Extension.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		88CEEAE95C1AA4532D1B4D13 /* Frameworks */ = {
@@ -510,6 +521,7 @@
 				408C23BF21B1343F00BF762A /* PhotoPickerViewController+Gesture.swift in Sources */,
 				4065BE0E21AB916A00C9DD2F /* PhotoPickerAssetListViewController.swift in Sources */,
 				4065BE0B21AB916A00C9DD2F /* UITableView+Extension.swift in Sources */,
+				40E0A2AB21B8BEEA00883F62 /* UIView+Extension.swift in Sources */,
 				40DF138821ACE86F009EDCF9 /* UIImage+Extension.swift in Sources */,
 				4065BE2721AB925800C9DD2F /* TestView.swift in Sources */,
 				401D638021B63371008D6897 /* UIView+Frame.swift in Sources */,

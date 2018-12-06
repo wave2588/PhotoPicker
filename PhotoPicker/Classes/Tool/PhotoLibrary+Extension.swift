@@ -58,13 +58,15 @@ extension PhotoLibrary {
         let options = PHImageRequestOptions()
         options.isSynchronous = true
         options.resizeMode = .none
-        options.isNetworkAccessAllowed = true
+        options.isNetworkAccessAllowed = false
         options.version = .current
         var image: UIImage? = nil
         //        let manager = PHImageManager.default()
         PHCachingImageManager().requestImageData(for: asset, options: options) { (imageData, dataUIT, orientation, info) in
             if let data = imageData {
                 image = UIImage(data: data)
+            } else {
+                PhotoLibrary.download(asset: asset)
             }
         }
         return image
@@ -81,14 +83,34 @@ extension PhotoLibrary {
         }
         let scale = UIScreen.main.scale
         let targetSize = CGSize(width: size.width*scale, height: size.height*scale)
-        
         let requestId = PHCachingImageManager().requestImage(for: asset, targetSize: targetSize, contentMode: .aspectFill, options: options) { image, info in
             let complete = (info?["PHImageResultIsDegradedKey"] as? Bool) == false
             if let image = image {
                 completionBlock(image,complete)
             }
         }
+        
         return requestId
     }
 }
 
+extension PhotoLibrary {
+    
+    static func download(asset: PHAsset) {
+        let options = PHImageRequestOptions()
+        options.progressHandler = { progress, error, stop, info in
+            debugPrint("progress--->: \(progress)")
+        }
+        
+        options.isNetworkAccessAllowed = true
+        options.resizeMode = .none
+        PHImageManager.default().requestImageData(for: asset, options: options) { (data, daataUTI, orientation, info) in
+            if let image = UIImage(data: data ?? Data(), scale: UIScreen.main.scale) {
+                debugPrint(image)
+            } else {
+                debugPrint("fail")
+            }
+        }
+        
+    }
+}
