@@ -313,7 +313,6 @@ private extension EditView {
                 }
                 
                 self.imageView.image = image
-                self.imageView.backgroundColor = .blue
                 self.updateEditedAssetItem()
             })
             .disposed(by: rx.disposeBag)

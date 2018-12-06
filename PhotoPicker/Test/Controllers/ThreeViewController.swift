@@ -37,7 +37,6 @@ private extension ThreeViewController {
     func configureScrollView() {
         
         view.addSubview(scrollView)
-        scrollView.backgroundColor = .red
         
         let scale = item.0
         let kWidth = UIScreen.main.bounds.width
@@ -50,7 +49,7 @@ private extension ThreeViewController {
             break
         case .fourToThreeHorizontal:
             scrollViewY = 64
-            scrollViewH = kWidth
+            scrollViewH = kWidth * 3 / 4
             break
         case .fourToThreeVertical:
             scrollViewY = 0
@@ -67,7 +66,6 @@ private extension ThreeViewController {
             let vv: TTView = .fromNib()
             vv.frame = CGRect(x: CGFloat(i) * scrollView.width, y: 0, width: scrollView.width, height: scrollView.height)
             vv.imageView.image = image
-            vv.imageView.backgroundColor = UIColor.random
             scrollView.addSubview(vv)
         }
     }

@@ -34,8 +34,9 @@ extension ScreenshotView {
     
     func setEditInfoImage(firstEditInfo: EditInfo, item: AssetItem) -> AssetItem {
         
-        
-        updateFrame(scale: firstEditInfo.scale)
+        contentView.frame = getScrollViewFrame(scale: firstEditInfo.scale)
+        scrollView.frame = contentView.bounds
+
         
         let image = item.fullResolutionImage ?? UIImage()
         
@@ -62,56 +63,6 @@ extension ScreenshotView {
 
 private extension ScreenshotView {
     
-    func captureImageFromView() -> UIImage? {
-        UIGraphicsBeginImageContextWithOptions(contentView.bounds.size, false, UIScreen.main.scale)
-        let ctx = UIGraphicsGetCurrentContext()
-        contentView.layer.render(in: ctx!)
-        let img = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return img
-        
-    }
-}
-
-extension ScreenshotView: UIScrollViewDelegate {
-    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
-        return imageView
-    }
-}
-
-/// 不存在 fourToThreeHorizontal 的情况, 如果是则转成 oneToOne
-private extension ScreenshotView {
-    
-    func updateFrame(scale: Scale) {
-        
-        let width = UIScreen.main.bounds.width
-        let height = width
-        
-        if scale == .oneToOne {
-            
-            contentView.frame = CGRect(x: 0, y: 0, width: width, height: height)
-            scrollView.frame = contentView.bounds
-            
-        } else if scale == .fourToThreeHorizontal {
-            
-            contentView.frame = CGRect(x: 0, y: 0, width: width, height: height)
-            let newScrollViewH = height * SCALE
-            let space = (height - newScrollViewH) * 0.5
-            let y = space
-            let h = height - space * 2
-            scrollView.frame = CGRect(x: x, y: y, width: width, height: h)
-            
-        } else if scale == .fourToThreeVertical {
-            
-            let newScrollViewW = width * SCALE
-            let space = (width - newScrollViewW) * 0.5
-            let x = space
-            let w = width - space * 2
-            contentView.frame = CGRect(x: x, y: 0, width: w, height: height)
-            scrollView.frame = contentView.bounds
-        }
-    }
-    
     func updateImageViewFrame(image: UIImage, editInfo: EditInfo) -> CGRect {
         
         let imageW = image.size.width
@@ -135,9 +86,26 @@ private extension ScreenshotView {
 
 private extension ScreenshotView {
     
-    func configureUI() {
+    func captureImageFromView() -> UIImage? {
+        UIGraphicsBeginImageContextWithOptions(contentView.bounds.size, false, UIScreen.main.scale)
+        let ctx = UIGraphicsGetCurrentContext()
+        contentView.layer.render(in: ctx!)
+        let img = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return img
         
-        contentView.backgroundColor = UIColor.blue
+    }
+}
+
+extension ScreenshotView: UIScrollViewDelegate {
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return imageView
+    }
+}
+
+private extension ScreenshotView {
+    
+    func configureUI() {
         
         contentView.frame = bounds
         addSubview(contentView)

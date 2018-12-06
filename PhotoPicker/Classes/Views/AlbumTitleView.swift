@@ -32,7 +32,6 @@ class AlbumTitleView: UIView {
         lbl.isUserInteractionEnabled = true
         addSubview(lbl)
 
-        imgView.backgroundColor = .red
         imgView.size = CGSize(width: 18, height: 17)
         imgView.image = UIImage.loadLocalImage(name: "ic_arrow_up.jpg")
         imgView.isUserInteractionEnabled = true
