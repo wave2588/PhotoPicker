@@ -45,6 +45,8 @@ class PhotoLibrary: NSObject {
 
     /// 最终结果
     var albumItems = [AlbumItem]()
+    
+//    var allPhotosFetchResult: PHFetchResult<PHAsset>!
 }
 
 extension PhotoLibrary: PhotoLibraryInputs { }
@@ -54,32 +56,26 @@ extension PhotoLibrary: PHPhotoLibraryChangeObserver {
     
     func photoLibraryDidChange(_ changeInstance: PHChange) {
         
-//        debugPrint(Thread.current)
-//        for i in 0..<smartAlbums.count {
-//            let collection = smartAlbums[i]
-//            debugPrint("6666--->: ", changeInstance.changeDetails(for: collection))
-//        }
-//        
-//        for i in 0..<userCollections.count {
-//            let collection = userCollections[i]
-//            debugPrint("7777--->: ", changeInstance.changeDetails(for: collection))
-//        }
+        
+//        guard let changes = changeInstance.changeDetails(for: allPhotosFetchResult) else { return }
 //
-//
-//        debugPrint("photo change...", changeInstance.changeDetails(for: smartAlbums))
-//        debugPrint("photo change...", changeInstance.changeDetails(for: userCollections))
+//        debugPrint(changes.removedObjects)
+//        debugPrint(changes.insertedObjects)
+        
     }
 }
 
 private extension PhotoLibrary {
     
     func getAllAlbumItems() {
-
+        
+//        let allPhotosOptions = PHFetchOptions()
+//        allPhotosOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
+//        allPhotosFetchResult = PHAsset.fetchAssets(with: allPhotosOptions)
         
         PHPhotoLibrary.shared().register(self)
         
-        fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate",
-                                                           ascending: false)]
+        fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
         
         /// 所有照片 相机胶卷 视频Videos  最近添加Recently Added 个人收藏Favorites 自拍Selfies 人像Portrait
         var titles = [
