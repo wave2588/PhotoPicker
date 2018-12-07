@@ -63,10 +63,8 @@ extension EditView {
         w = w > scrollView.width ? scrollView.width : w
         h = h > scrollView.height ? scrollView.height : h
         
-        dividerView.left = scrollView.left + x
-        dividerView.top = scrollView.top + y
-        dividerView.width = w
-        dividerView.height = h
+        let rect = CGRect(x: scrollView.left + x, y: scrollView.top + y, width: w, height: h)
+        dividerView.outputs.setFrame(frame: rect)
     }
     
 }

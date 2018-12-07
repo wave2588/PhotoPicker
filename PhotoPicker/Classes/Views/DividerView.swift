@@ -9,6 +9,7 @@
 import UIKit
 
 protocol DividerViewOutputs {
+    func setFrame(frame: CGRect)
     func isHidden(hidden: Bool)
 }
 
@@ -35,7 +36,7 @@ class DividerView: UIView {
         addSubview(verticalOne)
         addSubview(verticalTwo)
         
-        horizontalOne.backgroundColor = UIColor.white.withAlphaComponent(0.3)
+        horizontalOne.backgroundColor = UIColor(red: 246, green: 246, blue: 246)
 //        horizontalOne.backgroundColor = .red
         horizontalTwo.backgroundColor = horizontalOne.backgroundColor
         verticalOne.backgroundColor = horizontalOne.backgroundColor
@@ -48,15 +49,9 @@ class DividerView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        update(width: width, height: height)
-    }
-    
     func update(width: CGFloat, height: CGFloat) {
         
-        let lineW: CGFloat = 1
-        
+        let lineW: CGFloat = 1.5
         horizontalOne.frame = CGRect(x: 0, y: height * 1 / 3, width: width, height: lineW)
         horizontalTwo.frame = CGRect(x: 0, y: height * 2 / 3, width: width, height: lineW)
         
@@ -66,6 +61,11 @@ class DividerView: UIView {
 }
 
 extension DividerView: DividerViewOutputs {
+    
+    func setFrame(frame: CGRect) {
+        self.frame = frame
+        update(width: width, height: height)
+    }
     
     func isHidden(hidden: Bool) {
         UIView.animate(withDuration: 0.25) {
