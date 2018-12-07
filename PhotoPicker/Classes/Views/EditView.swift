@@ -85,7 +85,7 @@ class EditView: UIView {
         
         updateEditedAssetItem()
         
-        dividerView.frame = scrollView.bounds
+        dividerView.frame = scrollView.frame
     }
     
     /// 留白
@@ -308,10 +308,7 @@ private extension EditView {
                 self.imageView.size = CGSize(width: imageW, height: imageH)
                 self.imageView.frame.origin = CGPoint(x: 0, y: 0)
                 
-                self.scrollView.top = 0
-                self.scrollView.left = 0
-                self.scrollView.height = self.height
-                self.scrollView.width = self.width
+                self.scrollView.frame = CGRect(x: 0, y: 0, width: self.width, height: self.height)
                 self.scrollView.zoomScale = 1
                 self.scrollView.contentSize = self.imageView.size
                 self.scrollView.contentOffset = CGPoint(x: 0, y: 0)
@@ -330,7 +327,7 @@ private extension EditView {
                     self.preview(item: item)
                 }
                 
-                self.dividerView.frame = self.scrollView.bounds
+                self.dividerView.frame = self.scrollView.frame
                 self.imageView.image = image
                 self.updateEditedAssetItem()
             })
@@ -356,6 +353,6 @@ private extension EditView {
     func configureDividerView() {
         dividerView = DividerView(frame: scrollView.bounds)
         dividerView.alpha = 0
-//        scrollView.addSubview(dividerView)
+        addSubview(dividerView)
     }
 }

@@ -8,8 +8,14 @@
 
 import UIKit
 
+protocol DividerViewOutputs {
+    func isHidden(hidden: Bool)
+}
+
 class DividerView: UIView {
 
+    var outputs: DividerViewOutputs { return self }
+    
     /// 画 四根线
     private let horizontalOne = UIView()
     private let horizontalTwo = UIView()
@@ -29,8 +35,8 @@ class DividerView: UIView {
         addSubview(verticalOne)
         addSubview(verticalTwo)
         
-//        horizontalOne.backgroundColor = UIColor.white.withAlphaComponent(0.3)
-        horizontalOne.backgroundColor = .red
+        horizontalOne.backgroundColor = UIColor.white.withAlphaComponent(0.3)
+//        horizontalOne.backgroundColor = .red
         horizontalTwo.backgroundColor = horizontalOne.backgroundColor
         verticalOne.backgroundColor = horizontalOne.backgroundColor
         verticalTwo.backgroundColor = horizontalOne.backgroundColor
@@ -49,12 +55,21 @@ class DividerView: UIView {
     
     func update(width: CGFloat, height: CGFloat) {
         
-        horizontalOne.frame = CGRect(x: 0, y: height * 1 / 3, width: width, height: 1)
-        horizontalTwo.frame = CGRect(x: 0, y: height * 2 / 3, width: width, height: 1)
+        let lineW: CGFloat = 1
         
-        verticalOne.frame = CGRect(x: width * 1 / 3, y: 0, width: 1, height: height)
-        verticalTwo.frame = CGRect(x: width * 2 / 3, y: 0, width: 1, height: height)
+        horizontalOne.frame = CGRect(x: 0, y: height * 1 / 3, width: width, height: lineW)
+        horizontalTwo.frame = CGRect(x: 0, y: height * 2 / 3, width: width, height: lineW)
+        
+        verticalOne.frame = CGRect(x: width * 1 / 3, y: 0, width: lineW, height: height)
+        verticalTwo.frame = CGRect(x: width * 2 / 3, y: 0, width: lineW, height: height)
     }
+}
+
+extension DividerView: DividerViewOutputs {
     
-    
+    func isHidden(hidden: Bool) {
+        UIView.animate(withDuration: 0.25) {
+            self.alpha = hidden ? 0 : 1
+        }
+    }
 }
