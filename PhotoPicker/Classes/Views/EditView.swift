@@ -31,8 +31,8 @@ class EditView: UIView {
     var outputs: EditViewOutputs { return self }
     var editedAssetItem = PublishSubject<AssetItem>()
     
-    private var assetItem: AssetItem?
-    private var firstItem: AssetItem?
+    var assetItem: AssetItem?
+    var firstItem: AssetItem?
     
     @IBOutlet weak var scrollView: UIScrollView!
     
@@ -65,22 +65,9 @@ class EditView: UIView {
     @IBAction func clickSwitchScaleAction(_ sender: UIButton) {
         
         if scrollView.height == scrollView.width {
-            
-            let oldScrollViewH = scrollView.height
-            let oldScrollViewW = scrollView.width
-            
-            if imageView.width > imageView.height {                         /// 横图
-                let newScrollViewH = oldScrollViewH * SCALE
-                let space = (oldScrollViewH - newScrollViewH) * 0.5
-                scrollView.top = space
-                scrollView.height = height - space * 2
-            } else {                                                        /// 竖图
-                let newScrollViewW = oldScrollViewW * SCALE
-                let space = (oldScrollViewW - newScrollViewW) * 0.5
-                scrollView.left = space
-                scrollView.width = width - space * 2
-            }
 
+            let scale:Scale = imageView.width > imageView.height ? .fourToThreeHorizontal : .fourToThreeVertical
+            scrollView.frame = getScrollViewFrame(scale: scale)
         } else {
             scrollView.top = 0
             scrollView.left = 0
@@ -98,7 +85,7 @@ class EditView: UIView {
         
         updateEditedAssetItem()
         
-        dividerView.frame = scrollView.frame
+        dividerView.frame = scrollView.bounds
     }
     
     /// 留白
@@ -270,6 +257,37 @@ private extension EditView {
     }
 }
 
+extension EditView {
+    
+    func updateEditedAssetItem() {
+        
+        var mode: Mode = .fill
+        if imageView.left != 0 || imageView.top != 0 {
+            mode = .remain
+        }
+        
+        var scale: Scale = .oneToOne
+        if scrollView.width == scrollView.height {
+            scale = .oneToOne
+        } else if scrollView.width > scrollView.height {
+            scale = .fourToThreeHorizontal
+        } else if scrollView.width < scrollView.height {
+            scale = .fourToThreeVertical
+        }
+        
+        let editInfo = EditInfo(
+            zoomScale: scrollView.zoomScale,
+            contentOffset: scrollView.contentOffset,
+            scale: scale,
+            mode: mode
+        )
+        guard let item = self.assetItem else { return }
+        var tItem = item
+        tItem.editInfo = editInfo
+        editedAssetItem.onNext(tItem)
+    }
+}
+
 private extension EditView {
     
     func configureImage() {
@@ -312,6 +330,7 @@ private extension EditView {
                     self.preview(item: item)
                 }
                 
+                self.dividerView.frame = self.scrollView.bounds
                 self.imageView.image = image
                 self.updateEditedAssetItem()
             })
@@ -335,39 +354,8 @@ private extension EditView {
     }
     
     func configureDividerView() {
-        dividerView = DividerView(frame: imageView.bounds)
+        dividerView = DividerView(frame: scrollView.bounds)
         dividerView.alpha = 0
-//        addSubview(dividerView)
-    }
-}
-
-extension EditView {
-    
-    func updateEditedAssetItem() {
-        
-        var mode: Mode = .fill
-        if imageView.left != 0 || imageView.top != 0 {
-            mode = .remain
-        }
-        
-        var scale: Scale = .oneToOne
-        if scrollView.width == scrollView.height {
-            scale = .oneToOne
-        } else if scrollView.width > scrollView.height {
-            scale = .fourToThreeHorizontal
-        } else if scrollView.width < scrollView.height {
-            scale = .fourToThreeVertical
-        }
-        
-        let editInfo = EditInfo(
-            zoomScale: scrollView.zoomScale,
-            contentOffset: scrollView.contentOffset,
-            scale: scale,
-            mode: mode
-        )
-        guard let item = self.assetItem else { return }
-        var tItem = item
-        tItem.editInfo = editInfo
-        editedAssetItem.onNext(tItem)
+//        scrollView.addSubview(dividerView)
     }
 }

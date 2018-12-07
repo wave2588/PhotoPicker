@@ -63,7 +63,7 @@ private extension ThreeViewController {
         
         for i in 0..<item.1.count {
             let image = item.1[i]
-            let vv: TTView = .fromNib()
+            let vv: TTView = .fromNibsss()
             vv.frame = CGRect(x: CGFloat(i) * scrollView.width, y: 0, width: scrollView.width, height: scrollView.height)
             vv.imageView.image = image
             scrollView.addSubview(vv)

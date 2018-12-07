@@ -54,7 +54,20 @@ extension PhotoLibrary: PHPhotoLibraryChangeObserver {
     
     func photoLibraryDidChange(_ changeInstance: PHChange) {
         
-        debugPrint("photo change...")
+//        debugPrint(Thread.current)
+//        for i in 0..<smartAlbums.count {
+//            let collection = smartAlbums[i]
+//            debugPrint("6666--->: ", changeInstance.changeDetails(for: collection))
+//        }
+//        
+//        for i in 0..<userCollections.count {
+//            let collection = userCollections[i]
+//            debugPrint("7777--->: ", changeInstance.changeDetails(for: collection))
+//        }
+//
+//
+//        debugPrint("photo change...", changeInstance.changeDetails(for: smartAlbums))
+//        debugPrint("photo change...", changeInstance.changeDetails(for: userCollections))
     }
 }
 
@@ -62,11 +75,12 @@ private extension PhotoLibrary {
     
     func getAllAlbumItems() {
 
+        
         PHPhotoLibrary.shared().register(self)
         
         fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate",
                                                            ascending: false)]
-
+        
         /// 所有照片 相机胶卷 视频Videos  最近添加Recently Added 个人收藏Favorites 自拍Selfies 人像Portrait
         var titles = [
             "All Photos",
