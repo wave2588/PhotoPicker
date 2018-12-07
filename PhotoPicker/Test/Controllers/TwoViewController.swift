@@ -13,13 +13,38 @@ import PhotoPicker
 import AVFoundation
 import Photos
 
+
+
+extension UIViewController {
+    func addT(asChildViewController viewController: UIViewController, frame: CGRect? = nil) {
+        
+        addChild(viewController)
+        
+        view.addSubview(viewController.view)
+        
+        viewController.view.frame = frame ?? view.bounds
+        viewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
+        viewController.didMove(toParent: self)
+    }
+    var prefersNavigationBarHidden: Bool {
+        return false
+    }
+}
+
 class TwoViewController: UIViewController {
 
     let vc: PhotoPickerViewController = .fromStoryboard()
-
+    
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        navigationController?.setNavigationBarHidden(true, animated: false)
+        
         PhotoPickerConfigManager.shared.message = { type, str in
             if type == .success {
                 debugPrint("成功提示---->: \(str)")
@@ -28,14 +53,10 @@ class TwoViewController: UIViewController {
             }
         }
         
-        
         view.backgroundColor = .white
         
-        view.addSubview(vc.view)
-        
-        vc.view.frame = CGRect(x: 0, y: 0, width: view.width, height: view.height - 78)
-        vc.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        vc.didMove(toParent: self)
+        let frame = CGRect(x: 0, y: 0, width: view.width, height: view.height - 40 - bottomSafe)
+        addT(asChildViewController: vc, frame: frame)
         
         vc.outputs.clickClose.subscribe(onNext: { [unowned self] _ in
             self.dismiss(animated: true, completion: nil)

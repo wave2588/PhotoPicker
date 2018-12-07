@@ -90,10 +90,10 @@ private extension PhotoPickerViewController {
     
     func configureActionVC() {
         
-        let originalY: CGFloat = editContainerView.bottom + Runtime.statusBarHeight
+        let originalY: CGFloat = editContainerView.bottom + Runtime.safeTop
         let frame = CGRect(x: 0, y: originalY, width: view.width, height: view.height - originalY)
         add(asChildViewController: actionVC, frame: frame)
-
+        
         actionVC.outputs.clickVideo
             .bind(to: clickVideo)
             .disposed(by: rx.disposeBag)

@@ -14,10 +14,24 @@ enum Runtime {
         return UIApplication.shared.statusBarFrame.height
     }()
     
+    static let safeTop: CGFloat = {
+        var safeTop: CGFloat = 0
+        if #available(iOS 11.0, *) {
+            safeTop = UIApplication.shared.keyWindow?.safeAreaInsets.top ?? 0
+        }
+        return safeTop
+    }()
+    
     static let isiPhoneX: Bool = {
-        if statusBarHeight == 20 {
+        let window = UIApplication.shared.keyWindow
+        if #available(iOS 11.0, *) {
+            if window?.safeAreaInsets.bottom ?? 0 > 0.0.cgFloat {
+                return true
+            } else {
+                return false
+            }
+        } else {
             return false
         }
-        return true
     }()
 }
