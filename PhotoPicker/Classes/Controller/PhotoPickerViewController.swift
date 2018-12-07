@@ -51,6 +51,7 @@ public class PhotoPickerViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
 
+        view.clipsToBounds = true
         closeBtn.setImage(UIImage.loadLocalImage(name: "ic_close.jpg"), for: .normal)
         
         configureSelectedAssetItems()

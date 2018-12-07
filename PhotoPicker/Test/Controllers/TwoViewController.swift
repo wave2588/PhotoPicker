@@ -27,9 +27,6 @@ extension UIViewController {
         
         viewController.didMove(toParent: self)
     }
-    var prefersNavigationBarHidden: Bool {
-        return false
-    }
 }
 
 class TwoViewController: UIViewController {
@@ -53,7 +50,7 @@ class TwoViewController: UIViewController {
             }
         }
         
-        view.backgroundColor = .white
+        view.backgroundColor = .red
         
         let frame = CGRect(x: 0, y: 0, width: view.width, height: view.height - 40 - bottomSafe)
         addT(asChildViewController: vc, frame: frame)
