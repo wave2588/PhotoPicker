@@ -56,7 +56,6 @@ extension PhotoLibrary: PHPhotoLibraryChangeObserver {
     
     func photoLibraryDidChange(_ changeInstance: PHChange) {
         
-        
 //        guard let changes = changeInstance.changeDetails(for: allPhotosFetchResult) else { return }
 //
 //        debugPrint(changes.removedObjects)
