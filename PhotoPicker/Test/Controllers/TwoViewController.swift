@@ -50,6 +50,8 @@ class TwoViewController: UIViewController {
             }
         }
         
+        PhotoPickerConfigManager.shared.maxSelectCount = 2
+        
         view.backgroundColor = .red
         
         let frame = CGRect(x: 0, y: 0, width: view.width, height: view.height - 40 - bottomSafe)

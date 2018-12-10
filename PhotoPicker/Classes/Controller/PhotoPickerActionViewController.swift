@@ -129,8 +129,8 @@ private extension PhotoPickerActionViewController {
             return item.selectedAssetItems.count
         }.reduce(0, +)
         
-        if sum >= 9 {
-            PhotoPickerConfigManager.shared.message?(.fail, "最多可选择9张图")
+        if sum >= PhotoPickerConfigManager.shared.maxSelectCount {
+            PhotoPickerConfigManager.shared.message?(.fail, "最多可选择 \(PhotoPickerConfigManager.shared.maxSelectCount) 张图")
             return
         }
         
