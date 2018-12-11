@@ -139,36 +139,11 @@ private extension PhotoPickerViewController {
                 guard let _ = item.fullResolutionImage else {
                     return
                 }
-
-//                if let config = self.config.value {
-//                    self.editView.inputs.assetItems.onNext((item, config.scale, false))
-//                } else {
-//                    if self.selectedAssetItems.value.count >= 1 {
-//                        let firstScale = self.selectedAssetItems.value.first?.editInfo?.scale
-//                        if item.id == self.selectedAssetItems.value.first?.id {
-//                            self.editView.inputs.assetItems.onNext((item, firstScale, true))
-//                        } else {
-//                            self.editView.inputs.assetItems.onNext((item, firstScale, false))
-//                        }
-//                    } else {
-//                        self.editView.inputs.assetItems.onNext((item, nil, false))
-//                    }
-//                }
                 
-//                如果有 config {
-//                    则不用显示切换比例
-//                } else {
-//                    selectedAssetItems.count >= 1 {
-//
-//                    } else {
-//
-//                    }
-//                }
-
                 if self.selectedAssetItems.value.count >= 1 {
-                    self.editView.inputs.assetItems.onNext((item, self.selectedAssetItems.value[0]))
+                    self.editView.inputs.data.onNext((item, self.selectedAssetItems.value[0], self.config.value))
                 } else {
-                    self.editView.inputs.assetItems.onNext((item, nil))
+                    self.editView.inputs.data.onNext((item, nil, self.config.value))
                 }
             })
             .disposed(by: rx.disposeBag)

@@ -15,7 +15,7 @@ import SwifterSwift
 protocol EditViewInputs {
     
     /// 第一个是当前选中的 assetItem,  第二个是 已经选中的第一个, 可能为空, 就是没有...
-    var assetItems: PublishSubject<(AssetItem, AssetItem?)> { get }
+    var data: PublishSubject<(AssetItem, AssetItem?, PhotoPickerConfig?)> { get }
 }
 
 protocol EditViewOutputs {
@@ -26,7 +26,7 @@ protocol EditViewOutputs {
 class EditView: UIView {
 
     var inputs: EditViewInputs { return self }
-    let assetItems = PublishSubject<(AssetItem, AssetItem?)>()
+    let data = PublishSubject<(AssetItem, AssetItem?, PhotoPickerConfig?)>()
     
     var outputs: EditViewOutputs { return self }
     var editedAssetItem = PublishSubject<AssetItem>()
@@ -291,11 +291,11 @@ extension EditView {
 private extension EditView {
     
     func configureImage() {
-        assetItems
-            .subscribe(onNext: { [unowned self] items in
+        data
+            .subscribe(onNext: { [unowned self] datas in
                 
-                self.assetItem = items.0
-                self.firstItem = items.1
+                self.assetItem = datas.0
+                self.firstItem = datas.1
                 
                 guard let item = self.assetItem,
                     let image = item.fullResolutionImage else {
@@ -317,14 +317,18 @@ private extension EditView {
                 self.switchRemainWhiteBtn.isHidden = true
                 self.switchFillBtn.isHidden = true
                 
-                if let firstItem = self.firstItem {
-                    if item.id == firstItem.id {                                /// 选中了第一张图的情况下又选中了第一张图
-                        self.selectedFirst(item: item, firstScale: firstItem.editInfo?.scale)
-                    } else {                                                    /// 选中了第一张, 再点击其他图片预览
-                        self.selectedOther(item: item, firstScale: firstItem.editInfo?.scale)
+                if let config = datas.2 {
+                    self.selectedOther(item: item, firstScale: config.scale)
+                } else {
+                    if let firstItem = self.firstItem {
+                        if item.id == firstItem.id {                                /// 选中了第一张图的情况下又选中了第一张图
+                            self.selectedFirst(item: item, firstScale: firstItem.editInfo?.scale)
+                        } else {                                                    /// 选中了第一张, 再点击其他图片预览
+                            self.selectedOther(item: item, firstScale: firstItem.editInfo?.scale)
+                        }
+                    } else {                                                        /// 预览模式, 随便点着看
+                        self.preview(item: item)
                     }
-                } else {                                                        /// 预览模式, 随便点着看
-                    self.preview(item: item)
                 }
                 
                 self.dividerView.frame = self.scrollView.frame

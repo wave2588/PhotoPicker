@@ -34,5 +34,11 @@ class ViewController: UIViewController {
         present(nav, animated: true, completion: nil)
     }
     
+    @IBAction func clickTwo(_ sender: Any) {
+        
+        let twoVC = TwoViewController()
+        let nav = UINavigationController(rootViewController: twoVC)
+        present(nav, animated: true, completion: nil)
+    }
 }
 
