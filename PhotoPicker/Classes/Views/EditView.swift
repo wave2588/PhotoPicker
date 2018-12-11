@@ -157,19 +157,19 @@ private extension EditView {
 /// 选中了第一张后, 选择其他图片, 会存在有缓存和没有缓存的情况  只有在 1:1 并且还是选中了长图的情况下, 才显示留白 or 充满
 private extension EditView {
 
-    func selectedOther(item: AssetItem, firstItem: AssetItem) {
+    func selectedOther(item: AssetItem, firstScale: Scale?) {
         
-        guard let firstEditInfo = firstItem.editInfo,
+        guard let scale = firstScale,
             let image = item.fullResolutionImage else {
                 return
         }
         
-        scrollView.frame = getScrollViewFrame(scale: firstEditInfo.scale)
+        scrollView.frame = getScrollViewFrame(scale: scale)
 
         if let editInfo = item.editInfo {
-            updateImageViewHaveEditInfo(editInfo: editInfo, firstScale: firstEditInfo.scale, image: image)
+            updateImageViewHaveEditInfo(editInfo: editInfo, firstScale: scale, image: image)
         } else {
-            updateImageViewNotEditInfo(firstScale: firstEditInfo.scale, image: image)
+            updateImageViewNotEditInfo(firstScale: scale, image: image)
         }
     }
 }
@@ -177,8 +177,8 @@ private extension EditView {
 /// 选中了已经被选中的第一个 item == firstItem
 private extension EditView {
     
-    func selectedFirst(item: AssetItem, firstItem: AssetItem) {
-        if firstItem.editInfo == nil {                                          /// 直接选中了第一张图会走到这里
+    func selectedFirst(item: AssetItem, firstScale: Scale?) {
+        if firstScale == nil {                                          /// 直接选中了第一张图会走到这里
             self.preview(item: item)
         } else {                                                                /// 有缓存的情况
             self.selectedFirstHaveEditInfo(item: item)
@@ -319,9 +319,9 @@ private extension EditView {
                 
                 if let firstItem = self.firstItem {
                     if item.id == firstItem.id {                                /// 选中了第一张图的情况下又选中了第一张图
-                        self.selectedFirst(item: item, firstItem: firstItem)
+                        self.selectedFirst(item: item, firstScale: firstItem.editInfo?.scale)
                     } else {                                                    /// 选中了第一张, 再点击其他图片预览
-                        self.selectedOther(item: item, firstItem: firstItem)
+                        self.selectedOther(item: item, firstScale: firstItem.editInfo?.scale)
                     }
                 } else {                                                        /// 预览模式, 随便点着看
                     self.preview(item: item)
