@@ -32,16 +32,40 @@ class ScreenshotView: UIView {
 
 extension ScreenshotView {
     
-    func setEditInfoImage(firstEditInfo: EditInfo, item: AssetItem) -> AssetItem {
+    func setFirstEditInfoImage(scale: Scale,item: AssetItem) -> AssetItem {
+       
+        contentView.frame = getScrollViewFrame(scale: scale)
+        scrollView.frame = contentView.bounds
         
-        contentView.frame = getScrollViewFrame(scale: firstEditInfo.scale)
+        let image = item.fullResolutionImage ?? UIImage()
+        
+        var tItem = item
+        var editInfo = tItem.editInfo ?? EditInfo(zoomScale: 1, contentOffset: CGPoint(x: 0, y: 0), scale: scale, mode: .fill)
+        imageView.image = image
+        imageView.frame = updateFirstImageViewFrame(image: image, editInfo: editInfo)
+        scrollView.zoomScale = editInfo.zoomScale
+        scrollView.contentSize = imageView.size
+        scrollView.contentOffset = editInfo.contentOffset
+        var img = captureImageFromView()
+        if img?.size.width != UIScreen.main.bounds.width {
+            img = img?.scaled(toWidth: UIScreen.main.bounds.width)
+        }
+        
+        editInfo.image = img
+        tItem.editInfo = editInfo
+        return tItem
+    }
+    
+    func setEditInfoImage(firstScale: Scale, item: AssetItem) -> AssetItem {
+        
+        contentView.frame = getScrollViewFrame(scale: firstScale)
         scrollView.frame = contentView.bounds
 
         
         let image = item.fullResolutionImage ?? UIImage()
         
         var tItem = item
-        var editInfo = tItem.editInfo ?? EditInfo(zoomScale: 1, contentOffset: CGPoint(x: 0, y: 0), scale: firstEditInfo.scale, mode: .fill)
+        var editInfo = tItem.editInfo ?? EditInfo(zoomScale: 1, contentOffset: CGPoint(x: 0, y: 0), scale: firstScale, mode: .fill)
         
         imageView.image = image
         imageView.frame = updateImageViewFrame(image: image, editInfo: editInfo)
@@ -62,6 +86,13 @@ extension ScreenshotView {
 }
 
 private extension ScreenshotView {
+    
+    func updateFirstImageViewFrame(image: UIImage, editInfo: EditInfo) -> CGRect {
+        return CGRect(
+            origin: CGPoint(x: 0, y: 0),
+            size: getImageSize(containerW: scrollView.width, containerH: scrollView.height, image: image)
+        )
+    }
     
     func updateImageViewFrame(image: UIImage, editInfo: EditInfo) -> CGRect {
         

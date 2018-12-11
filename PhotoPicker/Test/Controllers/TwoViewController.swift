@@ -50,13 +50,16 @@ class TwoViewController: UIViewController {
             }
         }
         
-        PhotoPickerConfigManager.shared.maxSelectCount = 2
-        
         view.backgroundColor = .red
         
+        let config = PhotoPickerConfig()
+        config.maxSelectCount = 2
+        config.scale = .fourToThreeHorizontal
+//        vc.inputs.config.accept(config)
+
         let frame = CGRect(x: 0, y: 0, width: view.width, height: view.height - 40 - bottomSafe)
         addT(asChildViewController: vc, frame: frame)
-        
+
         vc.outputs.clickClose.subscribe(onNext: { [unowned self] _ in
             self.dismiss(animated: true, completion: nil)
         }).disposed(by: rx.disposeBag)

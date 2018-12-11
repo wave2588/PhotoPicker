@@ -12,7 +12,11 @@ import RxCocoa
 import Photos
 
 protocol PhotoPickerActionViewControllerInputs {
+    
     var editedAssetItem: PublishSubject<AssetItem> { get }
+    
+    /// 配置信息
+    var config: BehaviorRelay<PhotoPickerConfig?> { get }
 }
 
 protocol PhotoPickerActionViewControllerOutputs {
@@ -28,10 +32,12 @@ class PhotoPickerActionViewController: UIViewController {
 
     var inputs: PhotoPickerActionViewControllerInputs { return self }
     let editedAssetItem = PublishSubject<AssetItem>()
-    
+    let config = BehaviorRelay<PhotoPickerConfig?>(value: nil)
+
     var outputs: PhotoPickerActionViewControllerOutputs { return self }
     var clickVideo = PublishSubject<PHAsset>()
     
+
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var topViewHeightCos: NSLayoutConstraint!
     @IBOutlet weak var topLineView: UIView!
@@ -129,8 +135,9 @@ private extension PhotoPickerActionViewController {
             return item.selectedAssetItems.count
         }.reduce(0, +)
         
-        if sum >= PhotoPickerConfigManager.shared.maxSelectCount {
-            PhotoPickerConfigManager.shared.message?(.fail, "最多可选择 \(PhotoPickerConfigManager.shared.maxSelectCount) 张图")
+        let maxSlt = config.value?.maxSelectCount ?? 9
+        if sum >= maxSlt {
+            PhotoPickerConfigManager.shared.message?(.fail, "最多可选择 \(maxSlt) 张图")
             return
         }
         

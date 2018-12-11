@@ -20,11 +20,20 @@ public protocol PhotoPickerViewControllerOutputs {
     var clickClose: PublishSubject<[UIImage]> { get }
 }
 
+public protocol PhotoPickerViewControllerInputs {
+    
+    /// 配置信息
+    var config: BehaviorRelay<PhotoPickerConfig?> { get }
+}
+
 public class PhotoPickerViewController: UIViewController {
 
     deinit {
         debugPrint("deinit \(self)")
     }
+    
+    public var inputs: PhotoPickerViewControllerInputs { return self }
+    public let config = BehaviorRelay<PhotoPickerConfig?>(value: nil)
     
     public var outputs: PhotoPickerViewControllerOutputs { return self }
     public var clickVideo = PublishSubject<PHAsset>()
@@ -66,13 +75,26 @@ public class PhotoPickerViewController: UIViewController {
     }
     
     @IBAction func nextStepAction(_ sender: UIButton) {
-        let items = selectedAssetItems.value
-        let images = ScreenshotTool.getImages(assetItems: items)
-        clickNextStep.onNext(images)
+        
+        if selectedAssetItems.value.count == 0 {
+            PhotoPickerConfigManager.shared.message?(.fail, "请选择图片")
+            return
+        }
+        
+        if let config = config.value {
+            let images = ScreenshotTool.getConfigImages(scale: config.scale, assetItems: selectedAssetItems.value)
+            clickNextStep.onNext(images)
+        } else {
+            if let scale = selectedAssetItems.value.first?.editInfo?.scale {
+                let images = ScreenshotTool.getImages(scale: scale, assetItems: selectedAssetItems.value)
+                clickNextStep.onNext(images)
+            }
+        }
     }
 }
 
 extension PhotoPickerViewController: PhotoPickerViewControllerOutputs {}
+extension PhotoPickerViewController: PhotoPickerViewControllerInputs {}
 
 private extension PhotoPickerViewController {
     
@@ -94,6 +116,8 @@ private extension PhotoPickerViewController {
         let originalY: CGFloat = editContainerView.bottom + Runtime.safeTop + Runtime.statusBarHeight
         let frame = CGRect(x: 0, y: originalY, width: view.width, height: view.height - originalY)
         add(asChildViewController: actionVC, frame: frame)
+        
+        actionVC.inputs.config.accept(config.value)
         
         actionVC.outputs.clickVideo
             .bind(to: clickVideo)
