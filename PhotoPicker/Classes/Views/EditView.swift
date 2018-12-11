@@ -64,6 +64,8 @@ class EditView: UIView {
     
     @IBAction func clickSwitchScaleAction(_ sender: UIButton) {
         
+        guard let _ = imageView.image else { return }
+        
         if scrollView.height == scrollView.width {
 
             let scale:Scale = imageView.width > imageView.height ? .fourToThreeHorizontal : .fourToThreeVertical

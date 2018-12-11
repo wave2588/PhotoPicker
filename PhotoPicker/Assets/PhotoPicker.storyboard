@@ -168,19 +168,19 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="LcV-v9-bvH" firstAttribute="leading" secondItem="UeJ-tR-Ylz" secondAttribute="leading" id="0Yf-gz-EKO"/>
-                            <constraint firstItem="NA2-c3-Hvq" firstAttribute="top" secondItem="DEi-qU-t6L" secondAttribute="bottom" id="1Sj-TJ-wY4"/>
+                            <constraint firstItem="NA2-c3-Hvq" firstAttribute="trailing" secondItem="yrr-uH-cF5" secondAttribute="trailing" id="0il-DS-NhE"/>
                             <constraint firstItem="LcV-v9-bvH" firstAttribute="top" secondItem="UeJ-tR-Ylz" secondAttribute="top" id="1aZ-HX-o5m"/>
                             <constraint firstItem="DEi-qU-t6L" firstAttribute="leading" secondItem="yrr-uH-cF5" secondAttribute="leading" id="IWW-y5-iI7"/>
                             <constraint firstAttribute="trailing" secondItem="LcV-v9-bvH" secondAttribute="trailing" id="LCK-Hh-oEx"/>
+                            <constraint firstItem="NA2-c3-Hvq" firstAttribute="leading" secondItem="yrr-uH-cF5" secondAttribute="leading" id="Lfi-go-4js"/>
                             <constraint firstItem="yrr-uH-cF5" firstAttribute="trailing" secondItem="DEi-qU-t6L" secondAttribute="trailing" id="MLM-jM-K6S"/>
                             <constraint firstItem="vwE-Of-TN2" firstAttribute="leading" secondItem="yrr-uH-cF5" secondAttribute="leading" id="Q9r-c7-SrH"/>
                             <constraint firstItem="vwE-Of-TN2" firstAttribute="top" secondItem="DEi-qU-t6L" secondAttribute="bottom" id="V9M-JD-0jy"/>
-                            <constraint firstItem="NA2-c3-Hvq" firstAttribute="trailing" secondItem="yrr-uH-cF5" secondAttribute="trailing" id="Y0n-20-Z6T"/>
-                            <constraint firstItem="NA2-c3-Hvq" firstAttribute="bottom" secondItem="yrr-uH-cF5" secondAttribute="bottom" id="gUc-bh-oDa"/>
+                            <constraint firstAttribute="bottom" secondItem="NA2-c3-Hvq" secondAttribute="bottom" id="Vko-k6-Yff"/>
+                            <constraint firstItem="NA2-c3-Hvq" firstAttribute="top" secondItem="DEi-qU-t6L" secondAttribute="bottom" id="iLQ-4J-XyG"/>
                             <constraint firstAttribute="bottom" secondItem="vwE-Of-TN2" secondAttribute="bottom" id="qin-Li-YRf"/>
                             <constraint firstItem="vwE-Of-TN2" firstAttribute="trailing" secondItem="yrr-uH-cF5" secondAttribute="trailing" id="rHh-s4-P6h"/>
                             <constraint firstItem="DEi-qU-t6L" firstAttribute="top" secondItem="LcV-v9-bvH" secondAttribute="bottom" id="sWN-h3-mFe"/>
-                            <constraint firstItem="NA2-c3-Hvq" firstAttribute="leading" secondItem="yrr-uH-cF5" secondAttribute="leading" id="ugs-jg-qlZ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="yrr-uH-cF5"/>
                     </view>
