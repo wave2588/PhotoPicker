@@ -35,7 +35,8 @@ class TwoViewController: UIViewController {
         debugPrint("deinit \(self)")
     }
     
-    let vc: PhotoPickerViewController = .fromStoryboard()
+//    let vc: PhotoPickerViewController = .fromStoryboard()
+    let vc = PhotoPickerViewController.fromStoryboard
     
     override var prefersStatusBarHidden: Bool {
         return true
@@ -59,7 +60,7 @@ class TwoViewController: UIViewController {
         let config = PhotoPickerConfig()
         config.maxSelectCount = 2
         config.scale = .oneToOne
-        vc.inputs.config.accept(config)
+//        vc.inputs.config.accept(config)
 
         let frame = CGRect(x: 0, y: 0, width: view.width, height: view.height - 40 - bottomSafe)
         addT(asChildViewController: vc, frame: frame)

@@ -40,6 +40,10 @@ public class PhotoPickerViewController: UIViewController {
     public var clickNextStep = PublishSubject<(Scale, [UIImage])>()
     public var clickClose = PublishSubject<[UIImage]>()
 
+    public static var fromStoryboard: PhotoPickerViewController {
+        return PhotoPickerViewController.fromStoryboard()
+    }
+    
     @IBOutlet public weak var closeBtn: UIButton!
     @IBOutlet public weak var nextStepBtn: UIButton!
     
@@ -56,6 +60,8 @@ public class PhotoPickerViewController: UIViewController {
     private let selectedAssetItems = BehaviorRelay<[AssetItem]>(value: [])
     /// 预览情况下, 点击的
     private let currentSelectedAssetItem = PublishSubject<AssetItem>()
+    
+    
     
     public override func viewDidLoad() {
         super.viewDidLoad()
