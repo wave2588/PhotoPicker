@@ -12,7 +12,7 @@ extension PhotoPickerViewController {
     
     func configureActionVCGesture() {
         
-        let originalY: CGFloat = editContainerView.bottom + Runtime.safeTop + Runtime.statusBarHeight
+        let originalY: CGFloat = editContainerView.bottom + Runtime.safeTop
         let minY: CGFloat = Runtime.statusBarHeight + 100
         let panGesture = UIPanGestureRecognizer()
         panGesture.rx.event
@@ -90,7 +90,7 @@ extension PhotoPickerViewController {
     
     func configureShadowView() {
         
-        let originalY: CGFloat = editContainerView.bottom + Runtime.safeTop + Runtime.statusBarHeight
+        let originalY: CGFloat = editContainerView.bottom + Runtime.safeTop
         let tapGesture = UITapGestureRecognizer()
         tapGesture.rx.event
             .bind { [unowned self] _ in

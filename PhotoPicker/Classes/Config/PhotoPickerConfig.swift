@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class PhotoPickerConfig {
+public class PhotoPickerConfig: NSObject {
     
     /// 设置最多选择数
     public var maxSelectCount = 9
