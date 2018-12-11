@@ -167,9 +167,9 @@ private extension EditView {
         scrollView.frame = getScrollViewFrame(scale: firstEditInfo.scale)
 
         if let editInfo = item.editInfo {
-            updateImageViewHaveEditInfo(editInfo: editInfo, firstEditInfo: firstEditInfo, image: image)
+            updateImageViewHaveEditInfo(editInfo: editInfo, firstScale: firstEditInfo.scale, image: image)
         } else {
-            updateImageViewNotEditInfo(firstEditInfo: firstEditInfo, image: image)
+            updateImageViewNotEditInfo(firstScale: firstEditInfo.scale, image: image)
         }
     }
 }
@@ -208,9 +208,9 @@ private extension EditView {
 private extension EditView {
     
     /// 在有选中第一张的情况下, 又选中了其他, 并且有缓存
-    func updateImageViewHaveEditInfo(editInfo: EditInfo, firstEditInfo: EditInfo, image: UIImage) {
+    func updateImageViewHaveEditInfo(editInfo: EditInfo, firstScale: Scale, image: UIImage) {
         
-        if firstEditInfo.scale == .oneToOne &&  image.size.width != image.size.height {
+        if firstScale == .oneToOne &&  image.size.width != image.size.height {
             if editInfo.mode == .remain {
                 switchFillBtn.isHidden = false
                 imageView.frame = getRemainRect(image: image)
@@ -228,12 +228,12 @@ private extension EditView {
     }
     
     /// 在有选中第一张的情况下, 又选中了其他, 并且没有缓存
-    func updateImageViewNotEditInfo(firstEditInfo: EditInfo, image: UIImage) {
+    func updateImageViewNotEditInfo(firstScale: Scale, image: UIImage) {
 
         let imageW = image.size.width
         let imageH = image.size.height
         
-        if firstEditInfo.scale == .oneToOne && imageW != imageH {
+        if firstScale == .oneToOne && imageW != imageH {
             switchRemainWhiteBtn.isHidden = false
         }
         
