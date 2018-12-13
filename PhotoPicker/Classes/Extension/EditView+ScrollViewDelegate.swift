@@ -57,11 +57,23 @@ extension EditView {
         var y = -scrollView.contentOffset.y
         var w = imageView.width
         var h = imageView.height
-
-        x = x < 0 ? 0 : x
-        y = y < 0 ? 0 : y
-        w = w > scrollView.width ? scrollView.width : w
-        h = h > scrollView.height ? scrollView.height : h
+        debugPrint(scrollView, imageView)
+        if imageView.x != 0 || imageView.y != 0 {
+            w = scrollView.width
+            h = scrollView.height
+            
+            let tx = imageView.x - scrollView.contentOffset.x
+            x = tx < 0 ? 0 : tx
+            let ty = imageView.y - scrollView.contentOffset.y
+            y = ty < 0 ? 0 : ty
+            w = w > imageView.width ? imageView.width : w
+            h = h > imageView.height ? imageView.height : h
+        } else {
+            x = x < 0 ? 0 : x
+            y = y < 0 ? 0 : y
+            w = w > scrollView.width ? scrollView.width : w
+            h = h > scrollView.height ? scrollView.height : h
+        }
         
         let rect = CGRect(x: scrollView.left + x, y: scrollView.top + y, width: w, height: h)
         dividerView.outputs.setFrame(frame: rect)
