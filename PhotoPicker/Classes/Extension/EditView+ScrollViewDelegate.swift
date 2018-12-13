@@ -57,7 +57,6 @@ extension EditView {
         var y = -scrollView.contentOffset.y
         var w = imageView.width
         var h = imageView.height
-        debugPrint(scrollView, imageView)
         if imageView.x != 0 || imageView.y != 0 {
             w = scrollView.width
             h = scrollView.height
