@@ -34,11 +34,11 @@ class PhotoLibrary: NSObject {
     let albumList = PublishSubject<[AlbumItem]>()
     
     // 列出所有系统的智能相册
-    let smartAlbums = PHAssetCollection.fetchAssetCollections(with: .smartAlbum,
+    var smartAlbums = PHAssetCollection.fetchAssetCollections(with: .smartAlbum,
                                                               subtype: .any,
                                                               options: PHFetchOptions())
     /// 用户自己创建的
-    let userCollections = PHCollectionList.fetchTopLevelUserCollections(with: nil)
+    var userCollections = PHCollectionList.fetchTopLevelUserCollections(with: nil)
     
     /// 排序规则
     let fetchOptions = PHFetchOptions()
@@ -86,7 +86,12 @@ private extension PhotoLibrary {
             "Selfies",
             "Portrait",
         ]
-        
+
+        smartAlbums = PHAssetCollection.fetchAssetCollections(with: .smartAlbum,
+                                                                  subtype: .any,
+                                                                  options: PHFetchOptions())
+        userCollections = PHCollectionList.fetchTopLevelUserCollections(with: nil)
+
         DispatchQueue.global().async {
             
             var items = [String: (String, [AssetItem])]()
