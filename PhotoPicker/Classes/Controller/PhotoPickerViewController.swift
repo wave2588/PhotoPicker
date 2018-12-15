@@ -135,7 +135,11 @@ private extension PhotoPickerViewController {
         selectedAssetItems
             .subscribe(onNext: { items in
                 if items.count == 0 {
-                    return
+                    self.nextStepBtn.isEnabled = false
+                    self.nextStepBtn.setTitleColor(UIColor(red: 0, green: 0, blue: 0)?.withAlphaComponent(0.5), for: .normal)
+                } else {
+                    self.nextStepBtn.isEnabled = true
+                    self.nextStepBtn.setTitleColor(UIColor(red: 255, green: 0, blue: 0), for: .normal)
                 }
             })
             .disposed(by: rx.disposeBag)
