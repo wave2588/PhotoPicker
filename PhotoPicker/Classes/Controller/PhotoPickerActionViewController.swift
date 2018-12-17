@@ -54,8 +54,8 @@ class PhotoPickerActionViewController: UIViewController {
     /// 当前选择的相册下标
     private var currentSelectedAlbumIndex = 0
     
-    private var albumListVC: PhotoPickerAlbumListViewController!
-    private var assetListVC: PhotoPickerAssetListViewController!
+    var albumListVC: PhotoPickerAlbumListViewController!
+    var assetListVC: PhotoPickerAssetListViewController!
 
     /// 这俩是个过渡值, 用来倒传的.
     let selectedAssetItems = BehaviorRelay<[AssetItem]>(value: [])

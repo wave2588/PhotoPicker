@@ -149,7 +149,7 @@ private extension PhotoPickerViewController {
                 guard let _ = item.fullResolutionImage else {
                     return
                 }
-                
+                self.dismissActionVC()
                 if self.selectedAssetItems.value.count >= 1 {
                     self.editView.inputs.data.onNext((item, self.selectedAssetItems.value[0], self.config.value))
                 } else {

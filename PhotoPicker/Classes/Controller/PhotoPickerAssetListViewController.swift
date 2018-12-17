@@ -13,6 +13,10 @@ import RxDataSources
 import Photos
 import SwifterSwift
 
+protocol PhotoPickerAssetListViewControllerInputs {
+    func rollToTop()
+}
+
 protocol PhotoPickerAssetListViewControllerOutputs {
     
     var clickCellIndexLbl: PublishSubject<Int> { get }
@@ -27,6 +31,8 @@ class PhotoPickerAssetListViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     
+    var inputs: PhotoPickerAssetListViewControllerInputs { return self }
+    
     var outpus: PhotoPickerAssetListViewControllerOutputs { return self}
     let clickCellIndexLbl = PublishSubject<Int>()
     let clickCell = PublishSubject<Int>()
@@ -40,6 +46,8 @@ class PhotoPickerAssetListViewController: UIViewController {
     private var itemSize = CGSize(width: 0, height: 0)
     
     private var cache = [String: UIImage]()
+    
+    private var indexPath = IndexPath(row: 0, section: 0)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -130,6 +138,7 @@ private extension PhotoPickerAssetListViewController {
         
         collectionView.rx.itemSelected
             .subscribe(onNext: { [unowned self] indexPath in
+                self.indexPath = indexPath
                 self.clickCell.onNext(indexPath.row)
             })
             .disposed(by: rx.disposeBag)
@@ -138,6 +147,12 @@ private extension PhotoPickerAssetListViewController {
             .map { [SectionModel(model: "", items: $0)] }
             .bind(to: collectionView.rx.items(dataSource: dataSource))
             .disposed(by: rx.disposeBag)
+    }
+}
+
+extension PhotoPickerAssetListViewController: PhotoPickerAssetListViewControllerInputs {
+    func rollToTop() {
+        self.collectionView.scrollToItem(at: indexPath, at: .top, animated: true)
     }
 }
 

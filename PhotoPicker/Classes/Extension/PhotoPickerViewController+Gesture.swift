@@ -52,37 +52,14 @@ extension PhotoPickerViewController {
         let tapGesture = UITapGestureRecognizer()
         tapGesture.rx.event
             .bind { [unowned self] _ in
-                UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 4, options: .curveEaseOut, animations: {
-                    self.actionVC.view.y = minY
-                    self.actionVC.view.height = self.view.height - minY
-                    self.actionVC.albumListContainerView.alpha = self.actionVC.albumListContainerView.alpha == 1 ? 0 : 1
-                    self.actionVC.albumTitleView.imgView.image = self.actionVC.albumListContainerView.alpha == 1 ? UIImage.loadLocalImage(name: "ic_arrow_down.jpg") : UIImage.loadLocalImage(name: "ic_arrow_up.jpg")
-                    self.shadowView.alpha = 0.5
-                    if !Runtime.isiPhoneX {
-                        self.actionVC.topViewHeightCos.constant = 64
-                        self.actionVC.view.layoutIfNeeded()
-                    }
-                }, completion: { _ in
-                })
+                self.showActionVC()
             }
             .disposed(by: rx.disposeBag)
         actionVC.albumTitleView.addGestureRecognizer(tapGesture)
         let tapGesture2 = UITapGestureRecognizer()
         tapGesture2.rx.event
             .bind { [unowned self] _ in
-                self.actionVC.albumTitleView.imgView.image = UIImage.loadLocalImage(name: "ic_arrow_down.jpg")
-                UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 4, options: .curveEaseOut, animations: {
-                    self.actionVC.view.y = minY
-                    self.actionVC.view.height = self.view.height - minY
-                    self.actionVC.albumListContainerView.alpha = self.actionVC.albumListContainerView.alpha == 1 ? 0 : 1
-                    self.actionVC.albumTitleView.imgView.image = self.actionVC.albumListContainerView.alpha == 1 ? UIImage.loadLocalImage(name: "ic_arrow_down.jpg") : UIImage.loadLocalImage(name: "ic_arrow_up.jpg")
-                    self.shadowView.alpha = 0.5
-                    if !Runtime.isiPhoneX {
-                        self.actionVC.topViewHeightCos.constant = 64
-                        self.actionVC.view.layoutIfNeeded()
-                    }
-                }, completion: { _ in
-                })
+                self.showActionVC()
             }
             .disposed(by: rx.disposeBag)
         actionVC.topLineView.addGestureRecognizer(tapGesture2)
@@ -90,24 +67,49 @@ extension PhotoPickerViewController {
     
     func configureShadowView() {
         
-        let originalY: CGFloat = editContainerView.bottom + Runtime.safeTop
         let tapGesture = UITapGestureRecognizer()
         tapGesture.rx.event
             .bind { [unowned self] _ in
-                UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 4, options: .curveEaseOut, animations: {
-                    if !Runtime.isiPhoneX {
-                        self.actionVC.topViewHeightCos.constant = 25
-                        self.actionVC.view.layoutIfNeeded()
-                    }
-
-                    self.actionVC.view.y = originalY
-                    self.actionVC.view.height = self.view.height - originalY
-                    self.shadowView.alpha = 0
-                }, completion: { _ in
-                })
+                self.dismissActionVC()
             }
             .disposed(by: rx.disposeBag)
         shadowView.addGestureRecognizer(tapGesture)
+    }
+    
+    func showActionVC() {
+        let minY: CGFloat = Runtime.statusBarHeight + 100
+        self.actionVC.albumTitleView.imgView.image = UIImage.loadLocalImage(name: "ic_arrow_down.jpg")
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 4, options: .curveEaseOut, animations: {
+            self.actionVC.view.y = minY
+            self.actionVC.view.height = self.view.height - minY
+            self.actionVC.albumListContainerView.alpha = self.actionVC.albumListContainerView.alpha == 1 ? 0 : 1
+            self.actionVC.albumTitleView.imgView.image = self.actionVC.albumListContainerView.alpha == 1 ? UIImage.loadLocalImage(name: "ic_arrow_down.jpg") : UIImage.loadLocalImage(name: "ic_arrow_up.jpg")
+            self.shadowView.alpha = 0.5
+            if !Runtime.isiPhoneX {
+                self.actionVC.topViewHeightCos.constant = 64
+                self.actionVC.view.layoutIfNeeded()
+            }
+        }, completion: { _ in
+        })
+    }
+    
+    func dismissActionVC() {
+        let originalY: CGFloat = editContainerView.bottom
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 4, options: .curveEaseOut, animations: {
+            if !Runtime.isiPhoneX {
+                self.actionVC.topViewHeightCos.constant = 25
+                self.actionVC.view.layoutIfNeeded()
+            }
+            
+            self.actionVC.view.y = originalY
+            self.actionVC.view.height = self.view.height - originalY
+            
+            if self.shadowView.alpha != 0 {
+                self.actionVC.assetListVC.inputs.rollToTop()
+            }
+            self.shadowView.alpha = 0
+        }, completion: { _ in
+        })
     }
     
 }
