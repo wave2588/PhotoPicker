@@ -20,16 +20,16 @@
                     <rect key="frame" x="0.0" y="0.0" width="419" height="298"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </scrollView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ckZ-t2-6EX">
-                    <rect key="frame" x="6" y="258" width="113" height="30"/>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ckZ-t2-6EX">
+                    <rect key="frame" x="6" y="258" width="30" height="30"/>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="113" id="1EO-ZI-Bn4"/>
-                        <constraint firstAttribute="height" constant="30" id="3RE-pa-37n"/>
+                        <constraint firstAttribute="height" constant="30" id="4hn-FP-z46"/>
+                        <constraint firstAttribute="width" constant="30" id="k1k-CI-swJ"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
-                    <state key="normal" title="切换画布比例">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <state key="normal">
+                        <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -43,6 +43,10 @@
                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bh5-FB-CeR">
                     <rect key="frame" x="6" y="258" width="113" height="30"/>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="2IN-tY-bXz"/>
+                        <constraint firstAttribute="width" constant="113" id="ZVt-1n-sjm"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                     <state key="normal" title="切至画布留白">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -59,6 +63,10 @@
                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QHc-kb-22W">
                     <rect key="frame" x="6" y="258" width="113" height="30"/>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="113" id="lY2-6o-GnJ"/>
+                        <constraint firstAttribute="height" constant="30" id="vOh-bw-LOf"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                     <state key="normal" title="切至画布充满">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -75,16 +83,12 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="ckZ-t2-6EX" firstAttribute="top" secondItem="QHc-kb-22W" secondAttribute="top" id="8uv-Jv-wwe"/>
-                <constraint firstItem="ckZ-t2-6EX" firstAttribute="width" secondItem="bh5-FB-CeR" secondAttribute="width" id="B7d-LH-9Pe"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="ckZ-t2-6EX" secondAttribute="bottom" constant="10" id="VBM-da-Ppm"/>
-                <constraint firstItem="ckZ-t2-6EX" firstAttribute="height" secondItem="bh5-FB-CeR" secondAttribute="height" id="VWA-co-E4O"/>
-                <constraint firstItem="ckZ-t2-6EX" firstAttribute="width" secondItem="QHc-kb-22W" secondAttribute="width" id="WEV-qu-n2S"/>
-                <constraint firstItem="ckZ-t2-6EX" firstAttribute="leading" secondItem="bh5-FB-CeR" secondAttribute="leading" id="WMZ-yT-6Ms"/>
-                <constraint firstItem="ckZ-t2-6EX" firstAttribute="height" secondItem="QHc-kb-22W" secondAttribute="height" id="bwB-g3-u4X"/>
-                <constraint firstItem="ckZ-t2-6EX" firstAttribute="top" secondItem="bh5-FB-CeR" secondAttribute="top" id="fRO-tu-0fO"/>
-                <constraint firstItem="ckZ-t2-6EX" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="6" id="wNO-s7-Wcr"/>
-                <constraint firstItem="ckZ-t2-6EX" firstAttribute="leading" secondItem="QHc-kb-22W" secondAttribute="leading" id="xSJ-WU-Qjf"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="QHc-kb-22W" secondAttribute="bottom" constant="10" id="NpH-nD-sqm"/>
+                <constraint firstItem="bh5-FB-CeR" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="6" id="WGJ-Kx-tMp"/>
+                <constraint firstItem="QHc-kb-22W" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="6" id="Ykj-nH-6ME"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="ckZ-t2-6EX" secondAttribute="bottom" constant="10" id="kwR-vp-Nl3"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="bh5-FB-CeR" secondAttribute="bottom" constant="10" id="l3E-PF-CnV"/>
+                <constraint firstItem="ckZ-t2-6EX" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="6" id="tSh-m7-2Bv"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>

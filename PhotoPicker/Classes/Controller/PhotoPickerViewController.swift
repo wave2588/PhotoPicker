@@ -133,7 +133,7 @@ private extension PhotoPickerViewController {
     func configureSelectedAssetItems() {
         
         selectedAssetItems
-            .subscribe(onNext: { items in
+            .subscribe(onNext: { [unowned self] items in
                 if items.count == 0 {
                     self.nextStepBtn.isEnabled = false
                     self.nextStepBtn.setTitleColor(UIColor(red: 0, green: 0, blue: 0)?.withAlphaComponent(0.5), for: .normal)

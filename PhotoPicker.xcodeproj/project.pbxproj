@@ -62,6 +62,12 @@
 		40DF138821ACE86F009EDCF9 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DF138721ACE86F009EDCF9 /* UIImage+Extension.swift */; };
 		40DF138E21ACEAB8009EDCF9 /* AlbumTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DF138D21ACEAB8009EDCF9 /* AlbumTitleView.swift */; };
 		40E0A2AB21B8BEEA00883F62 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E0A2AA21B8BEEA00883F62 /* UIView+Extension.swift */; };
+		40EB236F21C7777A0004463F /* ic_restore_post@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 40EB236921C7777A0004463F /* ic_restore_post@2x.jpg */; };
+		40EB237021C7777A0004463F /* ic_restore_post@3x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 40EB236A21C7777A0004463F /* ic_restore_post@3x.jpg */; };
+		40EB237121C7777A0004463F /* ic_proportion_post@3x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 40EB236B21C7777A0004463F /* ic_proportion_post@3x.jpg */; };
+		40EB237221C7777A0004463F /* ic_restore_post.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 40EB236C21C7777A0004463F /* ic_restore_post.jpg */; };
+		40EB237321C7777A0004463F /* ic_proportion_post@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 40EB236D21C7777A0004463F /* ic_proportion_post@2x.jpg */; };
+		40EB237421C7777A0004463F /* ic_proportion_post.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 40EB236E21C7777A0004463F /* ic_proportion_post.jpg */; };
 		40F39EA221B5262D00891B82 /* Export.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40F39EA121B5262D00891B82 /* Export.swift */; };
 		D87652820AFDD8075644468F /* Pods_PhotoPicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96D862E723A707794ACB01F9 /* Pods_PhotoPicker.framework */; };
 /* End PBXBuildFile section */
@@ -124,6 +130,12 @@
 		40DF138721ACE86F009EDCF9 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		40DF138D21ACEAB8009EDCF9 /* AlbumTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumTitleView.swift; sourceTree = "<group>"; };
 		40E0A2AA21B8BEEA00883F62 /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		40EB236921C7777A0004463F /* ic_restore_post@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "ic_restore_post@2x.jpg"; sourceTree = "<group>"; };
+		40EB236A21C7777A0004463F /* ic_restore_post@3x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "ic_restore_post@3x.jpg"; sourceTree = "<group>"; };
+		40EB236B21C7777A0004463F /* ic_proportion_post@3x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "ic_proportion_post@3x.jpg"; sourceTree = "<group>"; };
+		40EB236C21C7777A0004463F /* ic_restore_post.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ic_restore_post.jpg; sourceTree = "<group>"; };
+		40EB236D21C7777A0004463F /* ic_proportion_post@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "ic_proportion_post@2x.jpg"; sourceTree = "<group>"; };
+		40EB236E21C7777A0004463F /* ic_proportion_post.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ic_proportion_post.jpg; sourceTree = "<group>"; };
 		40F39EA121B5262D00891B82 /* Export.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Export.swift; sourceTree = "<group>"; };
 		4DAE2DB6C7858BF91D89D7D1 /* Pods-PhotoPicker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoPicker.release.xcconfig"; path = "Target Support Files/Pods-PhotoPicker/Pods-PhotoPicker.release.xcconfig"; sourceTree = "<group>"; };
 		96D862E723A707794ACB01F9 /* Pods_PhotoPicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PhotoPicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -261,6 +273,12 @@
 		4065BE0221AB916A00C9DD2F /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				40EB236E21C7777A0004463F /* ic_proportion_post.jpg */,
+				40EB236D21C7777A0004463F /* ic_proportion_post@2x.jpg */,
+				40EB236B21C7777A0004463F /* ic_proportion_post@3x.jpg */,
+				40EB236C21C7777A0004463F /* ic_restore_post.jpg */,
+				40EB236921C7777A0004463F /* ic_restore_post@2x.jpg */,
+				40EB236A21C7777A0004463F /* ic_restore_post@3x.jpg */,
 				401D637021B62766008D6897 /* ic_arrow_down.jpg */,
 				401D636C21B62766008D6897 /* ic_arrow_down@2x.jpg */,
 				401D636F21B62766008D6897 /* ic_arrow_down@3x.jpg */,
@@ -408,18 +426,24 @@
 				401D637421B62766008D6897 /* ic_arrow_up.jpg in Resources */,
 				4065BE2321AB916A00C9DD2F /* EditView.xib in Resources */,
 				401D637521B62766008D6897 /* ic_arrow_down@2x.jpg in Resources */,
+				40EB237321C7777A0004463F /* ic_proportion_post@2x.jpg in Resources */,
 				401D637921B62766008D6897 /* ic_arrow_down.jpg in Resources */,
 				401D637321B62766008D6897 /* ic_close.jpg in Resources */,
+				40EB236F21C7777A0004463F /* ic_restore_post@2x.jpg in Resources */,
 				401D637221B62766008D6897 /* ic_arrow_up@2x.jpg in Resources */,
 				408C23C821B22C6900BF762A /* TTView.xib in Resources */,
+				40EB237421C7777A0004463F /* ic_proportion_post.jpg in Resources */,
 				4065BE1F21AB916A00C9DD2F /* AlbumListCell.xib in Resources */,
 				4065BDDE21AB912E00C9DD2F /* LaunchScreen.storyboard in Resources */,
 				401D637621B62766008D6897 /* ic_arrow_up@3x.jpg in Resources */,
 				401D637A21B62766008D6897 /* ic_close@3x.jpg in Resources */,
+				40EB237021C7777A0004463F /* ic_restore_post@3x.jpg in Resources */,
+				40EB237121C7777A0004463F /* ic_proportion_post@3x.jpg in Resources */,
 				4065BDDB21AB912E00C9DD2F /* Assets.xcassets in Resources */,
 				401D637721B62766008D6897 /* ic_close@2x.jpg in Resources */,
 				401D637821B62766008D6897 /* ic_arrow_down@3x.jpg in Resources */,
 				4065BDD921AB912E00C9DD2F /* Main.storyboard in Resources */,
+				40EB237221C7777A0004463F /* ic_restore_post.jpg in Resources */,
 				4065BE2021AB916A00C9DD2F /* AssetListCell.xib in Resources */,
 				4065BE2221AB916A00C9DD2F /* PhotoPicker.storyboard in Resources */,
 				4065BE2B21AB928600C9DD2F /* CollectionViewCell.xib in Resources */,
