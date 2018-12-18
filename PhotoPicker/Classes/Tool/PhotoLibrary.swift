@@ -116,9 +116,8 @@ private extension PhotoLibrary {
             for index in 0..<titles.count {
                 let title = titles[index]
                 if let item = items[title] {
-                    debugPrint(title)
                     let item = AlbumItem(id: item.0, title: self.titleOfAlbumForChinse(title: title), assetItems: item.1)
-                    if index == 0 {
+                    if title == titles[0] || title == titles[1] {
                         DispatchQueue.main.async {
                             self.preloadAlbumList.onNext([item])
                         }
