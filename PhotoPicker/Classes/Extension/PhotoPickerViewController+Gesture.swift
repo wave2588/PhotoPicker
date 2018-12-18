@@ -12,11 +12,11 @@ extension PhotoPickerViewController {
     
     func configureActionVCGesture() {
         
-        let originalY: CGFloat = editContainerView.bottom + Runtime.safeTop
         let minY: CGFloat = Runtime.statusBarHeight + 100
         let panGesture = UIPanGestureRecognizer()
         panGesture.rx.event
             .bind { [unowned self] gesture in
+                let originalY: CGFloat = self.editContainerView.bottom
                 let translationPotion = gesture.translation(in: self.view)
                 if gesture.state == .changed {
                     var newY = self.actionVC.view.y + translationPotion.y

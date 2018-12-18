@@ -13,8 +13,6 @@ import PhotoPicker
 import AVFoundation
 import Photos
 
-
-
 extension UIViewController {
     func addT(asChildViewController viewController: UIViewController, frame: CGRect? = nil) {
         
@@ -30,21 +28,28 @@ extension UIViewController {
 }
 
 class TwoViewController: UIViewController {
-
+    
     deinit {
         debugPrint("deinit \(self)")
     }
     
-//    let vc: PhotoPickerViewController = .fromStoryboard()
     let vc = PhotoPickerViewController.fromStoryboard
     
+    let sHeight: CGFloat = {
+        var safeTop: CGFloat = 0
+        if #available(iOS 11.0, *) {
+            safeTop = UIApplication.shared.keyWindow?.safeAreaInsets.top ?? 0
+        }
+        return safeTop
+    }()
+    
     override var prefersStatusBarHidden: Bool {
-        return true
+        return sHeight > 20 ? false : true
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         navigationController?.setNavigationBarHidden(true, animated: false)
         
         PhotoPickerConfigManager.shared.message = { type, str in
@@ -60,11 +65,11 @@ class TwoViewController: UIViewController {
         let config = PhotoPickerConfig()
         config.maxSelectCount = 2
         config.scale = .oneToOne
-//        vc.inputs.config.accept(config)
-
+        //        vc.inputs.config.accept(config)
+        
         let frame = CGRect(x: 0, y: 0, width: view.width, height: view.height - 40 - bottomSafe)
         addT(asChildViewController: vc, frame: frame)
-
+        
         vc.outputs.clickClose
             .subscribe(onNext: { [unowned self] _ in
                 self.dismiss(animated: true, completion: nil)
@@ -73,7 +78,7 @@ class TwoViewController: UIViewController {
         
         vc.outputs.clickNextStep
             .subscribe(onNext: { [unowned self] item in
-            
+                
                 let vc = ThreeViewController()
                 vc.item = item
                 self.present(vc, animated: true, completion: nil)

@@ -62,7 +62,6 @@ public class PhotoPickerViewController: UIViewController {
     private let currentSelectedAssetItem = PublishSubject<AssetItem>()
     
     
-    
     public override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -119,7 +118,11 @@ private extension PhotoPickerViewController {
     
     func configureActionVC() {
         
-        let originalY: CGFloat = editContainerView.bottom + Runtime.safeTop
+        var space: CGFloat = 0
+        if Runtime.safeTop > 20 {
+            space = Runtime.statusBarHeight
+        }
+        let originalY: CGFloat = editContainerView.bottom + space
         let frame = CGRect(x: 0, y: originalY, width: view.width, height: view.height - originalY)
         add(asChildViewController: actionVC, frame: frame)
         
