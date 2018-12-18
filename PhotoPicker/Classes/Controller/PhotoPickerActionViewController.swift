@@ -376,6 +376,7 @@ private extension PhotoPickerActionViewController {
     }
     
     func configureTopView() {
+        albumTitleView.inputs.text.onNext("所有照片")
         if !Runtime.isiPhoneX {
             topViewHeightCos.constant = 25
             view.layoutIfNeeded()
