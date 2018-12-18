@@ -22,6 +22,8 @@ protocol PhotoLibraryOutputs {
     var albumPermissions: PublishSubject<Bool> { get }
     /// 传出相簿列表
     var albumList: PublishSubject<[AlbumItem]> { get }
+    /// 加载完一个相册后, 先传出去一个渲染出来
+    var preloadAlbumList: PublishSubject<[AlbumItem]> { get }
 }
 
 class PhotoLibrary: NSObject {
@@ -32,6 +34,7 @@ class PhotoLibrary: NSObject {
     var outputs: PhotoLibraryOutputs { return self }
     let albumPermissions = PublishSubject<Bool>()
     let albumList = PublishSubject<[AlbumItem]>()
+    let preloadAlbumList = PublishSubject<[AlbumItem]>()
     
     // 列出所有系统的智能相册
     var smartAlbums = PHAssetCollection.fetchAssetCollections(with: .smartAlbum,
@@ -113,8 +116,15 @@ private extension PhotoLibrary {
             for index in 0..<titles.count {
                 let title = titles[index]
                 if let item = items[title] {
+                    debugPrint(title)
                     let item = AlbumItem(id: item.0, title: self.titleOfAlbumForChinse(title: title), assetItems: item.1)
-                    self.albumItems.append(item)
+                    if index == 0 {
+                        DispatchQueue.main.async {
+                            self.preloadAlbumList.onNext([item])
+                        }
+                    } else {
+                        self.albumItems.append(item)
+                    }
                 }
             }
             

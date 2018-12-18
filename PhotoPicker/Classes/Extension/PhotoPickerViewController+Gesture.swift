@@ -111,5 +111,4 @@ extension PhotoPickerViewController {
         }, completion: { _ in
         })
     }
-    
 }

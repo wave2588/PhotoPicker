@@ -22,6 +22,9 @@ protocol PhotoPickerActionViewControllerInputs {
 protocol PhotoPickerActionViewControllerOutputs {
     
     var clickVideo: PublishSubject<PHAsset> { get }
+    
+    /// 这个方法就是为了实现点击图片后, actionVC 要回到原始位置
+    var selectedImage: PublishSubject<Any?> { get }
 }
 
 class PhotoPickerActionViewController: UIViewController {
@@ -35,8 +38,8 @@ class PhotoPickerActionViewController: UIViewController {
     let config = BehaviorRelay<PhotoPickerConfig?>(value: nil)
 
     var outputs: PhotoPickerActionViewControllerOutputs { return self }
-    var clickVideo = PublishSubject<PHAsset>()
-    
+    let clickVideo = PublishSubject<PHAsset>()
+    let selectedImage = PublishSubject<Any?>()
 
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var topViewHeightCos: NSLayoutConstraint!
@@ -245,7 +248,7 @@ private extension PhotoPickerActionViewController {
         
         albumListVC.outputs.selectedAlbumIndex
             .subscribe(onNext: { [unowned self] index in
-                
+                self.assetListVC.indexPath = IndexPath(row: 0, section: 0)
                 self.currentSelectedAlbumIndex = index
                 let selectedAlbumItem = self.albumItems.value[index]
                 self.defaultSelectedAssetItem(albumItem: selectedAlbumItem)
@@ -261,6 +264,7 @@ private extension PhotoPickerActionViewController {
         
         assetListVC.outpus.clickCell
             .subscribe(onNext: { [unowned self] index in
+                
                 /// 先获取到点击当前相册
                 var albumItems = self.albumItems.value
                 var albumItem = albumItems[self.currentSelectedAlbumIndex]
@@ -283,6 +287,8 @@ private extension PhotoPickerActionViewController {
                     return
                 }
                 
+                self.selectedImage.onNext(nil)
+                
                 assetItems = assetItems.map({ item -> AssetItem in
                     var tItem = item
                     tItem.isCurrentSeleted = false
@@ -298,6 +304,7 @@ private extension PhotoPickerActionViewController {
         
         assetListVC.outpus.clickCellIndexLbl
             .subscribe(onNext: { [unowned self] index in
+                
                 var albumItems = self.albumItems.value
                 let albumItem = albumItems[self.currentSelectedAlbumIndex]
                 var assetItems = albumItem.assetItems
@@ -307,6 +314,9 @@ private extension PhotoPickerActionViewController {
                     PhotoLibrary.downloadImage(asset: assetItem.phAsset)
                     return
                 }
+                
+                self.selectedImage.onNext(nil)
+
                 if assetItem.selectedIndex == 0 {
                     self.selected(index: index)
                 } else {
@@ -354,12 +364,18 @@ private extension PhotoPickerActionViewController {
         
         library.outputs.albumList
             .subscribe(onNext: { [unowned self] albumItems in
+                self.albumItems.accept(self.albumItems.value + albumItems)
+            })
+            .disposed(by: rx.disposeBag)
+        
+        library.outputs.preloadAlbumList
+            .subscribe(onNext: { [unowned self] albumItems in
                 self.albumItems.accept(albumItems)
-                if self.isFirstDisplay {
+//                if self.isFirstDisplay {
                     self.isFirstDisplay = false
                     guard let allPhotoAlbumItem = albumItems.first else { return }
                     self.defaultSelectedAssetItem(albumItem: allPhotoAlbumItem)
-                }
+//                }
             })
             .disposed(by: rx.disposeBag)
         

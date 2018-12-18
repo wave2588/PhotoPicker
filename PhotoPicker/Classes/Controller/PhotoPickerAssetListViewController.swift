@@ -47,7 +47,7 @@ class PhotoPickerAssetListViewController: UIViewController {
     
     private var cache = [String: UIImage]()
     
-    private var indexPath = IndexPath(row: 0, section: 0)
+    var indexPath = IndexPath(row: 0, section: 0)
     
     override func viewDidLoad() {
         super.viewDidLoad()
