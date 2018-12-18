@@ -67,7 +67,7 @@ public class PhotoPickerViewController: UIViewController {
         super.viewDidLoad()
 
         view.clipsToBounds = true
-        closeBtn.setImage(UIImage.loadLocalImage(name: "ic_close.jpg"), for: .normal)
+        closeBtn.setImage(UIImage.loadLocalImagePDF(name: "ic_close.pdf"), for: .normal)
         
         configureSelectedAssetItems()
         configureEditView()

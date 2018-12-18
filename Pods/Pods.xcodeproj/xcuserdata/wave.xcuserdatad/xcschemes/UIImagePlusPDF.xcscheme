@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DBE86135C0EF40B71056F6D99FB4A82C"
-               BlueprintName = "RxViewController"
+               BlueprintIdentifier = "0AC8DFF70EC48E8593FBDFB9E97EF91D"
+               BlueprintName = "UIImagePlusPDF"
                ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "RxViewController.framework">
+               BuildableName = "UIImagePlusPDF.framework">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

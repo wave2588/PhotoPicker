@@ -45,6 +45,7 @@ PODS:
   - SwifterSwift/SpriteKit (4.6.0)
   - SwifterSwift/SwiftStdlib (4.6.0)
   - SwifterSwift/UIKit (4.6.0)
+  - UIImagePlusPDF (1.1.0)
 
 DEPENDENCIES:
   - BonMot
@@ -57,6 +58,7 @@ DEPENDENCIES:
   - RxSwift
   - RxViewController
   - SwifterSwift
+  - UIImagePlusPDF
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -72,6 +74,7 @@ SPEC REPOS:
     - RxSwift
     - RxViewController
     - SwifterSwift
+    - UIImagePlusPDF
 
 SPEC CHECKSUMS:
   BonMot: 0104d1b4eda54f4a4b7393d6559539ef25498fbd
@@ -86,7 +89,8 @@ SPEC CHECKSUMS:
   RxSwift: 5976ecd04fc2fefd648827c23de5e11157faa973
   RxViewController: 359bbc2fda373a78605b2735afb0f9f4f3f6c3e4
   SwifterSwift: 812ffec6f301922f5430e75be3f2939ea3a80024
+  UIImagePlusPDF: fd811b8738e153e10c9e5a09bf3fa9fb8531679c
 
-PODFILE CHECKSUM: b510abbd2c31dac534441fafb1f86d5a65d6f009
+PODFILE CHECKSUM: 22cf58b9e52a2a663cac98d3a73a4d32a306310a
 
 COCOAPODS: 1.6.0.beta.2

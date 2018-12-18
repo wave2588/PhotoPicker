@@ -78,12 +78,12 @@ extension PhotoPickerViewController {
     
     func showActionVC() {
         let minY: CGFloat = Runtime.statusBarHeight + 100
-        self.actionVC.albumTitleView.imgView.image = UIImage.loadLocalImage(name: "ic_arrow_down.jpg")
+        self.actionVC.albumTitleView.imgView.image = UIImage.loadLocalImagePDF(name: "ic_arrow_down.pdf")
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 4, options: .curveEaseOut, animations: {
             self.actionVC.view.y = minY
             self.actionVC.view.height = self.view.height - minY
             self.actionVC.albumListContainerView.alpha = self.actionVC.albumListContainerView.alpha == 1 ? 0 : 1
-            self.actionVC.albumTitleView.imgView.image = self.actionVC.albumListContainerView.alpha == 1 ? UIImage.loadLocalImage(name: "ic_arrow_down.jpg") : UIImage.loadLocalImage(name: "ic_arrow_up.jpg")
+            self.actionVC.albumTitleView.imgView.image = self.actionVC.albumListContainerView.alpha == 1 ? UIImage.loadLocalImagePDF(name: "ic_arrow_down.pdf") : UIImage.loadLocalImagePDF(name: "ic_arrow_up.pdf")
             self.shadowView.alpha = 0.5
             if !Runtime.isiPhoneX {
                 self.actionVC.topViewHeightCos.constant = 64

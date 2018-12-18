@@ -67,11 +67,11 @@ class EditView: UIView {
         guard let _ = imageView.image else { return }
         
         if scrollView.height == scrollView.width {
-            self.switchScaleBtn.setImage(UIImage.loadLocalImage(name: "ic_proportion_post.jpg"), for: .normal)
+            self.switchScaleBtn.setImage(UIImage.loadLocalImagePDF(name: "ic_proportion_post.pdf"), for: .normal)
             let scale:Scale = imageView.width > imageView.height ? .fourToThreeHorizontal : .fourToThreeVertical
             scrollView.frame = getScrollViewFrame(scale: scale)
         } else {
-            self.switchScaleBtn.setImage(UIImage.loadLocalImage(name: "ic_restore_post.jpg"), for: .normal)
+            self.switchScaleBtn.setImage(UIImage.loadLocalImagePDF(name: "ic_restore_post.pdf"), for: .normal)
             scrollView.top = 0
             scrollView.left = 0
             scrollView.width = width
@@ -338,8 +338,8 @@ private extension EditView {
                 self.imageView.image = image
                 self.updateEditedAssetItem()
                 
-                let imageName = self.scrollView.width == self.scrollView.height ? "ic_restore_post.jpg" : "ic_proportion_post.jpg"
-                self.switchScaleBtn.setImage(UIImage.loadLocalImage(name: imageName), for: .normal)
+                let imageName = self.scrollView.width == self.scrollView.height ? "ic_restore_post.pdf" : "ic_proportion_post.pdf"
+                self.switchScaleBtn.setImage(UIImage.loadLocalImagePDF(name: imageName), for: .normal)
             })
             .disposed(by: rx.disposeBag)
     }

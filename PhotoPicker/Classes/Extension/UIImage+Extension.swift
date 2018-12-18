@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UIImagePlusPDF
 
 extension UIImage {
     
@@ -26,6 +27,24 @@ extension UIImage {
         }
         let img = UIImage(contentsOfFile: path) ?? UIImage()
         return img
+    }
+    
+    static func loadLocalImagePDF(name: String) -> UIImage {
+        
+        if PhotoPickerConfigManager.shared.isDebug {
+            guard let path = Bundle.main.resourcePath?.appendingPathComponent(name) else {
+                return UIImage()
+            }
+            let url = URL(fileURLWithPath: path)
+            return UIImage.pdfImage(with: url) ?? UIImage()
+        }
+        
+        let bundlePath = Bundle.main.path(forResource: "Frameworks/PhotoPicker", ofType: "framework")
+        guard let path = bundlePath?.appendingPathComponent(name) else {
+            return UIImage()
+        }
+        let url = URL(fileURLWithPath: path)
+        return UIImage.pdfImage(with: url) ?? UIImage()
     }
 }
 

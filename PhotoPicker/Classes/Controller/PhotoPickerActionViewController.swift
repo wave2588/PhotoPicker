@@ -251,7 +251,7 @@ private extension PhotoPickerActionViewController {
                 self.defaultSelectedAssetItem(albumItem: selectedAlbumItem)
                 UIView.animate(withDuration: 0.25, animations: {
                     self.albumListContainerView.alpha = 0
-                    self.albumTitleView.imgView.image = UIImage.loadLocalImage(name: "ic_arrow_up.jpg")
+                    self.albumTitleView.imgView.image = UIImage.loadLocalImagePDF(name: "ic_arrow_up.pdf")
                 })
             })
             .disposed(by: rx.disposeBag)

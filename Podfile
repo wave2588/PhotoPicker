@@ -16,6 +16,7 @@ target 'PhotoPicker' do
   pod 'RxViewController'
   pod 'SwifterSwift'
   pod 'BonMot'
+  pod 'UIImagePlusPDF'
 
 end
 

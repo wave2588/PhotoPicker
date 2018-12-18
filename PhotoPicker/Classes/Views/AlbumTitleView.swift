@@ -33,7 +33,7 @@ class AlbumTitleView: UIView {
         addSubview(lbl)
 
         imgView.size = CGSize(width: 18, height: 17)
-        imgView.image = UIImage.loadLocalImage(name: "ic_arrow_up.jpg")
+        imgView.image = UIImage.loadLocalImagePDF(name: "ic_arrow_up.pdf")
         imgView.isUserInteractionEnabled = true
         addSubview(imgView)
 
