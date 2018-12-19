@@ -272,6 +272,17 @@ private extension PhotoPickerActionViewController {
                 let assetItem = assetItems[index]
                 
                 if assetItem.type == .video {
+                    
+                    if assetItem.phAsset.duration > 300 {
+                        PhotoPickerConfigManager.shared.message?(.fail, "暂不支持 5 分钟以上视频")
+                        return
+                    }
+                    
+                    if assetItem.phAsset.duration < 3 {
+                        PhotoPickerConfigManager.shared.message?(.fail, "暂不支持 3 秒以下视频")
+                        return
+                    }
+                    
                     if let asset = assetItem.getVideoPHAsset() {
                         self.clickVideo.onNext(asset)
                     } else {
