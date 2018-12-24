@@ -373,6 +373,14 @@ private extension PhotoPickerActionViewController {
     
     func configureLibrary() {
         
+        library.outputs.albumPermissions
+            .subscribe(onNext: { isok in
+                if !isok {
+                    PhotoPickerConfigManager.shared.message?(.fail, "请打开相册权限")
+                }
+            })
+            .disposed(by: rx.disposeBag)
+        
         library.outputs.albumList
             .subscribe(onNext: { [unowned self] albumItems in
                 self.albumItems.accept(self.albumItems.value + albumItems)
