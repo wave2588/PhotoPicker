@@ -52,7 +52,7 @@ class PhotoPickerActionViewController: UIViewController {
     private let library = PhotoLibrary()
 
     /// 整体的数据源
-    private let albumItems = BehaviorRelay<[AlbumItem]>(value: [])
+    let albumItems = BehaviorRelay<[AlbumItem]>(value: [])
     
     /// 当前选择的相册下标
     private var currentSelectedAlbumIndex = 0
@@ -398,6 +398,20 @@ private extension PhotoPickerActionViewController {
             })
             .disposed(by: rx.disposeBag)
         
+        library.outputs.insertedAssetItems
+            .subscribe(onNext: { [weak self] assetItems in
+                guard let `self` = self else { return }
+                self.insertAssetItems(items: assetItems)
+            })
+            .disposed(by: rx.disposeBag)
+        
+        library.outputs.removedAssetItems
+            .subscribe(onNext: { [weak self] assetItems in
+                guard let `self` = self else { return }
+                self.removeAssetItems(items: assetItems)
+            })
+            .disposed(by: rx.disposeBag)
+
         library.checkAuthorization()
     }
     

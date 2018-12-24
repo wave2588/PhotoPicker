@@ -24,6 +24,12 @@ protocol PhotoLibraryOutputs {
     var albumList: PublishSubject<[AlbumItem]> { get }
     /// 加载完一个相册后, 先传出去一个渲染出来
     var preloadAlbumList: PublishSubject<[AlbumItem]> { get }
+
+    /// 添加的
+    var insertedAssetItems: PublishSubject<[AssetItem]> { get }
+    /// 删除的
+    var removedAssetItems: PublishSubject<[AssetItem]> { get }
+
 }
 
 class PhotoLibrary: NSObject {
@@ -35,6 +41,8 @@ class PhotoLibrary: NSObject {
     let albumPermissions = PublishSubject<Bool>()
     let albumList = PublishSubject<[AlbumItem]>()
     let preloadAlbumList = PublishSubject<[AlbumItem]>()
+    let insertedAssetItems = PublishSubject<[AssetItem]>()
+    let removedAssetItems = PublishSubject<[AssetItem]>()
     
     // 列出所有系统的智能相册
     var smartAlbums = PHAssetCollection.fetchAssetCollections(with: .smartAlbum,
@@ -47,7 +55,7 @@ class PhotoLibrary: NSObject {
     let fetchOptions = PHFetchOptions()
 
     /// 最终结果
-    var albumItems = [AlbumItem]()
+    var resultAlbumItems = [AlbumItem]()
     
 //    var allPhotosFetchResult: PHFetchResult<PHAsset>!
 }
@@ -61,9 +69,17 @@ extension PhotoLibrary: PHPhotoLibraryChangeObserver {
         
 //        guard let changes = changeInstance.changeDetails(for: allPhotosFetchResult) else { return }
 //
-//        debugPrint(changes.removedObjects)
-//        debugPrint(changes.insertedObjects)
-        
+//        removedAssetItems.onNext(changes.removedObjects.map { phAsset -> AssetItem in
+//                return AssetItem(id: phAsset.localIdentifier, phAsset: phAsset)
+//            })
+//        
+//        insertedAssetItems.onNext(changes.insertedObjects.map { phAsset -> AssetItem in
+//                return AssetItem(id: phAsset.localIdentifier, phAsset: phAsset)
+//            })
+//        
+//        let allPhotosOptions = PHFetchOptions()
+//        allPhotosOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
+//        allPhotosFetchResult = PHAsset.fetchAssets(with: allPhotosOptions)
     }
 }
 
@@ -74,12 +90,12 @@ private extension PhotoLibrary {
 //        let allPhotosOptions = PHFetchOptions()
 //        allPhotosOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
 //        allPhotosFetchResult = PHAsset.fetchAssets(with: allPhotosOptions)
-        
+
         PHPhotoLibrary.shared().register(self)
         
         fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
         
-        /// 所有照片 相机胶卷 视频Videos  最近添加Recently Added 个人收藏Favorites 自拍Selfies 人像Portrait
+        /// 所有照片 相机胶卷 视频Videos 最近添加Recently Added 个人收藏Favorites 自拍Selfies 人像Portrait
         var titles = [
             "All Photos",
             "Camera Roll",
@@ -97,7 +113,41 @@ private extension PhotoLibrary {
 
         DispatchQueue.global().async {
             
+            /// 获取所有文件夹下的相簿
+            func getFolderAssets(collectionList: PHCollectionList) {
+                let folders = PHCollection.fetchCollections(in: collectionList, options: nil)
+                for i in 0..<folders.count {
+                    if let collection = folders[i] as? PHAssetCollection,
+                        let title = collection.localizedTitle {
+                        let fetchResult = PHAsset.fetchAssets(in: collection, options: self.fetchOptions)
+                        if fetchResult.count == 0 {
+                            continue
+                        }
+                        let assetItems = getAllAssetItems(fetchResult)
+                        let item = AlbumItem(id: collection.localIdentifier, title: self.titleOfAlbumForChinse(title: title), assetItems: assetItems)
+                        self.resultAlbumItems.append(item)
+                    } else {
+                        if let collection = folders[i] as? PHCollectionList {
+                            getFolderAssets(collectionList: collection)
+                        }
+                    }
+                }
+            }
+            
+            /// 获取相簿下所有图片
+            func getAllAssetItems(_ fetchResult: PHFetchResult<PHAsset>) -> [AssetItem] {
+                let count = fetchResult.count
+                var assetItems = [AssetItem]()
+                for i in 0 ..< count {
+                    let phAsset = fetchResult[i]
+                    assetItems.append(AssetItem(id: phAsset.localIdentifier, phAsset: phAsset))
+                }
+                return assetItems
+            }
+
             var items = [String: (String, [AssetItem])]()
+            var albumItems = [AlbumItem]()
+
             for i in 0..<self.smartAlbums.count {
                 let collection = self.smartAlbums[i]
                 if let title = collection.localizedTitle {
@@ -108,7 +158,7 @@ private extension PhotoLibrary {
                     if !titles.contains(title) {
                         titles.append(title)
                     }
-                    let assetItems = self.getAllAssetItems(fetchResult)
+                    let assetItems = getAllAssetItems(fetchResult)
                     items[title] = (collection.localIdentifier, assetItems)
                 }
             }
@@ -121,8 +171,9 @@ private extension PhotoLibrary {
                         DispatchQueue.main.async {
                             self.preloadAlbumList.onNext([item])
                         }
+                        self.resultAlbumItems.append(item)
                     } else {
-                        self.albumItems.append(item)
+                        albumItems.append(item)
                     }
                 }
             }
@@ -135,50 +186,21 @@ private extension PhotoLibrary {
                     if fetchResult.count == 0 {
                         continue
                     }
-                    let assetItems = self.getAllAssetItems(fetchResult)
+                    let assetItems = getAllAssetItems(fetchResult)
                     let item = AlbumItem(id: collection.localIdentifier, title: self.titleOfAlbumForChinse(title: title), assetItems: assetItems)
-                    self.albumItems.append(item)
+                    albumItems.append(item)
                 } else {
                     if let collection = self.userCollections[i] as? PHCollectionList {
-                        self.getFolderAssets(collectionList: collection)
+                        getFolderAssets(collectionList: collection)
                     }
                 }
             }
 
             DispatchQueue.main.async {
-                self.albumList.onNext(self.albumItems)
+                self.resultAlbumItems = self.resultAlbumItems + albumItems
+                self.albumList.onNext(albumItems)
             }
         }
-    }
-    
-    func getFolderAssets(collectionList: PHCollectionList) {
-        let folders = PHCollection.fetchCollections(in: collectionList, options: nil)
-        for i in 0..<folders.count {
-            if let collection = folders[i] as? PHAssetCollection,
-               let title = collection.localizedTitle {
-                let fetchResult = PHAsset.fetchAssets(in: collection, options: fetchOptions)
-                if fetchResult.count == 0 {
-                    continue
-                }
-                let assetItems = self.getAllAssetItems(fetchResult)
-                let item = AlbumItem(id: collection.localIdentifier, title: self.titleOfAlbumForChinse(title: title), assetItems: assetItems)
-                albumItems.append(item)
-            } else {
-                if let collection = folders[i] as? PHCollectionList {
-                    getFolderAssets(collectionList: collection)
-                }
-            }
-        }
-    }
-    
-    func getAllAssetItems(_ fetchResult: PHFetchResult<PHAsset>) -> [AssetItem] {
-        let count = fetchResult.count
-        var assetItems = [AssetItem]()
-        for i in 0 ..< count {
-            let phAsset = fetchResult[i]
-            assetItems.append(AssetItem(id: phAsset.localIdentifier, phAsset: phAsset))
-        }
-        return assetItems
     }
 }
 
