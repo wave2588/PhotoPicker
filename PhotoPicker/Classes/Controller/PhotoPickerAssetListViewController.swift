@@ -90,6 +90,7 @@ private extension PhotoPickerAssetListViewController {
                 if item.type == .photo {
                     
                     cell.didTapSelectedIndexBtn = { [unowned self] in
+                        self.indexPath = ip
                         self.clickCellIndexLbl.onNext(ip.row)
                     }
 
