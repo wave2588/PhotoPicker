@@ -47,6 +47,11 @@ class TwoViewController: UIViewController {
         return sHeight > 20 ? false : true
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        hideStatusBar()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

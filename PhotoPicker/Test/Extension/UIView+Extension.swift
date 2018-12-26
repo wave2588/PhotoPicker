@@ -15,3 +15,10 @@ extension UIView {
         return Bundle.main.loadNibNamed(String(describing: self), owner: nil, options: nil)?.first as! T
     }
 }
+
+extension UIViewController {
+    func hideStatusBar() {
+        let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
+        statusBar.alpha = 0
+    }
+}

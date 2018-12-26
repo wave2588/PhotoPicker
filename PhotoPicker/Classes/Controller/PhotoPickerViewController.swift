@@ -118,11 +118,7 @@ private extension PhotoPickerViewController {
     
     func configureActionVC() {
         
-        var space: CGFloat = 0
-        if Runtime.safeTop > 20 {
-            space = Runtime.statusBarHeight
-        }
-        let originalY: CGFloat = editContainerView.bottom + space
+        let originalY: CGFloat = editContainerView.bottom + Runtime.statusBarHeight
         let frame = CGRect(x: 0, y: originalY, width: view.width, height: view.height - originalY)
         add(asChildViewController: actionVC, frame: frame)
         
