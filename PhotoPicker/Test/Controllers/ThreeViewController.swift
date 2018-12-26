@@ -66,6 +66,7 @@ private extension ThreeViewController {
             let vv: TTView = .fromNibsss()
             vv.frame = CGRect(x: CGFloat(i) * scrollView.width, y: 0, width: scrollView.width, height: scrollView.height)
             vv.imageView.image = image
+            debugPrint(image.size)
             scrollView.addSubview(vv)
         }
     }

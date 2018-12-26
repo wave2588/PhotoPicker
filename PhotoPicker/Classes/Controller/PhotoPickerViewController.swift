@@ -75,6 +75,14 @@ public class PhotoPickerViewController: UIViewController {
         configureShadowView()
     }
     
+    public override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        let originalY: CGFloat = editContainerView.bottom
+        let frame = CGRect(x: 0, y: originalY, width: view.width, height: view.height - originalY)
+        actionVC.view.frame = frame
+    }
+    
     @IBAction func closeAction(_ sender: UIButton) {
         clickClose.onNext([])
     }
@@ -118,9 +126,8 @@ private extension PhotoPickerViewController {
     
     func configureActionVC() {
         
-        let originalY: CGFloat = editContainerView.bottom + Runtime.statusBarHeight
-        let frame = CGRect(x: 0, y: originalY, width: view.width, height: view.height - originalY)
-        add(asChildViewController: actionVC, frame: frame)
+//        add(asChildViewController: actionVC, frame: frame)
+        add(asChildViewController: actionVC)
         
         actionVC.inputs.config.accept(config.value)
         
