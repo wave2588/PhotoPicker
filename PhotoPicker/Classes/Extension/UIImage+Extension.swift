@@ -48,3 +48,16 @@ extension UIImage {
     }
 }
 
+extension UIImage {
+    
+    func cropImage(rect: CGRect) -> UIImage? {
+        UIGraphicsBeginImageContext(rect.size)
+        guard let context = UIGraphicsGetCurrentContext() else { return nil }
+        context.translateBy(x: -rect.minX, y: -rect.minY)
+        draw(at: .zero)
+        let croppedImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return croppedImage
+    }
+    
+}

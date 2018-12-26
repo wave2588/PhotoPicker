@@ -25,3 +25,15 @@ extension UIView {
         return view
     }
 }
+
+extension UIView {
+    
+    func capture() -> UIImage? {
+        UIGraphicsBeginImageContextWithOptions(size, false, UIScreen.main.scale)
+        let ctx = UIGraphicsGetCurrentContext()
+        layer.render(in: ctx!)
+        let img = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return img
+    }
+}

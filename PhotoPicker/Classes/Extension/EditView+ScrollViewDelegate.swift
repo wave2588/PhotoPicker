@@ -32,7 +32,8 @@ extension EditView: UIScrollViewDelegate {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        
+        debugPrint("contentOffset--->: \(scrollView.contentOffset)    contentSize--->: \(scrollView.contentSize)" )
+        debugPrint("容器大小--->: ", self.imageView.size)
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
