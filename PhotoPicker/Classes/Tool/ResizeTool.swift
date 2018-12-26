@@ -40,8 +40,6 @@ func croppedFirst(scale: Scale, assetItem: AssetItem) -> AssetItem {
     let img = image.cropImage(rect: rect)
     editInfo.image = img
     
-    debugPrint("result image size--->: ", img!.size)
-    
     tItem.editInfo = editInfo
     
     return tItem
@@ -88,39 +86,38 @@ func croppedOther(scale: Scale, assetItem: AssetItem) -> AssetItem {
     
     let img = image.cropImage(rect: rect)
     editInfo.image = img
-    debugPrint("result image size--->: ", img!.size)
 
     tItem.editInfo = editInfo
     
     return tItem
 }
 
-func remain(item: AssetItem) -> AssetItem {
-    var tItem = item
-    guard let editInfo = tItem.editInfo,
-          let image = tItem.fullResolutionImage else { return tItem }
-
-    
-    let imgW = image.size.width
-    let imgH = image.size.height
-    
-    if imgW > imgH {
-        debugPrint("上下留白")
-    } else {
-        debugPrint("左右留白")
-        
-        let wh = getContainerSize(Scale.fourToThreeVertical)
-        let width = wh.width
-        let height = wh.height
-        /// 获取容器当前的大小
+//func remain(item: AssetItem) -> AssetItem {
+//    var tItem = item
+//    guard let editInfo = tItem.editInfo,
+//          let image = tItem.fullResolutionImage else { return tItem }
+//
+//
+//    let imgW = image.size.width
+//    let imgH = image.size.height
+//
+//    if imgW > imgH {
+//        debugPrint("上下留白")
+//    } else {
+//        debugPrint("左右留白")
+//
+//        let wh = getContainerSize(Scale.fourToThreeVertical)
+//        let width = wh.width
+//        let height = wh.height
+//        /// 获取容器当前的大小
 //        let containerSize = getImageSize(containerW: width * zoomScale, containerH: height * zoomScale, image: image)
-        
-    }
+//
+//    }
     
     
 
-    return tItem
-    
+//    return tItem
+
 //    if scale == .oneToOne && editInfo.mode == .remain {
 //                let view = ScreenshotView(frame: CGRect(x: 0, y: 100, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width))
 //                editInfo.image = view.setEditInfoImage(firstScale: scale, item: tItem).editInfo?.image
@@ -151,8 +148,7 @@ func remain(item: AssetItem) -> AssetItem {
 //            //            debugPrint(imageView.frame)
 //        }
 //    }
-
-}
+//}
 
 
 /// 获取正常比例下容器 size
