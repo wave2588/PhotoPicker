@@ -28,18 +28,18 @@ func croppedFirst(scale: Scale, assetItem: AssetItem) -> AssetItem {
 
     /// 获取容器当前的大小
     let containerSize = getImageSize(containerW: width * zoomScale, containerH: height * zoomScale, image: image)
-    
+
     let wScale = image.size.width / containerSize.width
-    
+
     let x = editInfo.contentOffset.x * wScale
     let y = editInfo.contentOffset.y * wScale
-    let w = width * wScale
-    let h = height * wScale
-    let rect = CGRect(x: x, y: y, width: w, height: h)
+    let w = (width * wScale).int
+    let h = (height * wScale).int
+    let rect = CGRect(x: x, y: y, width: w.cgFloat, height: h.cgFloat)
     
     let img = image.cropImage(rect: rect)
     editInfo.image = img
-    
+
     tItem.editInfo = editInfo
     
     return tItem
@@ -80,10 +80,10 @@ func croppedOther(scale: Scale, assetItem: AssetItem) -> AssetItem {
     
     let x = editInfo.contentOffset.x * wScale
     let y = editInfo.contentOffset.y * wScale
-    let w = width * wScale
-    let h = height * wScale
-    let rect = CGRect(x: x, y: y, width: w, height: h)
-    
+    let w = (width * wScale).int
+    let h = (height * wScale).int
+    let rect = CGRect(x: x, y: y, width: w.cgFloat, height: h.cgFloat)
+
     let img = image.cropImage(rect: rect)
     editInfo.image = img
 
