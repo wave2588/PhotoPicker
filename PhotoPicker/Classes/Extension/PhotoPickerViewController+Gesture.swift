@@ -12,7 +12,7 @@ extension PhotoPickerViewController {
     
     func configureActionVCGesture() {
         
-        let minY: CGFloat = Runtime.statusBarHeight + 100
+        let minY: CGFloat = Runtime.statusBarHeight + 6
         let panGesture = UIPanGestureRecognizer()
         panGesture.rx.event
             .bind { [unowned self] gesture in
@@ -77,7 +77,7 @@ extension PhotoPickerViewController {
     }
     
     func showActionVC() {
-        let minY: CGFloat = Runtime.statusBarHeight + 100
+        let minY: CGFloat = Runtime.statusBarHeight + 6
         self.actionVC.albumTitleView.imgView.image = UIImage.loadLocalImagePDF(name: "ic_arrow_down.pdf")
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 4, options: .curveEaseOut, animations: {
             self.actionVC.view.y = minY
