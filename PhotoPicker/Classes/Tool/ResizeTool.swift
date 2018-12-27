@@ -128,7 +128,7 @@ func remain(item: AssetItem) -> AssetItem {
             imageViewH = containerViewH - containerViewH * spaceScale * 2
         }
         let containerView = UIView(frame: CGRect(x: 0, y: 0, width: containerViewW, height: containerViewH))
-        containerView.backgroundColor = .blue
+        containerView.backgroundColor = .white
         let imageView = UIImageView(frame: CGRect(x: 0, y: containerView.height * spaceScale, width: imageViewW, height: imageViewH))
         imageView.image = image
         containerView.addSubview(imageView)
@@ -156,10 +156,9 @@ func remain(item: AssetItem) -> AssetItem {
             imageViewH = containerViewH
         }
         let containerView = UIView(frame: CGRect(x: 0, y: 0, width: containerViewW, height: containerViewH))
-        containerView.backgroundColor = .blue
+        containerView.backgroundColor = .white
         let imageView = UIImageView(frame: CGRect(x: containerView.width * spaceScale, y: 0, width: imageViewW, height: imageViewH))
         imageView.image = image
-        imageView.backgroundColor = .blue
         containerView.addSubview(imageView)
         editInfo.image = containerView.capture()
     }
