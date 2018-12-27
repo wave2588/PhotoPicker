@@ -80,9 +80,12 @@ private extension PhotoPickerAssetListViewController {
         collectionView.registerCell(nibWithCellClass: AssetListCell.self)
         
         let dataSource = RxCollectionViewSectionedReloadDataSource<SectionModel<String, AssetItem>>(
-            configureCell: { [unowned self] ds, cv, ip, item in
+            configureCell: { [weak self] ds, cv, ip, item in
+                
                 let cell = cv.dequeueReusableCell(withClass: AssetListCell.self, for: ip)
                 
+                guard let `self` = self else { return cell }
+
                 cell.videoInfoView.isHidden = item.type == .video ? false : true
                 cell.videoDurationLbl.text = item.duration
                 cell.indexLbl.isHidden = item.type == .video ? true : false

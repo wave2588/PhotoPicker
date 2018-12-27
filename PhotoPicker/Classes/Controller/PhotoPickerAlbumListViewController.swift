@@ -52,7 +52,8 @@ private extension PhotoPickerAlbumListViewController {
         tableView.registerCell(nibWithCellClass: AlbumListCell.self)
         
         albumItems
-            .bind(to: tableView.rx.items(cellType: AlbumListCell.self)) { [unowned self] _, item, cell in
+            .bind(to: tableView.rx.items(cellType: AlbumListCell.self)) { [weak self] _, item, cell in
+                guard let `self` = self else { return }
                 let str = "\(item.title) \(item.assetItems.count)"
                 let highlightStr = "\(item.title) <em>\(item.assetItems.count)</em>"
                 cell.titleLbl.text = str

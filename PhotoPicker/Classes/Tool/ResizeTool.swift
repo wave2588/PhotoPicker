@@ -57,15 +57,15 @@ func croppedOther(scale: Scale, assetItem: AssetItem) -> AssetItem {
     if scale == .oneToOne && editInfo.mode == .remain {
         
         /// 如果选择了留白, 并且还放大了图片, 则先用老办法处理
-//        if editInfo.zoomScale != 1 {
+        if editInfo.zoomScale != 1 {
             let view = ScreenshotView(frame: CGRect(x: 0, y: 100, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width))
             editInfo.image = view.setEditInfoImage(firstScale: scale, item: tItem).editInfo?.image
             tItem.editInfo = editInfo
             return tItem
-//        }
-        
-//        tItem.editInfo = editInfo
-//        return remain(item: tItem)
+        }
+    
+        tItem.editInfo = editInfo
+        return remain(item: tItem)
     }
 
     /// 相册原图
@@ -106,7 +106,6 @@ func remain(item: AssetItem) -> AssetItem {
     let zoomScale = editInfo.zoomScale
     
     if imgW > imgH {
-        debugPrint("上下留白")
         let wh = getContainerSize(Scale.fourToThreeHorizontal)
         let width = wh.width
         let height = wh.height
@@ -116,14 +115,24 @@ func remain(item: AssetItem) -> AssetItem {
         let kHeight = UIScreen.main.bounds.width
         let topSpace = (kHeight - containerSize.height) * 0.5
         let spaceScale = topSpace / kHeight
-        /// 先把 view 画出来
-        let containerView = UIView(frame: CGRect(x: 0, y: 0, width: imgW, height: imgW))
-        containerView.backgroundColor = .red
-        let imageView = UIImageView(frame: CGRect(x: 0, y: containerView.height * spaceScale, width: imgW, height: imgH))
+        /// 先把 view 画出来  如果是特别大的图, 则缩放下containerView
+        var containerViewW = imgW
+        var containerViewH = imgW
+        var imageViewW = imgW
+        var imageViewH = imgH
+        if image.size.height > 1080 {
+            /// 1080
+            containerViewW = 1080
+            containerViewH = 1080
+            imageViewW = containerViewW
+            imageViewH = containerViewH - containerViewH * spaceScale * 2
+        }
+        let containerView = UIView(frame: CGRect(x: 0, y: 0, width: containerViewW, height: containerViewH))
+        containerView.backgroundColor = .blue
+        let imageView = UIImageView(frame: CGRect(x: 0, y: containerView.height * spaceScale, width: imageViewW, height: imageViewH))
         imageView.image = image
         containerView.addSubview(imageView)
         editInfo.image = containerView.capture()
-        debugPrint(imageView.frame)
     } else {
         let wh = getContainerSize(Scale.fourToThreeVertical)
         let width = wh.width
@@ -134,14 +143,25 @@ func remain(item: AssetItem) -> AssetItem {
         let kWidth = UIScreen.main.bounds.width
         let leftSpace = (kWidth - containerSize.width) * 0.5
         let spaceScale = leftSpace / kWidth
-        /// 先把 view 画出来
-        let containerView = UIView(frame: CGRect(x: 0, y: 0, width: imgH, height: imgH))
-        containerView.backgroundColor = .red
-        let imageView = UIImageView(frame: CGRect(x: containerView.width * spaceScale, y: 0, width: imgW, height: imgH))
+        /// 先把 view 画出来  如果是特别大的图, 则缩放下containerView
+        var containerViewW = imgH
+        var containerViewH = imgH
+        var imageViewW = imgW
+        var imageViewH = imgH
+        if image.size.height > 1080 {
+            /// 1080
+            containerViewW = 1080
+            containerViewH = 1080
+            imageViewW = containerViewW - containerViewW * spaceScale * 2
+            imageViewH = containerViewH
+        }
+        let containerView = UIView(frame: CGRect(x: 0, y: 0, width: containerViewW, height: containerViewH))
+        containerView.backgroundColor = .blue
+        let imageView = UIImageView(frame: CGRect(x: containerView.width * spaceScale, y: 0, width: imageViewW, height: imageViewH))
         imageView.image = image
+        imageView.backgroundColor = .blue
         containerView.addSubview(imageView)
         editInfo.image = containerView.capture()
-        debugPrint(imageView.frame)
     }
     
     tItem.editInfo = editInfo
