@@ -21,6 +21,7 @@ class AssetListCell: UICollectionViewCell {
     @IBOutlet weak var selectedView: UIView!
     
     @IBOutlet weak var indexLbl: UILabel!
+    @IBOutlet weak var indexLblBackView: UIView!
     
     var didTapSelectedIndexBtn: (()->())?
 
@@ -30,13 +31,12 @@ class AssetListCell: UICollectionViewCell {
         super.awakeFromNib()
         // Initialization code
         
-        indexLbl.isUserInteractionEnabled = true
         tapGesture.rx.event
             .bind { [unowned self] _ in
                 self.didTapSelectedIndexBtn?()
             }
             .disposed(by: rx.disposeBag)
         
-        indexLbl.addGestureRecognizer(tapGesture)
+        indexLblBackView.addGestureRecognizer(tapGesture)
     }
 }

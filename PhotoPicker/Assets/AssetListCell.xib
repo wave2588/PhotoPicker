@@ -53,7 +53,7 @@
                             <constraint firstItem="Q1S-Ur-CV9" firstAttribute="top" secondItem="zs3-EN-xgp" secondAttribute="top" id="xpv-nz-ZP4"/>
                         </constraints>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="McX-H1-3MB">
+                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="McX-H1-3MB">
                         <rect key="frame" x="72" y="6" width="24" height="24"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="24" id="GRR-TM-bJq"/>
@@ -68,6 +68,14 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="knm-q3-BiO">
+                        <rect key="frame" x="62" y="0.0" width="40" height="40"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="40" id="JtW-gT-F2d"/>
+                            <constraint firstAttribute="height" constant="40" id="j2K-pn-6hq"/>
+                        </constraints>
+                    </view>
                 </subviews>
             </view>
             <constraints>
@@ -75,6 +83,7 @@
                 <constraint firstAttribute="trailing" secondItem="73I-DE-6ua" secondAttribute="trailing" id="1H2-1D-J5O"/>
                 <constraint firstItem="PNP-bh-u1o" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="25m-0b-9GT"/>
                 <constraint firstItem="73I-DE-6ua" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="600-J7-ABg"/>
+                <constraint firstAttribute="trailing" secondItem="knm-q3-BiO" secondAttribute="trailing" id="AaF-V7-kZt"/>
                 <constraint firstAttribute="trailing" secondItem="PNP-bh-u1o" secondAttribute="trailing" id="MfO-Yr-tzv"/>
                 <constraint firstItem="PNP-bh-u1o" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="NTD-Xl-Xc2"/>
                 <constraint firstAttribute="bottom" secondItem="PNP-bh-u1o" secondAttribute="bottom" id="Pf4-49-CUB"/>
@@ -84,12 +93,14 @@
                 <constraint firstItem="73I-DE-6ua" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="hxu-NM-hgs"/>
                 <constraint firstAttribute="bottom" secondItem="zs3-EN-xgp" secondAttribute="bottom" id="jvU-bu-F73"/>
                 <constraint firstAttribute="bottom" secondItem="73I-DE-6ua" secondAttribute="bottom" id="uB3-nZ-JpC"/>
+                <constraint firstItem="knm-q3-BiO" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="xJx-bl-wAx"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="352" height="247"/>
             <connections>
                 <outlet property="coverImageView" destination="73I-DE-6ua" id="PrI-3l-sAz"/>
                 <outlet property="indexLbl" destination="McX-H1-3MB" id="03i-KF-ZJC"/>
+                <outlet property="indexLblBackView" destination="knm-q3-BiO" id="OHJ-vV-sKs"/>
                 <outlet property="selectedView" destination="PNP-bh-u1o" id="bdz-Aj-JF4"/>
                 <outlet property="videoDurationLbl" destination="Q1S-Ur-CV9" id="0zn-On-mHa"/>
                 <outlet property="videoInfoView" destination="zs3-EN-xgp" id="QQU-NT-hxj"/>
