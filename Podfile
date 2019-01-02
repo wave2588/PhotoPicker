@@ -17,6 +17,7 @@ target 'PhotoPicker' do
   pod 'SwifterSwift'
   pod 'BonMot'
   pod 'UIImagePlusPDF'
+  pod 'lottie-ios'
 
 end
 

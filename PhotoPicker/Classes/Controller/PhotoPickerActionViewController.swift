@@ -286,15 +286,11 @@ private extension PhotoPickerActionViewController {
                     if let asset = assetItem.getVideoPHAsset() {
                         self.clickVideo.onNext(asset)
                     } else {
-                        PhotoPickerConfigManager.shared.message?(.normal, "从iCloud下载中...")
-                        PhotoLibrary.downloadVideo(asset: assetItem.phAsset)
                     }
                     return
                 }
 
                 if assetItem.fullResolutionImage == nil {
-                    PhotoPickerConfigManager.shared.message?(.normal, "从iCloud下载中...")
-                    PhotoLibrary.downloadImage(asset: assetItem.phAsset)
                     return
                 }
                 
@@ -321,8 +317,6 @@ private extension PhotoPickerActionViewController {
                 var assetItems = albumItem.assetItems
                 let assetItem = assetItems[index]
                 if assetItem.fullResolutionImage == nil {
-                    PhotoPickerConfigManager.shared.message?(.normal, "从iCloud下载中...")
-                    PhotoLibrary.downloadImage(asset: assetItem.phAsset)
                     return
                 }
                 

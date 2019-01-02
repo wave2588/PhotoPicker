@@ -90,30 +90,5 @@ extension PhotoLibrary {
         
         return requestId
     }
-    
-    static func downloadImage(asset: PHAsset) {
-        let options = PHImageRequestOptions()
-        options.progressHandler = { progress, error, stop, info in
-        }
-        options.isNetworkAccessAllowed = true
-        options.resizeMode = .none
-        PHImageManager.default().requestImageData(for: asset, options: options) { (data, daataUTI, orientation, info) in
-//            if let image = UIImage(data: data ?? Data(), scale: UIScreen.main.scale) {
-//            } else {
-//            }
-        }
-    }
-    
-    static func downloadVideo(asset: PHAsset) {
-        let options = PHVideoRequestOptions()
-        options.progressHandler = { progress, error, stop, info in
-        }
-        options.isNetworkAccessAllowed = true
-        options.version = .current
-        options.deliveryMode = .highQualityFormat
-        
-        PHImageManager.default().requestAVAsset(forVideo: asset, options: options) { (avAsset, avAudio, info) in
-        }
-    }
 
 }

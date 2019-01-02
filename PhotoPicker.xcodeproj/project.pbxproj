@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		401D637E21B62FE3008D6897 /* UIViewController+SB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401D637D21B62FE3008D6897 /* UIViewController+SB.swift */; };
 		401D638021B63371008D6897 /* UIView+Frame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401D637F21B63371008D6897 /* UIView+Frame.swift */; };
+		402330EA21DCA4A9009058E3 /* Bundle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402330E921DCA4A9009058E3 /* Bundle+Extension.swift */; };
+		402330EC21DCBC5D009058E3 /* Downloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402330EB21DCBC5D009058E3 /* Downloader.swift */; };
+		402330EE21DCCA4D009058E3 /* cloud.json in Resources */ = {isa = PBXBuildFile; fileRef = 402330ED21DCCA4D009058E3 /* cloud.json */; };
 		403453A521D0CA45009156B2 /* PhotoPickerActionViewController+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403453A421D0CA45009156B2 /* PhotoPickerActionViewController+DataSource.swift */; };
 		403453C321D36724009156B2 /* ResizeTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403453C221D36724009156B2 /* ResizeTool.swift */; };
 		405B9E2A21BF914900462674 /* PhotoPickerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405B9E2921BF914900462674 /* PhotoPickerConfig.swift */; };
@@ -46,6 +49,7 @@
 		4065BE2A21AB928600C9DD2F /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4065BE2821AB928600C9DD2F /* CollectionViewCell.swift */; };
 		4065BE2B21AB928600C9DD2F /* CollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4065BE2921AB928600C9DD2F /* CollectionViewCell.xib */; };
 		4065BE3321AB962000C9DD2F /* TwoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4065BE3221AB962000C9DD2F /* TwoViewController.swift */; };
+		406F60ED21D6082300AA369D /* ic_iCloud.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 406F60EC21D6082300AA369D /* ic_iCloud.pdf */; };
 		408C23BF21B1343F00BF762A /* PhotoPickerViewController+Gesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408C23BE21B1343F00BF762A /* PhotoPickerViewController+Gesture.swift */; };
 		408C23C121B13BA600BF762A /* EditView+ScrollViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408C23C021B13BA600BF762A /* EditView+ScrollViewDelegate.swift */; };
 		408C23C421B22C3B00BF762A /* ThreeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408C23C321B22C3B00BF762A /* ThreeViewController.swift */; };
@@ -67,6 +71,9 @@
 /* Begin PBXFileReference section */
 		401D637D21B62FE3008D6897 /* UIViewController+SB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+SB.swift"; sourceTree = "<group>"; };
 		401D637F21B63371008D6897 /* UIView+Frame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Frame.swift"; sourceTree = "<group>"; };
+		402330E921DCA4A9009058E3 /* Bundle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extension.swift"; sourceTree = "<group>"; };
+		402330EB21DCBC5D009058E3 /* Downloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Downloader.swift; sourceTree = "<group>"; };
+		402330ED21DCCA4D009058E3 /* cloud.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cloud.json; sourceTree = "<group>"; };
 		403453A421D0CA45009156B2 /* PhotoPickerActionViewController+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhotoPickerActionViewController+DataSource.swift"; sourceTree = "<group>"; };
 		403453C221D36724009156B2 /* ResizeTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResizeTool.swift; sourceTree = "<group>"; };
 		405B9E2921BF914900462674 /* PhotoPickerConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPickerConfig.swift; sourceTree = "<group>"; };
@@ -106,6 +113,7 @@
 		4065BE2821AB928600C9DD2F /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		4065BE2921AB928600C9DD2F /* CollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectionViewCell.xib; sourceTree = "<group>"; };
 		4065BE3221AB962000C9DD2F /* TwoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoViewController.swift; sourceTree = "<group>"; };
+		406F60EC21D6082300AA369D /* ic_iCloud.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = ic_iCloud.pdf; sourceTree = "<group>"; };
 		408C23BE21B1343F00BF762A /* PhotoPickerViewController+Gesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhotoPickerViewController+Gesture.swift"; sourceTree = "<group>"; };
 		408C23C021B13BA600BF762A /* EditView+ScrollViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EditView+ScrollViewDelegate.swift"; sourceTree = "<group>"; };
 		408C23C321B22C3B00BF762A /* ThreeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeViewController.swift; sourceTree = "<group>"; };
@@ -207,6 +215,7 @@
 				4065BDE721AB916900C9DD2F /* UIView+Nib.swift */,
 				4065BDE821AB916900C9DD2F /* UIViewController+AddVC.swift */,
 				401D637D21B62FE3008D6897 /* UIViewController+SB.swift */,
+				402330E921DCA4A9009058E3 /* Bundle+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -246,12 +255,13 @@
 			isa = PBXGroup;
 			children = (
 				408C23C921B2373900BF762A /* Calculate.swift */,
+				402330EB21DCBC5D009058E3 /* Downloader.swift */,
 				40F39EA121B5262D00891B82 /* Export.swift */,
 				4065BE0121AB916900C9DD2F /* PhotoLibrary.swift */,
 				4065BE0021AB916900C9DD2F /* PhotoLibrary+Extension.swift */,
+				403453C221D36724009156B2 /* ResizeTool.swift */,
 				4065BDFE21AB916900C9DD2F /* Runtime.swift */,
 				4065BDFF21AB916900C9DD2F /* ScreenshotTool.swift */,
-				403453C221D36724009156B2 /* ResizeTool.swift */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -259,14 +269,16 @@
 		4065BE0221AB916A00C9DD2F /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				40EB238A21C8CBF20004463F /* ic_close.pdf */,
-				40EB238621C8CB8B0004463F /* ic_proportion_post.pdf */,
-				40EB238721C8CB8B0004463F /* ic_restore_post.pdf */,
-				40EB238E21C8CC570004463F /* ic_arrow_down.pdf */,
-				40EB238C21C8CC2D0004463F /* ic_arrow_up.pdf */,
+				402330ED21DCCA4D009058E3 /* cloud.json */,
 				4065BE0321AB916A00C9DD2F /* AlbumListCell.xib */,
 				4065BE0421AB916A00C9DD2F /* AssetListCell.xib */,
 				4065BE0721AB916A00C9DD2F /* EditView.xib */,
+				40EB238E21C8CC570004463F /* ic_arrow_down.pdf */,
+				40EB238C21C8CC2D0004463F /* ic_arrow_up.pdf */,
+				40EB238A21C8CBF20004463F /* ic_close.pdf */,
+				406F60EC21D6082300AA369D /* ic_iCloud.pdf */,
+				40EB238621C8CB8B0004463F /* ic_proportion_post.pdf */,
+				40EB238721C8CB8B0004463F /* ic_restore_post.pdf */,
 				4065BE0621AB916A00C9DD2F /* PhotoPicker.storyboard */,
 			);
 			path = Assets;
@@ -408,6 +420,8 @@
 				408C23C821B22C6900BF762A /* TTView.xib in Resources */,
 				4065BE1F21AB916A00C9DD2F /* AlbumListCell.xib in Resources */,
 				4065BDDE21AB912E00C9DD2F /* LaunchScreen.storyboard in Resources */,
+				402330EE21DCCA4D009058E3 /* cloud.json in Resources */,
+				406F60ED21D6082300AA369D /* ic_iCloud.pdf in Resources */,
 				4065BDDB21AB912E00C9DD2F /* Assets.xcassets in Resources */,
 				4065BDD921AB912E00C9DD2F /* Main.storyboard in Resources */,
 				4065BE2021AB916A00C9DD2F /* AssetListCell.xib in Resources */,
@@ -463,6 +477,7 @@
 				"${BUILT_PRODUCTS_DIR}/RxViewController/RxViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/SwifterSwift/SwifterSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/UIImagePlusPDF/UIImagePlusPDF.framework",
+				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
@@ -481,6 +496,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwifterSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIImagePlusPDF.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -502,6 +518,7 @@
 				4065BE1521AB916A00C9DD2F /* DividerView.swift in Sources */,
 				4065BE0921AB916A00C9DD2F /* UIViewController+AddVC.swift in Sources */,
 				4065BE1D21AB916A00C9DD2F /* PhotoLibrary+Extension.swift in Sources */,
+				402330EC21DCBC5D009058E3 /* Downloader.swift in Sources */,
 				405B9E2A21BF914900462674 /* PhotoPickerConfig.swift in Sources */,
 				408C23C121B13BA600BF762A /* EditView+ScrollViewDelegate.swift in Sources */,
 				4065BE1A21AB916A00C9DD2F /* EditView.swift in Sources */,
@@ -534,6 +551,7 @@
 				4065BE1821AB916A00C9DD2F /* AlbumListCell.swift in Sources */,
 				40DF138E21ACEAB8009EDCF9 /* AlbumTitleView.swift in Sources */,
 				401D637E21B62FE3008D6897 /* UIViewController+SB.swift in Sources */,
+				402330EA21DCA4A9009058E3 /* Bundle+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

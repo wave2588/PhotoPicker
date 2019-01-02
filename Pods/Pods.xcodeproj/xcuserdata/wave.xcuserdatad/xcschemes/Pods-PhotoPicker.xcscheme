@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1C25E8270FC79340EE1520F170C01EBF"
+               BlueprintIdentifier = "29F9634AC2265653F63F519CA6CA0611"
                BuildableName = "Pods_PhotoPicker.framework"
                BlueprintName = "Pods-PhotoPicker"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1C25E8270FC79340EE1520F170C01EBF"
+            BlueprintIdentifier = "29F9634AC2265653F63F519CA6CA0611"
             BuildableName = "Pods_PhotoPicker.framework"
             BlueprintName = "Pods-PhotoPicker"
             ReferencedContainer = "container:Pods.xcodeproj">

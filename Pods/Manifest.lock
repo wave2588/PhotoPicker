@@ -1,6 +1,7 @@
 PODS:
   - BonMot (5.3)
   - Differentiator (3.1.0)
+  - lottie-ios (2.5.2)
   - "NSObject+Rx (4.4.1)":
     - RxSwift (~> 4.3)
   - RxAnimated (0.5.0):
@@ -49,6 +50,7 @@ PODS:
 
 DEPENDENCIES:
   - BonMot
+  - lottie-ios
   - "NSObject+Rx"
   - RxAnimated
   - RxCocoa
@@ -64,6 +66,7 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - BonMot
     - Differentiator
+    - lottie-ios
     - "NSObject+Rx"
     - RxAnimated
     - RxAtomic
@@ -79,6 +82,7 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   BonMot: 0104d1b4eda54f4a4b7393d6559539ef25498fbd
   Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
+  lottie-ios: 3fef45d3fabe63e3c7c2eb603dd64ddfffc73062
   "NSObject+Rx": 9884a92f19b610795c431e10b4e601913b59c9e9
   RxAnimated: 57a731e59557219480fb3dd86d965d977d863fc6
   RxAtomic: eacf60db868c96bfd63320e28619fe29c179656f
@@ -91,6 +95,6 @@ SPEC CHECKSUMS:
   SwifterSwift: 812ffec6f301922f5430e75be3f2939ea3a80024
   UIImagePlusPDF: fd811b8738e153e10c9e5a09bf3fa9fb8531679c
 
-PODFILE CHECKSUM: 22cf58b9e52a2a663cac98d3a73a4d32a306310a
+PODFILE CHECKSUM: d7e46f5b923065da98f4f5938675e51fd1467783
 
 COCOAPODS: 1.6.0.beta.2

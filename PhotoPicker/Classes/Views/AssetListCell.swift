@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import Photos
+import Lottie
 
 class AssetListCell: UICollectionViewCell {
     
@@ -23,14 +24,20 @@ class AssetListCell: UICollectionViewCell {
     @IBOutlet weak var indexLbl: UILabel!
     @IBOutlet weak var indexLblBackView: UIView!
     
+    var animationView: LOTAnimationView!
+    
     var didTapSelectedIndexBtn: (()->())?
-
+    
     let tapGesture = UITapGestureRecognizer()
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-        
+
+        if let path = Bundle.resourcePath("cloud.json") {
+            animationView = LOTAnimationView(filePath: path)
+            addSubview(animationView)
+        }
+
         tapGesture.rx.event
             .bind { [unowned self] _ in
                 self.didTapSelectedIndexBtn?()
@@ -39,4 +46,10 @@ class AssetListCell: UICollectionViewCell {
         
         indexLblBackView.addGestureRecognizer(tapGesture)
     }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        animationView.frame = CGRect(x: 5, y: 5, width: 20, height: 20)
+    }
+    
 }

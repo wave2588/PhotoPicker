@@ -64,6 +64,5 @@ public struct AssetItem {
         self.id = id
         self.phAsset = phAsset
     }
-
 }
 
