@@ -105,6 +105,18 @@ private extension PhotoLibrary {
             "Selfies",
             "Portrait",
         ]
+        
+        if Bundle.main.preferredLocalizations.first == "zh-Hans" {
+            titles = [
+                "所有照片",
+                "相机胶卷",
+                "视频",
+                "最近添加",
+                "个人收藏",
+                "自拍",
+                "人像"
+            ]
+        }
 
         smartAlbums = PHAssetCollection.fetchAssetCollections(with: .smartAlbum,
                                                                   subtype: .any,

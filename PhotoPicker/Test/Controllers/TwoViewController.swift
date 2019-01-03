@@ -55,8 +55,6 @@ class TwoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationController?.setNavigationBarHidden(true, animated: false)
-        
         PhotoPickerConfigManager.shared.message = { type, str in
             if type == .success {
                 debugPrint("成功提示---->: \(str)")
@@ -64,32 +62,32 @@ class TwoViewController: UIViewController {
                 debugPrint("失败提示---->: \(str)")
             }
         }
-        
+
         view.backgroundColor = .red
-        
+
         let config = PhotoPickerConfig()
         config.maxSelectCount = 2
         config.scale = .oneToOne
         //        vc.inputs.config.accept(config)
-        
+
         let frame = CGRect(x: 0, y: 0, width: view.width, height: view.height - 40 - bottomSafe)
         addT(asChildViewController: vc, frame: frame)
-        
+
         vc.outputs.clickClose
             .subscribe(onNext: { [unowned self] _ in
                 self.dismiss(animated: true, completion: nil)
             })
             .disposed(by: rx.disposeBag)
-        
+
         vc.outputs.clickNextStep
             .subscribe(onNext: { [unowned self] item in
-                
+
                 let vc = ThreeViewController()
                 vc.item = item
                 self.present(vc, animated: true, completion: nil)
             })
             .disposed(by: rx.disposeBag)
-        
+
         vc.outputs.clickVideo
             .subscribe(onNext: { asset in
                 debugPrint("开始导出")

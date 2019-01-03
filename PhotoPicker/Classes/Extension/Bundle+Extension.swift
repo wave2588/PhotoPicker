@@ -15,7 +15,11 @@ extension Bundle {
             return Bundle.main.path(forResource: name, ofType: nil)
         }
         
-        return nil
+        let bundlePath = Bundle.main.path(forResource: "Frameworks/PhotoPicker", ofType: "framework")
+        guard let path = bundlePath?.appendingPathComponent(name) else {
+            return nil
+        }
+        return path
     }
 
 }
