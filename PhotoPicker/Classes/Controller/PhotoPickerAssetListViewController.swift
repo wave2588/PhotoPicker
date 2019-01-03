@@ -60,48 +60,93 @@ class PhotoPickerAssetListViewController: UIViewController {
 
 private extension PhotoPickerAssetListViewController {
     
-    func download(ip: IndexPath) {
+    /// 点击完 video item, 返回是否需要进行下载的 bool
+    func clickVideo(item: AssetItem) -> Bool {
+        
+        if item.phAsset.duration > 300 {
+            PhotoPickerConfigManager.shared.message?(.fail, "暂不支持 5 分钟以上视频")
+            return false
+        }
+        
+        if item.phAsset.duration < 3 {
+            PhotoPickerConfigManager.shared.message?(.fail, "暂不支持 3 秒以下视频")
+            return false
+        }
+        
+        if let _ = item.getVideoPHAsset() {
+            clickCell.onNext(indexPath.row)
+            return false
+        }
+        
+        return true
+    }
+    
+    /// 点击完 photo item, 返回是否需要进行下载的 bool
+    func clickPhoto(item: AssetItem, isClickCell: Bool) -> Bool {
+        
+        if let _ = item.fullResolutionImage {
+            if isClickCell {
+                clickCell.onNext(indexPath.row)
+            } else {
+                clickCellIndexLbl.onNext(indexPath.row)
+            }
+            return false
+        }
+        
+        return true
+    }
+    
+    func clickDownload(ip: IndexPath, isClickCell: Bool) {
         
         indexPath = ip
-
-        guard let cell = collectionView.cellForItem(at: ip) as? AssetListCell else { return }
         
         let item = assetItems.value[indexPath.row]
-        if let _ = progressCache[item.id]  {
-            PhotoPickerConfigManager.shared.message?(.normal, "已经在下载了")
+
+        if item.type == .photo {
+            if !clickPhoto(item: item, isClickCell: isClickCell) {
+                return
+            }
         } else {
+            if !clickVideo(item: item) {
+                return
+            }
+        }
+
+        if let _ = progressCache[item.id]  {
             
-            PhotoPickerConfigManager.shared.message?(.normal, "从 iCloud 下载中...")
+            PhotoPickerConfigManager.shared.message?(.normal, "已经在下载了")
+
+        } else {
             
             if item.type == .photo {
                 
-                if let _ = item.fullResolutionImage {
-                    return
-                }
+                PhotoPickerConfigManager.shared.message?(.normal, "从 iCloud 下载中...")
+                
                 Downloader.shared.downloadImage(asset: item.phAsset, progressHandler: { [weak self] progress in
-                    debugPrint(progress)
                     self?.progressCache[item.id] = progress
+                    guard let cell = self?.collectionView.cellForItem(at: ip) as? AssetListCell else { return }
+//                    debugPrint(progress, "progress cell ---->: ", cell)
                     cell.animationView.animationProgress = self?.progressCache[item.id] ?? 0
                     }, completeHandler: { [weak self] image in
                         guard let _ = image else { return }
                         self?.progressCache[item.id] = 1
+                        guard let cell = self?.collectionView.cellForItem(at: ip) as? AssetListCell else { return }
                         cell.animationView.isHidden = true
                 })
             } else {
                 
-                if let _ = item.getVideoPHAsset() {
-                    return
-                }
+                PhotoPickerConfigManager.shared.message?(.normal, "从 iCloud 下载中...")
+
                 Downloader.shared.downloadVideo(asset: item.phAsset, progressHandler: { [weak self] progress in
-                    debugPrint(progress)
+//                    debugPrint(progress)
                     self?.progressCache[item.id] = progress
+                    guard let cell = self?.collectionView.cellForItem(at: ip) as? AssetListCell else { return }
                     cell.animationView.animationProgress = self?.progressCache[item.id] ?? 0
                     }, completeHandler: { [weak self] path in
                         guard let _ = path else { return }
                         self?.progressCache[item.id] = 1
-                        DispatchQueue.main.async {
-                            cell.animationView.removeFromSuperview()
-                        }
+                        guard let cell = self?.collectionView.cellForItem(at: ip) as? AssetListCell else { return }
+                        cell.animationView.isHidden = true
                 })
             }
         }
@@ -136,12 +181,14 @@ private extension PhotoPickerAssetListViewController {
                 let cell = cv.dequeueReusableCell(withClass: AssetListCell.self, for: ip)
                 
                 guard let `self` = self else { return cell }
-
+                
                 cell.videoInfoView.isHidden = item.type == .video ? false : true
                 cell.videoDurationLbl.text = item.duration
                 cell.indexLbl.isHidden = item.type == .video ? true : false
                 cell.indexLblBackView.isHidden = cell.indexLbl.isHidden
                 
+                cell.animationView.animationProgress = self.progressCache[item.id] ?? 0
+
                 if item.type == .photo {
 
                     if item.fullResolutionImage != nil {
@@ -151,9 +198,7 @@ private extension PhotoPickerAssetListViewController {
                     }
                     
                     cell.didTapSelectedIndexBtn = { [unowned self] in
-                        self.download(ip: ip)
-                        
-                        self.clickCellIndexLbl.onNext(ip.row)
+                        self.clickDownload(ip: ip, isClickCell: false)
                     }
 
                     cell.isUserInteractionEnabled = true
@@ -171,7 +216,7 @@ private extension PhotoPickerAssetListViewController {
                     cell.indexLbl.text = item.selectedIndex == 0 ? "" : "\(item.selectedIndex)"
                     
                 } else {
-                    
+
                     if item.getVideoPHAsset() != nil {
                         cell.animationView.isHidden = true
                     } else {
@@ -206,11 +251,8 @@ private extension PhotoPickerAssetListViewController {
         )
         
         collectionView.rx.itemSelected
-            .subscribe(onNext: { [unowned self] indexPath in
-                
-                self.download(ip: indexPath)
-                
-                self.clickCell.onNext(indexPath.row)
+            .subscribe(onNext: { [unowned self] ip in
+                self.clickDownload(ip: ip, isClickCell: true)
             })
             .disposed(by: rx.disposeBag)
         
