@@ -92,8 +92,9 @@ private extension PhotoLibrary {
 //        allPhotosFetchResult = PHAsset.fetchAssets(with: allPhotosOptions)
 
         PHPhotoLibrary.shared().register(self)
-        
-        fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
+
+//        NSSortDescriptor(key: "creationDate", ascending: false)
+        fetchOptions.sortDescriptors = [NSSortDescriptor(key: "modificationDate", ascending: false)]
         
         /// 所有照片 相机胶卷 视频Videos 最近添加Recently Added 个人收藏Favorites 自拍Selfies 人像Portrait
         var titles = [
