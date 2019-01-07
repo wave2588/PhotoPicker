@@ -55,7 +55,6 @@ class EditView: UIView {
         configureScrollView()
         configureDividerView()
         configureImage()
-        backgroundColor = UIColor(red: 243/255.0, green: 248/255.0, blue: 248/255.0, alpha: 1)
     }
     
     override func layoutSubviews() {
