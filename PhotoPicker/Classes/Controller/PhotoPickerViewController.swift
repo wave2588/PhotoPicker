@@ -44,6 +44,7 @@ public class PhotoPickerViewController: UIViewController {
         return PhotoPickerViewController.fromStoryboard()
     }
     
+    @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet public weak var closeBtn: UIButton!
     @IBOutlet public weak var nextStepBtn: UIButton!
     
@@ -140,6 +141,7 @@ private extension PhotoPickerViewController {
         
         selectedAssetItems
             .subscribe(onNext: { [unowned self] items in
+                self.nextStepBtn.setTitle("完成(\(items.count)/9)", for: .normal)
                 if items.count == 0 {
                     self.nextStepBtn.isEnabled = false
                     self.nextStepBtn.setTitleColor(UIColor(red: 0, green: 0, blue: 0)?.withAlphaComponent(0.5), for: .normal)
