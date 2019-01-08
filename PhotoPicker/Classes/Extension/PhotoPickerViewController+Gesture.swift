@@ -95,6 +95,12 @@ extension PhotoPickerViewController {
     
     func dismissActionVC() {
         let originalY: CGFloat = editContainerView.bottom
+        
+        /// 如果 actionVC 当前位置已经在最下边, 则再点击后不需要再 dismissActionVC
+        if originalY == actionVC.view.y {
+            return
+        }
+        
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 4, options: .curveEaseOut, animations: {
             if !Runtime.isiPhoneX {
                 self.actionVC.topViewHeightCos.constant = 25
@@ -104,11 +110,9 @@ extension PhotoPickerViewController {
             self.actionVC.view.y = originalY
             self.actionVC.view.height = self.view.height - originalY
             
-            if self.shadowView.alpha != 0 {
-                self.actionVC.assetListVC.inputs.rollToTop()
-            }
             self.shadowView.alpha = 0
         }, completion: { _ in
+            self.actionVC.assetListVC.inputs.rollToTop()
         })
     }
 }
