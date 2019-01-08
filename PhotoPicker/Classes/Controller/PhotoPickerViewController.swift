@@ -74,6 +74,7 @@ public class PhotoPickerViewController: UIViewController {
         configureActionVC()
         configureActionVCGesture()
         configureShadowView()
+        configurePanGesture()
     }
     
     public override func viewDidLayoutSubviews() {

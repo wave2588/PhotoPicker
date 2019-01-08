@@ -94,7 +94,7 @@ private extension PhotoLibrary {
         PHPhotoLibrary.shared().register(self)
 
 //        fetchOptions.sortDescriptors = [NSSortDescriptor(key: "modificationDate", ascending: false)]
-        fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
+//        fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
 
         /// 所有照片 相机胶卷 视频Videos 最近添加Recently Added 个人收藏Favorites 自拍Selfies 人像Portrait
         var titles = [
@@ -153,7 +153,7 @@ private extension PhotoLibrary {
                 var assetItems = [AssetItem]()
                 for i in 0 ..< count {
                     let phAsset = fetchResult[i]
-                    assetItems.append(AssetItem(id: phAsset.localIdentifier, phAsset: phAsset))
+                    assetItems.insert(AssetItem(id: phAsset.localIdentifier, phAsset: phAsset), at: 0)
                 }
                 return assetItems
             }

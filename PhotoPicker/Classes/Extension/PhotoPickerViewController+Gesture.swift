@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import RxGesture
+import RxCocoa
+import RxSwift
 
 extension PhotoPickerViewController {
     
@@ -115,4 +118,90 @@ extension PhotoPickerViewController {
             self.actionVC.assetListVC.inputs.rollToTop()
         })
     }
+}
+
+extension PhotoPickerViewController {
+    
+    func configurePanGesture() {
+        
+        let minY: CGFloat = Runtime.statusBarHeight + 6
+        let maxY: CGFloat = editContainerView.bottom
+
+        let kHeight = UIScreen.main.bounds.height
+        
+//        let panGesture = actionVC.assetListVC.collectionView.panGestureRecognizer
+//        panGesture.rx.event
+//            .bind { [unowned self] gesture in
+//                if gesture.state == .began || gesture.state == .changed {
+//                    let point = gesture.translation(in: self.view)
+//                    debugPrint("changed", point)
+//                    let top = self.actionVC.view.y + point.y
+//                    self.actionVC.view.y = top
+//                    self.actionVC.view.height = kHeight - top
+//                    gesture.setTranslation(.zero, in: self.view)
+//                } else {
+//                    debugPrint("end")
+//                }
+//            }
+//            .disposed(by: rx.disposeBag)
+    }
+    
+    
+//    func configureComment() {
+//
+//        var shouldHoldContainer: Bool = false
+//        var beganOffset = CGPoint(x: 0, y: 0)
+//        var originTop = view.height - visualEffectView.height
+//        originTop = Runtime.isHighDevice ? originTop - 34 : originTop
+//        let tableView = commentVC.list.tableView
+//
+//        tableView.panGestureRecognizer.rx.event
+//            .bind { [unowned self] panGesture in
+//
+//                let state = panGesture.state
+//                if state == .began {
+//                    beganOffset = tableView.contentOffset
+//                    shouldHoldContainer = beganOffset.y <= 0
+//
+//                } else if state == .changed {
+//                    let point = panGesture.translation(in: self.visualEffectView)
+//                    if tableView.contentOffset.y >= 0, shouldHoldContainer == false {
+//                        if point.y > 0, beganOffset.y <= 0 {
+//                            tableView.contentOffset = CGPoint(x: 0, y: 0)
+//                        }
+//                        return
+//                    }
+//                    shouldHoldContainer = true
+//                    let top = self.visualEffectView.top + point.y - beganOffset.y
+//                    beganOffset.y = 0
+//                    if top > originTop {
+//                        tableView.contentOffset = CGPoint(x: 0, y: 0)
+//                        self.visualEffectView.top = top
+//                        panGesture.setTranslation(.zero, in: self.visualEffectView)
+//                    }
+//
+//                } else if state == .ended || state == .failed || state == .cancelled {
+//                    var top = originTop
+//                    let y = self.visualEffectView.top + project(initialVelocity: panGesture.velocity(in: tableView).y, decelerationRate: UIScrollView.DecelerationRate.fast.rawValue)
+//                    if y > UIScreen.main.bounds.height * 0.4 {
+//                        top = UIScreen.main.bounds.height
+//                    }
+//                    UIView.animate(withDuration: 0.25, animations: {
+//                        self.visualEffectView.top = top
+//                    }, completion: { _ in
+//                        if self.visualEffectView.top == UIScreen.main.bounds.height {
+//                            self.dismiss(animated: false, completion: {
+//                                self.visualEffectView.top = originTop
+//                            })
+//                        }
+//                    })
+//                }
+//            }
+//            .disposed(by: rx.disposeBag)
+//
+//        post
+//            .bind(to: commentVC.inputs.post)
+//            .disposed(by: rx.disposeBag)
+//    }
+
 }
