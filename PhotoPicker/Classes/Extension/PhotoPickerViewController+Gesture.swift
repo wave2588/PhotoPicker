@@ -55,14 +55,14 @@ extension PhotoPickerViewController {
         let tapGesture = UITapGestureRecognizer()
         tapGesture.rx.event
             .bind { [unowned self] _ in
-                self.showActionVC(true)
+                self.showActionVC(isHidden: true)
             }
             .disposed(by: rx.disposeBag)
         actionVC.albumTitleView.addGestureRecognizer(tapGesture)
         let tapGesture2 = UITapGestureRecognizer()
         tapGesture2.rx.event
             .bind { [unowned self] _ in
-                self.showActionVC(true)
+                self.showActionVC(isHidden: true)
             }
             .disposed(by: rx.disposeBag)
         actionVC.topLineView.addGestureRecognizer(tapGesture2)
@@ -73,13 +73,13 @@ extension PhotoPickerViewController {
         let tapGesture = UITapGestureRecognizer()
         tapGesture.rx.event
             .bind { [unowned self] _ in
-                self.dismissActionVC()
+                self.dismissActionVC(isRool: true)
             }
             .disposed(by: rx.disposeBag)
         shadowView.addGestureRecognizer(tapGesture)
     }
     
-    func showActionVC(_ isHidden: Bool) {
+    func showActionVC(isHidden: Bool) {
         let minY: CGFloat = Runtime.statusBarHeight + 6
         UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.actionVC.view.y = minY
@@ -97,7 +97,7 @@ extension PhotoPickerViewController {
         })
     }
     
-    func dismissActionVC() {
+    func dismissActionVC(isRool: Bool) {
         let originalY: CGFloat = editContainerView.bottom
         
         /// 如果 actionVC 当前位置已经在最下边, 则再点击后不需要再 dismissActionVC
@@ -105,7 +105,7 @@ extension PhotoPickerViewController {
             return
         }
         
-        UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 4, options: .curveEaseOut, animations: {
+        UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             if !Runtime.isiPhoneX {
                 self.actionVC.topViewHeightCos.constant = 25
                 self.actionVC.view.layoutIfNeeded()
@@ -116,7 +116,9 @@ extension PhotoPickerViewController {
             
             self.shadowView.alpha = 0
         }, completion: { _ in
-            self.actionVC.assetListVC.inputs.rollToTop()
+            if isRool {
+                self.actionVC.assetListVC.inputs.rollToTop()
+            }
         })
     }
 }
@@ -174,9 +176,9 @@ extension PhotoPickerViewController {
                     if gestureView.contentOffset.y <= 0 {
                         let y = self.actionVC.view.top + project(initialVelocity: gesture.velocity(in: gestureView).y, decelerationRate: UIScrollView.DecelerationRate.fast.rawValue)
                         if y <= kHeight * 0.5 {
-                            self.showActionVC(false)
+                            self.showActionVC(isHidden: false)
                         } else {
-                            self.dismissActionVC()
+                            self.dismissActionVC(isRool: false)
                         }
                     }
                 }

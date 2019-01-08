@@ -168,7 +168,7 @@ private extension PhotoPickerViewController {
         
         actionVC.selectedImage
             .subscribe(onNext: { [unowned self] _ in
-                self.dismissActionVC()
+                self.dismissActionVC(isRool: true)
             })
             .disposed(by: rx.disposeBag)
         
