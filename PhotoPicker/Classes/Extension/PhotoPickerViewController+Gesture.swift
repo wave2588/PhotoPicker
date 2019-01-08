@@ -81,7 +81,7 @@ extension PhotoPickerViewController {
     
     func showActionVC(_ isHidden: Bool) {
         let minY: CGFloat = Runtime.statusBarHeight + 6
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 4, options: .curveEaseOut, animations: {
+        UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.actionVC.view.y = minY
             self.actionVC.view.height = self.view.height - minY
             if isHidden {
@@ -105,7 +105,7 @@ extension PhotoPickerViewController {
             return
         }
         
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 4, options: .curveEaseOut, animations: {
+        UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 4, options: .curveEaseOut, animations: {
             if !Runtime.isiPhoneX {
                 self.actionVC.topViewHeightCos.constant = 25
                 self.actionVC.view.layoutIfNeeded()
