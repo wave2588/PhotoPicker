@@ -55,6 +55,9 @@ extension PhotoPickerViewController {
         let tapGesture = UITapGestureRecognizer()
         tapGesture.rx.event
             .bind { [unowned self] _ in
+                if self.actionVC.view.y != Runtime.statusBarHeight + 6 {
+                    impactFeedback(style: .light)
+                }
                 self.showActionVC(isHidden: true)
             }
             .disposed(by: rx.disposeBag)
@@ -62,6 +65,9 @@ extension PhotoPickerViewController {
         let tapGesture2 = UITapGestureRecognizer()
         tapGesture2.rx.event
             .bind { [unowned self] _ in
+                if self.actionVC.view.y != Runtime.statusBarHeight + 6 {
+                    impactFeedback(style: .light)
+                }
                 self.showActionVC(isHidden: true)
             }
             .disposed(by: rx.disposeBag)
@@ -73,6 +79,7 @@ extension PhotoPickerViewController {
         let tapGesture = UITapGestureRecognizer()
         tapGesture.rx.event
             .bind { [unowned self] _ in
+                impactFeedback(style: .light)
                 self.dismissActionVC(isRool: true)
             }
             .disposed(by: rx.disposeBag)
@@ -80,7 +87,9 @@ extension PhotoPickerViewController {
     }
     
     func showActionVC(isHidden: Bool) {
+        
         let minY: CGFloat = Runtime.statusBarHeight + 6
+        
         UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.actionVC.view.y = minY
             self.actionVC.view.height = self.view.height - minY
@@ -98,6 +107,7 @@ extension PhotoPickerViewController {
     }
     
     func dismissActionVC(isRool: Bool) {
+        
         let originalY: CGFloat = editContainerView.bottom
         
         /// 如果 actionVC 当前位置已经在最下边, 则再点击后不需要再 dismissActionVC
