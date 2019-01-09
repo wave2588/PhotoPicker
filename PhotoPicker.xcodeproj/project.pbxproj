@@ -13,6 +13,7 @@
 		402330EC21DCBC5D009058E3 /* Downloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402330EB21DCBC5D009058E3 /* Downloader.swift */; };
 		402330EE21DCCA4D009058E3 /* cloud.json in Resources */ = {isa = PBXBuildFile; fileRef = 402330ED21DCCA4D009058E3 /* cloud.json */; };
 		402B28BF21E4884D00BD83F7 /* ProjectFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402B28BE21E4884D00BD83F7 /* ProjectFunction.swift */; };
+		402B291121E5948300BD83F7 /* FeedbackFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402B291021E5948200BD83F7 /* FeedbackFunction.swift */; };
 		403453A521D0CA45009156B2 /* PhotoPickerActionViewController+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403453A421D0CA45009156B2 /* PhotoPickerActionViewController+DataSource.swift */; };
 		403453C321D36724009156B2 /* ResizeTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403453C221D36724009156B2 /* ResizeTool.swift */; };
 		405B9E2A21BF914900462674 /* PhotoPickerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405B9E2921BF914900462674 /* PhotoPickerConfig.swift */; };
@@ -78,6 +79,7 @@
 		402330F121DDF868009058E3 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		402330F221DDF868009058E3 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		402B28BE21E4884D00BD83F7 /* ProjectFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectFunction.swift; sourceTree = "<group>"; };
+		402B291021E5948200BD83F7 /* FeedbackFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedbackFunction.swift; sourceTree = "<group>"; };
 		403453A421D0CA45009156B2 /* PhotoPickerActionViewController+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhotoPickerActionViewController+DataSource.swift"; sourceTree = "<group>"; };
 		403453C221D36724009156B2 /* ResizeTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResizeTool.swift; sourceTree = "<group>"; };
 		405B9E2921BF914900462674 /* PhotoPickerConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPickerConfig.swift; sourceTree = "<group>"; };
@@ -261,6 +263,7 @@
 				408C23C921B2373900BF762A /* Calculate.swift */,
 				402330EB21DCBC5D009058E3 /* Downloader.swift */,
 				40F39EA121B5262D00891B82 /* Export.swift */,
+				402B291021E5948200BD83F7 /* FeedbackFunction.swift */,
 				4065BE0121AB916900C9DD2F /* PhotoLibrary.swift */,
 				4065BE0021AB916900C9DD2F /* PhotoLibrary+Extension.swift */,
 				402B28BE21E4884D00BD83F7 /* ProjectFunction.swift */,
@@ -535,6 +538,7 @@
 				4065BE0A21AB916A00C9DD2F /* UICollectionView+Extension.swift in Sources */,
 				4065BE0821AB916A00C9DD2F /* UIView+Nib.swift in Sources */,
 				408C23C421B22C3B00BF762A /* ThreeViewController.swift in Sources */,
+				402B291121E5948300BD83F7 /* FeedbackFunction.swift in Sources */,
 				4065BE3321AB962000C9DD2F /* TwoViewController.swift in Sources */,
 				40F39EA221B5262D00891B82 /* Export.swift in Sources */,
 				4065BE1621AB916A00C9DD2F /* ScreenshotView.swift in Sources */,

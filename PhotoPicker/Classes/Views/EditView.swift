@@ -63,6 +63,8 @@ class EditView: UIView {
     
     @IBAction func clickSwitchScaleAction(_ sender: UIButton) {
         
+        impactFeedback(style: .light)
+        
         guard let _ = imageView.image else { return }
         
         if scrollView.height == scrollView.width {
@@ -93,6 +95,8 @@ class EditView: UIView {
     /// 留白
     @IBAction func clickSwitchRemainWhiteAction(_ sender: UIButton) {
         
+        impactFeedback(style: .light)
+
         guard let image = imageView.image else { return }
 
         scrollView.zoomScale = 1
@@ -111,6 +115,9 @@ class EditView: UIView {
     
     /// 充满
     @IBAction func clickSwitchFillAction(_ sender: UIButton) {
+        
+        impactFeedback(style: .light)
+
         guard  let image = imageView.image else {
                 return
         }
