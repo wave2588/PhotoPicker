@@ -56,16 +56,21 @@ func croppedOther(scale: Scale, assetItem: AssetItem) -> AssetItem {
     /// 如果是留白的情况, 单独处理
     if scale == .oneToOne && editInfo.mode == .remain {
         
-        /// 如果选择了留白, 并且还放大了图片, 则先用老办法处理
-        if editInfo.zoomScale != 1 {
-            let view = ScreenshotView(frame: CGRect(x: 0, y: 100, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width))
-            editInfo.image = view.setEditInfoImage(firstScale: scale, item: tItem).editInfo?.image
-            tItem.editInfo = editInfo
-            return tItem
-        }
-    
+        let view = ScreenshotView(frame: CGRect(x: 0, y: 100, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width))
+        editInfo.image = view.setEditInfoImage(firstScale: scale, item: tItem).editInfo?.image
         tItem.editInfo = editInfo
-        return remain(item: tItem)
+        return tItem
+
+//        /// 如果选择了留白, 并且还放大了图片, 则先用老办法处理
+//        if editInfo.zoomScale != 1 {
+//            let view = ScreenshotView(frame: CGRect(x: 0, y: 100, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width))
+//            editInfo.image = view.setEditInfoImage(firstScale: scale, item: tItem).editInfo?.image
+//            tItem.editInfo = editInfo
+//            return tItem
+//        }
+//
+//        tItem.editInfo = editInfo
+//        return remain(item: tItem)
     }
 
     /// 相册原图
@@ -107,6 +112,7 @@ func remain(item: AssetItem) -> AssetItem {
     
     if imgW > imgH {
         let wh = getContainerSize(Scale.fourToThreeHorizontal)
+        
         let width = wh.width
         let height = wh.height
         /// 获取容器当前的大小
