@@ -24,6 +24,7 @@ extension EditView: UIScrollViewDelegate {
     func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
         dividerView.outputs.isHidden(hidden: true)
         updateEditedAssetItem()
+        PhotoPickerConfigManager.shared.statistics?("PO-ACTION-04")
     }
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
@@ -40,6 +41,7 @@ extension EditView: UIScrollViewDelegate {
         dividerView.outputs.isHidden(hidden: true)
         if decelerate == false {
             updateEditedAssetItem()
+            PhotoPickerConfigManager.shared.statistics?("PO-ACTION-04")
         }
     }
     

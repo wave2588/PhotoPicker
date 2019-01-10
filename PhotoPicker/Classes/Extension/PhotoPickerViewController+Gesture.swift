@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import RxGesture
 import RxCocoa
 import RxSwift
 
@@ -49,7 +48,7 @@ extension PhotoPickerViewController {
                     })
                     
                     let eventId = newY == minY ? "PO-ACTION-08" : "PO-ACTION-09"
-                    PhotoPickerConfigManager.shared.statistics?(eventId, nil)
+                    PhotoPickerConfigManager.shared.statistics?(eventId)
                 }
             }
             .disposed(by: rx.disposeBag)

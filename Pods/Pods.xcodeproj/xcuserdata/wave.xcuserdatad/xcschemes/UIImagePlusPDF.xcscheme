@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CBFB783D702AF1BD95E6E71218144FED"
+               BlueprintIdentifier = "15276703EA8E110A51BF4AFF0B60FFB4"
                BlueprintName = "UIImagePlusPDF"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "UIImagePlusPDF.framework">

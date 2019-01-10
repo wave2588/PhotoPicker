@@ -22,7 +22,7 @@ public class PhotoPickerConfigManager {
     public var message: ((MessageType, String)->())?
 
     /// 统计
-    public var statistics: ((String, TimeInterval?) -> ())?
+    public var statistics: ((String) -> ())?
     
     /// 调试时候使用, 不用开启...
     public var isDebug = false

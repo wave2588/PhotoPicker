@@ -199,7 +199,7 @@ private extension PhotoPickerAssetListViewController {
                     
                     cell.didTapSelectedIndexBtn = { [unowned self] in
                         self.clickDownload(ip: ip, isClickCell: false)
-                        PhotoPickerConfigManager.shared.statistics?("PO-ACTION-02", nil)
+                        PhotoPickerConfigManager.shared.statistics?("PO-ACTION-02")
                     }
 
                     cell.isUserInteractionEnabled = true

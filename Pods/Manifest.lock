@@ -18,9 +18,6 @@ PODS:
     - Differentiator (~> 3.0)
     - RxCocoa (~> 4.0)
     - RxSwift (~> 4.0)
-  - RxGesture (2.1.0):
-    - RxCocoa (~> 4.4.0)
-    - RxSwift (~> 4.4.0)
   - RxOptional (3.6.2):
     - RxCocoa (~> 4.0)
     - RxSwift (~> 4.0)
@@ -55,7 +52,6 @@ DEPENDENCIES:
   - RxAnimated
   - RxCocoa
   - RxDataSources
-  - RxGesture
   - RxOptional
   - RxSwift
   - RxViewController
@@ -72,7 +68,6 @@ SPEC REPOS:
     - RxAtomic
     - RxCocoa
     - RxDataSources
-    - RxGesture
     - RxOptional
     - RxSwift
     - RxViewController
@@ -88,13 +83,12 @@ SPEC CHECKSUMS:
   RxAtomic: eacf60db868c96bfd63320e28619fe29c179656f
   RxCocoa: df63ebf7b9a70d6b4eeea407ed5dd4efc8979749
   RxDataSources: a843bad90c29817f5923ec8163f4af2de084ceb3
-  RxGesture: 7f6dfb45dbde06e618c24442d38493e3144f2c95
   RxOptional: 80426a0ddbd092573e4c482d8cc13302078c4d5e
   RxSwift: 5976ecd04fc2fefd648827c23de5e11157faa973
   RxViewController: 359bbc2fda373a78605b2735afb0f9f4f3f6c3e4
   SwifterSwift: 812ffec6f301922f5430e75be3f2939ea3a80024
   UIImagePlusPDF: fd811b8738e153e10c9e5a09bf3fa9fb8531679c
 
-PODFILE CHECKSUM: d7e46f5b923065da98f4f5938675e51fd1467783
+PODFILE CHECKSUM: afd5a824e2d04d66cb81bb928e87ac1ffc7c95d1
 
 COCOAPODS: 1.6.0.beta.2

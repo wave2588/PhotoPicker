@@ -10,7 +10,6 @@ target 'PhotoPicker' do
   pod 'RxAnimated'
   pod 'RxCocoa'
   pod 'RxDataSources'
-  pod 'RxGesture'
   pod 'RxOptional'
   pod 'RxSwift'
   pod 'RxViewController'
