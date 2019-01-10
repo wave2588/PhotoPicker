@@ -66,6 +66,8 @@ public class PhotoPickerViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
 
+        PhotoPickerConfigManager.shared.statistics?("PO-IMPRESSION-00", nil)
+        
         view.clipsToBounds = true
         closeBtn.setImage(UIImage.loadLocalImagePDF(name: "ic_close.pdf"), for: .normal)
         
@@ -75,6 +77,7 @@ public class PhotoPickerViewController: UIViewController {
         configureActionVCGesture()
         configureShadowView()
         configurePanGesture()
+        configureVisibleDuration()
     }
     
     public override func viewDidLayoutSubviews() {
@@ -87,6 +90,7 @@ public class PhotoPickerViewController: UIViewController {
     
     @IBAction func closeAction(_ sender: UIButton) {
         clickClose.onNext([])
+        PhotoPickerConfigManager.shared.statistics?("PO-ACTION-10", nil)
     }
     
     @IBAction func nextStepAction(_ sender: UIButton) {
@@ -95,6 +99,8 @@ public class PhotoPickerViewController: UIViewController {
             PhotoPickerConfigManager.shared.message?(.fail, "请选择图片")
             return
         }
+        
+        PhotoPickerConfigManager.shared.statistics?("PO-ACTION-11", nil)
         
         if let config = config.value {
             let images = ScreenshotTool.getConfigImages(scale: config.scale, assetItems: selectedAssetItems.value)
@@ -181,4 +187,10 @@ private extension PhotoPickerViewController {
             .disposed(by: rx.disposeBag)
     }
     
+    func configureVisibleDuration() {
+        
+        rx.visibleDuration
+            .subscribe(onNext: { PhotoPickerConfigManager.shared.statistics?("PO-INTERVAL-12", $0) })
+            .disposed(by: rx.disposeBag)
+    }
 }

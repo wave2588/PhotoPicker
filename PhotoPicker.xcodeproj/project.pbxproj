@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		400FFBC721E746C900C40B3F /* UIViewController+Statistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400FFBC621E746C900C40B3F /* UIViewController+Statistics.swift */; };
 		401D637E21B62FE3008D6897 /* UIViewController+SB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401D637D21B62FE3008D6897 /* UIViewController+SB.swift */; };
 		401D638021B63371008D6897 /* UIView+Frame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401D637F21B63371008D6897 /* UIView+Frame.swift */; };
 		402330EA21DCA4A9009058E3 /* Bundle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402330E921DCA4A9009058E3 /* Bundle+Extension.swift */; };
@@ -71,6 +72,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		400FFBC621E746C900C40B3F /* UIViewController+Statistics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Statistics.swift"; sourceTree = "<group>"; };
 		401D637D21B62FE3008D6897 /* UIViewController+SB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+SB.swift"; sourceTree = "<group>"; };
 		401D637F21B63371008D6897 /* UIView+Frame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Frame.swift"; sourceTree = "<group>"; };
 		402330E921DCA4A9009058E3 /* Bundle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extension.swift"; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 		4065BDE621AB916900C9DD2F /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				402330E921DCA4A9009058E3 /* Bundle+Extension.swift */,
 				408C23C021B13BA600BF762A /* EditView+ScrollViewDelegate.swift */,
 				403453A421D0CA45009156B2 /* PhotoPickerActionViewController+DataSource.swift */,
 				408C23BE21B1343F00BF762A /* PhotoPickerViewController+Gesture.swift */,
@@ -221,7 +224,7 @@
 				4065BDE721AB916900C9DD2F /* UIView+Nib.swift */,
 				4065BDE821AB916900C9DD2F /* UIViewController+AddVC.swift */,
 				401D637D21B62FE3008D6897 /* UIViewController+SB.swift */,
-				402330E921DCA4A9009058E3 /* Bundle+Extension.swift */,
+				400FFBC621E746C900C40B3F /* UIViewController+Statistics.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -554,6 +557,7 @@
 				4065BE0E21AB916A00C9DD2F /* PhotoPickerAssetListViewController.swift in Sources */,
 				4065BE0B21AB916A00C9DD2F /* UITableView+Extension.swift in Sources */,
 				40E0A2AB21B8BEEA00883F62 /* UIView+Extension.swift in Sources */,
+				400FFBC721E746C900C40B3F /* UIViewController+Statistics.swift in Sources */,
 				40DF138821ACE86F009EDCF9 /* UIImage+Extension.swift in Sources */,
 				403453A521D0CA45009156B2 /* PhotoPickerActionViewController+DataSource.swift in Sources */,
 				4065BE2721AB925800C9DD2F /* TestView.swift in Sources */,

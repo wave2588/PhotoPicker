@@ -47,6 +47,9 @@ extension PhotoPickerViewController {
                         }
                     }, completion: { _ in
                     })
+                    
+                    let eventId = newY == minY ? "PO-ACTION-08" : "PO-ACTION-09"
+                    PhotoPickerConfigManager.shared.statistics?(eventId, nil)
                 }
             }
             .disposed(by: rx.disposeBag)

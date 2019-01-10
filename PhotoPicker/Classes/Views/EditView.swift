@@ -64,6 +64,7 @@ class EditView: UIView {
     @IBAction func clickSwitchScaleAction(_ sender: UIButton) {
         
         impactFeedback(style: .light)
+        PhotoPickerConfigManager.shared.statistics?("PO-ACTION-03", nil)
         
         guard let _ = imageView.image else { return }
         
@@ -96,6 +97,7 @@ class EditView: UIView {
     @IBAction func clickSwitchRemainWhiteAction(_ sender: UIButton) {
         
         impactFeedback(style: .light)
+        PhotoPickerConfigManager.shared.statistics?("PO-ACTION-05", nil)
 
         guard let image = imageView.image else { return }
 
@@ -117,6 +119,7 @@ class EditView: UIView {
     @IBAction func clickSwitchFillAction(_ sender: UIButton) {
         
         impactFeedback(style: .light)
+        PhotoPickerConfigManager.shared.statistics?("PO-ACTION-06", nil)
 
         guard  let image = imageView.image else {
                 return
@@ -270,6 +273,8 @@ extension EditView {
     
     func updateEditedAssetItem() {
         
+        PhotoPickerConfigManager.shared.statistics?("PO-ACTION-04", nil)
+        
         var mode: Mode = .fill
         if imageView.left != 0 || imageView.top != 0 {
             mode = .remain
@@ -346,6 +351,8 @@ private extension EditView {
                 
                 let imageName = self.scrollView.width == self.scrollView.height ? "ic_restore_post.pdf" : "ic_proportion_post.pdf"
                 self.switchScaleBtn.setImage(UIImage.loadLocalImagePDF(name: imageName), for: .normal)
+                
+                PhotoPickerConfigManager.shared.statistics?("PO-EVENT-01", nil)
             })
             .disposed(by: rx.disposeBag)
     }
